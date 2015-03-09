@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <center>
+            <ice:panelGrid columns="2" columnClasses="col55,col45" styleClass="borderGary" width="100%">
+                <ice:panelGroup styleClass="borderGray">
+                    <ice:panelGroup styleClass="titulosCenter">
+                        <ice:outputText value="AVANCES DEL PROYECTO DE INVESTIGACION"   />
+                    </ice:panelGroup>
+                    <ice:panelGroup >
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="var" style="width: 100%;">
+                            <ice:column >
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/planTitulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+                            <ice:column >
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 junio 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                </ice:panelGroup>
+                <ice:panelGroup styleClass="borderGray">
+                    <ice:panelGroup styleClass="titulosCenter">
+                        <ice:outputText value="DOCUMENTOS DEL PROYECTO DE INVESTIGACION"   />
+                    </ice:panelGroup>
+                    <ice:panelGroup >
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="var" style="width: 100%;">
+                            <ice:column >
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/planTitulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+                            <ice:column >
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 junio 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </center>
+    </ui:composition>
+</html>

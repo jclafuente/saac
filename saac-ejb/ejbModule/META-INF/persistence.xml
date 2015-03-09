@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="saacPU">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/saac</jta-data-source>
+		<class>ec.edu.ute.saac.entidades.AprobacionProceso</class>
+		<class>ec.edu.ute.saac.entidades.Archivo</class>
+		<class>ec.edu.ute.saac.entidades.AreaInvestigacion</class>
+		<class>ec.edu.ute.saac.entidades.Capacitacion</class>
+		<class>ec.edu.ute.saac.entidades.Cargo</class>
+		<class>ec.edu.ute.saac.entidades.Carrera</class>
+		<class>ec.edu.ute.saac.entidades.Catalogo</class>
+		<class>ec.edu.ute.saac.entidades.ComisionInvestigacion</class>
+		<class>ec.edu.ute.saac.entidades.Comite</class>
+		<class>ec.edu.ute.saac.entidades.Experiencia</class>
+		<class>ec.edu.ute.saac.entidades.CursoTitulacion</class>
+		<class>ec.edu.ute.saac.entidades.CursoTitulacionEstudiante</class>
+		<class>ec.edu.ute.saac.entidades.Facultad</class>
+		<class>ec.edu.ute.saac.entidades.GrupoCatalogo</class>
+		<class>ec.edu.ute.saac.entidades.LineaInvestigacion</class>
+		<class>ec.edu.ute.saac.entidades.MovimientoProceso</class>
+		<class>ec.edu.ute.saac.entidades.Observacion</class>
+		<class>ec.edu.ute.saac.entidades.ParticipantesProceso</class>
+		<class>ec.edu.ute.saac.entidades.PasswordHistorico</class>
+		<class>ec.edu.ute.saac.entidades.Periodos</class>
+		<class>ec.edu.ute.saac.entidades.Persona</class>
+		<class>ec.edu.ute.saac.entidades.PersonaCarrera</class>
+		<class>ec.edu.ute.saac.entidades.PersonaFacultad</class>
+		<class>ec.edu.ute.saac.entidades.Proceso</class>
+		<class>ec.edu.ute.saac.entidades.Requerimiento</class>
+		<class>ec.edu.ute.saac.entidades.Revision</class>
+		<class>ec.edu.ute.saac.entidades.Rol</class>
+		<class>ec.edu.ute.saac.entidades.SeleccionTema</class>
+		<class>ec.edu.ute.saac.entidades.TemasTitulacion</class>
+		<class>ec.edu.ute.saac.entidades.TipoComite</class>
+		<class>ec.edu.ute.saac.entidades.TipoProceso</class>
+		<class>ec.edu.ute.saac.entidades.Usuario</class>
+		<class>ec.edu.ute.saac.entidades.UsuarioRol</class>
+		<properties>
+<!-- 			<property name="javax.persistence.jdbc.user" value="root"/> -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="admin"/> -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.56.101:3306/saac"/> -->
+<!-- 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/> -->
+			<property name="hibernate.ejb.cfgfile" value="META-INF/hibernate.cfg.xml"/>
+			
+		</properties>
+	</persistence-unit>
+</persistence>

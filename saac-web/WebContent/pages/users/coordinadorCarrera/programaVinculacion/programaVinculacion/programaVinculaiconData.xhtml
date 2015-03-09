@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="temaNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+                    <ice:panelGrid columns="3" columnClasses="col25,col50,col25" styleClass="borderGray" >
+
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Programas de Vinculación " />
+                        </f:facet>
+
+                        <ice:outputLabel value="Nombre del programa:" styleClass="label"/>
+                        <ice:inputTextarea id="txtNombre" cols="60" rows="3" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                        <ice:message for="txtNombre" errorClass="error"/>
+
+                        <ice:outputLabel value="Justificación:" styleClass="label"/>
+                        <ice:inputTextarea id="txtSintesis"  cols="60" rows="4" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                        <ice:message for="txtSintesis" errorClass="error"/>
+
+                    </ice:panelGrid>
+
+                    <ice:panelGrid columns="1"  styleClass="borderGray" style="width: 400px" >
+                        <f:facet name="header">
+                            <h:outputLabel value="Seccion de Documentos" />
+                        </f:facet>
+                        <ice:panelCollapsible expanded="true" immediate="true" >
+                            <f:facet name="header">
+                                <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                    <h:outputText value="Carga de Programa de Vinculación" styleClass="panelHeaderStyle"/>
+                                </h:panelGrid>
+                            </f:facet>
+                            <ice:panelGroup >
+                                <ice:panelGrid columns="1">
+                                    <ace:fileEntry id="fileEntryCargaDocumentos" immediate="true"
+                                                   useOriginalFilename="true"
+                                                   useSessionSubdir="false"
+                                                   relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                                   fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                        <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                                    </ace:fileEntry>
+
+                                    <ice:message for="fileEntrySolicitante" errorClass="error" style="color: #2A6CC2"  />
+                                </ice:panelGrid>
+                                <ice:dataTable  rows="20" id="datosArchivosCargados" value="#{atencionControlador.listadoArchivos}" 
+                                                var="archivo" style="width: 100%;">
+                                    <ice:column style="width: 80%;">
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                        </f:facet>
+                                        <ice:panelGroup>
+                                            <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                                #{archivo.arcDescripcion}
+                                            </ice:outputLink>
+                                        </ice:panelGroup>
+                                    </ice:column>
+
+                                    <ice:column style="width: 20%;">
+                                        <center>
+                                            <f:facet name="header">
+                                                <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                            </f:facet>
+
+                                            <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                                <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                            </ice:commandLink>
+                                        </center>
+                                    </ice:column>
+                                </ice:dataTable>
+                            </ice:panelGroup>
+                        </ice:panelCollapsible>
+
+                    </ice:panelGrid>
+                </center>
+                <center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{docenteControlador.guardarUsuario()}" 
+                                       rendered="#{docenteControlador.persona.perCodigo == null}"/>
+                    <ice:commandButton value="Guardar" title="Actualizar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{docenteControlador.actualizarUsuario()}"
+                                       rendered="#{docenteControlador.persona.perCodigo != null}"/>
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

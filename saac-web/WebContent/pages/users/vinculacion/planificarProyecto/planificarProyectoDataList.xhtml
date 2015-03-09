@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="estudianteDataListForm" >
+            <ice:panelGrid columns="1" width="100%"  >
+                <ice:panelGroup styleClass="borderGray">
+                    <ice:dataTable  rows="10" id="dataList" 
+                                    value="#{docenteControlador.listadoPersonas.get(0)}"
+                                    var="estudiante" style="width: 100%;">
+
+                        <ice:column>
+                            <center>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Nombre del Programa" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" />
+                                </ice:panelGroup>
+                            </center>
+                        </ice:column>
+                        <ice:column>
+                            <center>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Coordinador Responsable" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Ing. Victor Hugo Galvez" />
+                                </ice:panelGroup>
+                            </center>
+                        </ice:column>
+                        <ice:column>
+                            <center>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha de Propuesta" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12-Junio-2012" />
+                                </ice:panelGroup>
+                            </center>
+                        </ice:column>
+                        <ice:column>
+                            <center>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Estado" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Desarrollo" />
+                                </ice:panelGroup>
+                            </center>
+                        </ice:column>
+
+                        <ice:column style="width: 10%;">
+                            <f:facet name="header">
+                                <ice:outputLabel value="Seleccionar"></ice:outputLabel>
+                            </f:facet>
+                            <center>
+                                <ice:commandButton value="Seleccionar" style="font-size: 10px;" title="Seleccionar"
+                                                   actionListener="#{docenteControlador.seleccionar(estudiante)}" immediate="true">
+                                    <f:attribute name="select" value="#{estudiante}"></f:attribute>
+                                </ice:commandButton>
+                            </center>
+                        </ice:column>
+
+                        <f:facet name="footer">
+                            <center>
+                                <ice:dataPaginator id="paginador" for="dataList" paginator="true" fastStep="10" paginatorMaxPages="10">
+                                    <f:facet name="first">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-first.gif" style="border:none;" title="Pagina Inicial"/>
+                                    </f:facet>
+                                    <f:facet name="last">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-last.gif" style="border:none;" title="Pagina Final"/>
+                                    </f:facet>
+                                    <f:facet name="previous">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-previous.gif" style="border:none;" title="Pagina Previa"/>
+                                    </f:facet>
+                                    <f:facet name="next">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-next.gif" style="border:none;" title="Pagina Siguiente"/>
+                                    </f:facet>
+                                    <f:facet name="fastforward">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-ff.gif" style="border:none;" title="Avance Rapido"/>
+                                    </f:facet>
+                                    <f:facet name="fastrewind">
+                                        <ice:graphicImage url="/resources/css/rime/css-images/arrow-fr.gif" style="border:none;" title="Retorno Rapido"/>
+                                    </f:facet>
+                                </ice:dataPaginator>
+                            </center>
+                        </f:facet>
+                    </ice:dataTable>
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </ice:form>
+    </ui:composition>
+</html>

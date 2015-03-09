@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="page_title">SAAC - Facultades</ui:define>
+	<ui:define name="content">
+
+		<ice:panelGroup>
+			<!--HEAD DE LA PAGINA-->
+			<ice:panelGroup styleClass="titulosLeft">
+				<ice:outputText value="CARRERAS" />
+			</ice:panelGroup>
+
+			<!--BODY DE LA PAGINA-->
+			<ice:form id="facultadForm">
+				<ice:panelGroup styleClass="borderGray">
+					<ice:commandButton value="Nuevo"
+						action="#{administracionCarreraControlador.activarPanelDatos()}" />
+
+					<ice:commandButton value="Volver" style="float: right;"
+						title="Volver a la lista"
+						rendered="#{administracionCarreraControlador.panelDatos}"
+						action="#{administracionCarreraControlador.inicializacion()}" />
+				</ice:panelGroup>
+
+			</ice:form>
+
+
+			<ice:panelGroup
+				rendered="#{administracionCarreraControlador.panelDatos}">
+				<ui:include src="carreraData.xhtml" />
+			</ice:panelGroup>
+
+			<ice:panelGroup
+				rendered="#{!administracionCarreraControlador.panelDatos}">
+				<ui:include src="carreraDataList.xhtml" />
+			</ice:panelGroup>
+
+
+		</ice:panelGroup>
+
+		<!--ice:panelGroup renderedOnUserRole="USER" >
+                <p>No tiene acceso </p>
+            </ice:panelGroup-->
+	</ui:define>
+</ui:composition>
+</html>
+

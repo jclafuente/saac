@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="revisionPlanNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+                    <ice:panelGrid columns="3" columnClasses="col30,col40,col30" styleClass="borderGray"  >
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Registro de la Fecha de Grado" />
+                        </f:facet>
+                        <ice:outputLabel value="Fecha de Grado" styleClass="label"/>
+                        <ice:selectInputDate id="datFechaNacimiento" value="#{docenteControlador.persona.perFechaNacimiento}" 
+                                             renderAsPopup="true" title="Fecha de Grado"
+                                             renderYearAsDropdown="true" renderMonthAsDropdown="true"
+                                             required="true" requiredMessage="#{msg['campo.vacio']}" >
+                            <f:convertDateTime timeZone="America/Guayaquil"/>
+                        </ice:selectInputDate>
+                        <ice:message for="datFechaNacimiento" errorClass="error"/>
+                    </ice:panelGrid>
+                </center>
+                <ui:include src="esquema/infoGeneral.xhtml" />
+                <ui:include src="esquema/documentos.xhtml" />
+                <center>
+                    <ice:commandButton value="Finalizar Proceso" title="Aprobar registro" 
+                                       panelConfirmation="confirmacionSeleccion" />
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+
+        </ice:form>
+    </ui:composition>
+</html>

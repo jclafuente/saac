@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="revisionPlanNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <ui:include src="esquema/infoGeneral.xhtml" />
+                <ui:include src="esquema/documentos.xhtml" />
+                <center>
+                    <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%"  >
+                        <ice:panelGrid columns="3" columnClasses="col30,col40,col30"  styleClass="borderGray"  >
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Asignacion del docente director del trabajo de titulacion " />
+                            </f:facet>
+
+                            <ice:outputLabel value="Carrera:" styleClass="label"/>
+                            <ice:selectOneMenu id="selCarrera" style="min-width: 280px;"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Carrera">
+                                <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Informática y Ciencias de la Computación" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Mecatrónica" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. de Petróleos" itemValue="3"></f:selectItem>
+                            </ice:selectOneMenu>
+                            <ice:message for="selCarrera" errorClass="error"/>
+
+                            <ice:outputLabel value="Docentes:" styleClass="label"/>
+                            <ice:selectOneMenu id="selProfesores" style="min-width: 280px;"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Profesores">
+                                <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Galo Ramos" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Victor Hugo Galvez" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            </ice:selectOneMenu>
+                            <ice:message for="selProfesores" errorClass="error"/>
+                        </ice:panelGrid>
+                        <ice:panelGrid columns="3" columnClasses="col30,col40,col30"  styleClass="borderGray"  >
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Asignacion del comision de seguimiento " />
+                            </f:facet>
+
+                            <ice:outputLabel value="Docentes:" styleClass="label"/>
+                            <ice:selectOneMenu id="selProfesores1" style="min-width: 280px;"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Profesores">
+                                <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Galo Ramos" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Victor Hugo Galvez" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            </ice:selectOneMenu>
+                            <ice:message for="selProfesores" errorClass="error"/>
+                            
+                            <ice:outputLabel value="Docentes:" styleClass="label"/>
+                            <ice:selectOneMenu id="selProfesores2" style="min-width: 280px;"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Profesores">
+                                <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Galo Ramos" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Victor Hugo Galvez" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            </ice:selectOneMenu>
+                            <ice:message for="selProfesores" errorClass="error"/>
+                            
+                            <ice:outputLabel value="Docentes:" styleClass="label"/>
+                            <ice:selectOneMenu id="selProfesores3" style="min-width: 280px;"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Profesores">
+                                <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Galo Ramos" itemValue="1"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Victor Hugo Galvez" itemValue="2"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                                <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            </ice:selectOneMenu>
+                            <ice:message for="selProfesores" errorClass="error"/>
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>
+
+                </center>
+                
+
+                <center>
+                    <ice:commandButton value="Enviar información al Director" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion" />
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           style="width: 500px;"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+        <ui:include src="esquema/popupRevisados.xhtml" />
+    </ui:composition>
+</html>

@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+
+        <ice:panelCollapsible expanded="false" immediate="true" >
+            <f:facet name="header">
+                <h:panelGrid columns="1" styleClass="panelCollapsible">
+                    <h:outputText value="1. TITULO DEL PLAN" styleClass="panelHeaderStyle"/>
+                </h:panelGrid>
+            </f:facet>
+
+            <center>
+                <ice:panelGrid columns="2" columnClasses="col20,col80"  >
+
+
+                    <ice:outputLabel value="Carrera:" styleClass="labelScreen"/>
+                    <ice:outputText value="Ing. Informática y Ciencias de la Computación" styleClass="labelScreen"/>
+
+                    <ice:outputLabel value="Linea Investigación:" styleClass="labelScreen"/>
+                    <ice:outputText value="Desarrollo Software" styleClass="labelScreen"/> 
+
+                    <ice:outputLabel styleClass="labelScreen" value="Area Investigación:" />
+                    <ice:outputText value="Software Libre (Open Source)" styleClass="labelScreen"/>
+
+                    <ice:outputLabel styleClass="labelScreen" value="Docente Reponsable:" />
+                    <ice:outputText value="Ing. Victor Hugo Galvez" styleClass="labelScreen"/>
+
+                    <ice:outputLabel styleClass="labelScreen" value="Tema del plan:" />
+                    <ice:outputText styleClass="labelScreen"
+                                    value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" />
+
+                    <ice:outputLabel styleClass="labelScreen" value="Sintesis del Tema:" />
+                    <ice:outputText styleClass="labelScreen" value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería."/>
+
+                </ice:panelGrid>
+            </center>
+        </ice:panelCollapsible>
+    </ui:composition>
+</html>

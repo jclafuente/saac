@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<ice:form id="estudianteNuevoForm">
+		<icecore:singleSubmit />
+		<center>
+			<ice:panelGrid columns="2" columnClasses="col30,col40">
+
+
+				<ice:panelGrid styleClass="borderGray"
+					style="text-align: left; min-width: 500px;">
+					<ice:panelGroup styleClass="titulosCenter">
+						<ice:outputLabel value="Seguridad " />
+					</ice:panelGroup>
+					<ice:panelGrid columns="3" columnClasses="col30,col40,col50">
+
+
+						<ice:outputLabel value="Nombre de Usuario:" styleClass="label" />
+						<ice:inputText id="txtUsuario" required="true"
+							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+							title="Usuario"
+							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuCodigo}" />
+						<ice:message for="txtUsuario" errorClass="error" />
+
+						<ice:outputLabel value="Contraseña:" styleClass="label" />
+						<ice:inputText id="txtContraseña" required="true"
+							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+							title="Contraseña"
+							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuUserName}" />
+						<ice:message for="txtContraseña" errorClass="error" />
+
+						<ice:outputLabel value="Usuario UTE:" styleClass="label" />
+						<ice:inputText id="txtUsuUTE" required="true"
+							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+							title="txtUsuUTE"
+							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuUserName}" />
+						<ice:message for="txtUsuUTE" errorClass="error" />
+
+						<ice:outputLabel value="Fecha Registro:" styleClass="label" />
+						<ice:inputText id="txtFecha" required="true"
+							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+							title="Fecha Registro"
+							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuFchRegistro}">
+							<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
+						</ice:inputText>
+						<ice:message for="txtFecha" errorClass="error" />
+
+						<ice:outputLabel value="Estado:" styleClass="label" />
+						<ice:selectBooleanCheckbox id="chkEstadoU" required="true"
+							title="Estado" partialSubmit="true"
+							requiredMessage="#{msg['campo.vacio']}"
+							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuEstado}">
+						</ice:selectBooleanCheckbox>
+						<ice:message for="chkEstadoU" errorClass="error" />
+
+						<ice:commandButton value="Guardar" title="Guardar el registro"
+							panelConfirmation="confirmacionSeleccion"
+							action="#{registrarEstudiantePlanControlador.crearUsuarioRol()}"
+							 />
+
+					</ice:panelGrid>
+
+				</ice:panelGrid>
+			</ice:panelGrid>
+			<ice:panelConfirmation id="confirmacionSeleccion"
+				title="Confirmación"
+				message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+				acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+				type="normal" rendered="true" />
+
+
+
+			<ice:commandButton value="Eliminar" title="Elimina el registro"
+				panelConfirmation="confirmacionSeleccion"
+				action="#{registrarEstudiantePlanControlador.crearEstudiante()}"
+			 />
+
+
+
+		</center>
+
+
+	</ice:form>
+</ui:composition>
+</html>

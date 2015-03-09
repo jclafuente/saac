@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informeTML02" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="87"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#CC8F8F">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6CFCF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1"/>
+	<subDataset name="Table Dataset 2"/>
+	<parameter name="image" class="java.lang.String"/>
+	<parameter name="tituloSolicitud" class="java.lang.String"/>
+	<parameter name="migApellidos" class="java.lang.String"/>
+	<parameter name="migNombres" class="java.lang.String"/>
+	<parameter name="migCedula" class="java.lang.String"/>
+	<parameter name="migNacionalidad" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<parameter name="insRazonSocial" class="java.lang.String"/>
+	<parameter name="numAutorizacion" class="java.lang.String"/>
+	<parameter name="migApellidosNombres" class="java.lang.String"/>
+	<parameter name="nombreEmpleado" class="java.lang.String"/>
+	<parameter name="cargoEmpleado" class="java.lang.String"/>
+	<parameter name="directorEmpleo" class="java.lang.String"/>
+	<parameter name="migTipoVisa" class="java.lang.String"/>
+	<parameter name="viceTrabajo" class="java.lang.String"/>
+	<parameter name="cargoViceTrabajo" class="java.lang.String"/>
+	<parameter name="cargoDirectorEmpleo" class="java.lang.String"/>
+	<field name="numeroPasaporte" class="java.lang.String"/>
+	<field name="primerNombre" class="java.lang.String"/>
+	<field name="apellidoPaterno" class="java.lang.String"/>
+	<group name="body">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupHeader>
+			<band height="687" splitType="Stretch">
+				<staticText>
+					<reportElement key="staticText" x="40" y="172" width="93" height="20"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ANTECEDENTES:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" x="40" y="286" width="395" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{cargo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="327" width="187" height="20"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ANALISIS DE LA DOUMENTACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="436" y="286" width="83" height="14"/>
+					<textElement/>
+					<text><![CDATA[, de la Empresa]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="584" width="267" height="14"/>
+					<textElement/>
+					<text><![CDATA[Mandato Constituyente Nº. 8: capítulo III Art. 16 y 17]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="495" width="373" height="14"/>
+					<textElement/>
+					<text><![CDATA[Se ha aceptado su pedido de conformidad a las siguientes disposiciones:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="395" width="478" height="25"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[La documentación presentado por el interesado, cumple con todos los requisitos establecidos por la Dirección de Empleo y Reconversión  Laboral, el citado ciudadano extranjero presentara]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="463" width="78" height="20"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[BASE LEGAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="513" width="478" height="38"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Constitución de la República del Ecuador, Artículos: 9, 11, 33, 34, 46 - 2, 66 - 2, 3, 14, 15, 16, 17, 23, 29 literales a y b; 76, 284 numeral 6, 325, 326  numerales 1, 2, 4, 5, 10, 328, 329, 331, 332 y 424. ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="556" width="415" height="14"/>
+					<textElement/>
+					<text><![CDATA[Código del Trabajo Artículos: 1 al 8, 11, 17, 18, 19, 20, 308, 556 numeral 3 y 560.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="570" width="234" height="14"/>
+					<textElement/>
+					<text><![CDATA[Ley Modernización: Artículos 25, 28, 34 y 37.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="598" width="138" height="14"/>
+					<textElement/>
+					<text><![CDATA[Convenios: OIT: 97 y 143]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="420" width="148" height="14"/>
+					<textElement/>
+					<text><![CDATA[sus servicios, en la empresa]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="189" y="420" width="330" height="14"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{insRazonSocial}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="434" width="395" height="14"/>
+					<textElement/>
+					<text><![CDATA[la misma que se encuentra ejecutando  una Obra de Interés Nacional bajo una]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="623" width="478" height="30"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Ley de Migración y Extranjería: Codificación a la Ley de Extranjería: capítulos, I, II, III título I y II. Reglamentos a las leyes de: Migración capítulo II título II. ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="653" width="479" height="15"/>
+					<textElement/>
+					<text><![CDATA[Decisión 545 Instrumento Andino de Migraciones (CAN).]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="39" width="76" height="15"/>
+					<textElement/>
+					<text><![CDATA[PARA:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="78" width="76" height="15"/>
+					<textElement/>
+					<text><![CDATA[DE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="118" y="102" width="400" height="15"/>
+					<textElement/>
+					<text><![CDATA[INFORME FAVORABLE / Sobre Visa 12-VI para Obras de Interés Nacional]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="118" y="117" width="39" height="15"/>
+					<textElement/>
+					<text><![CDATA[SEÑOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="102" width="76" height="15"/>
+					<textElement/>
+					<text><![CDATA[ASUNTO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="137" width="76" height="15"/>
+					<textElement/>
+					<text><![CDATA[FECHA:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement key="textField" x="40" y="299" width="478" height="15"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{insRazonSocial}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="137" width="400" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="158" y="117" width="360" height="15"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migApellidosNombres}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="217" width="77" height="14"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nacionalidad:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="344" y="202" width="174" height="14"/>
+					<textElement/>
+					<text><![CDATA[con la siguiente infomación:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="119" y="217" width="300" height="14"/>
+					<textElement>
+						<font isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migNacionalidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="91" y="202" width="252" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migApellidosNombres}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="202" width="52" height="14"/>
+					<textElement/>
+					<text><![CDATA[El señor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="245" width="77" height="14"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Visa:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="119" y="231" width="300" height="14"/>
+					<textElement>
+						<font isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migCedula}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="231" width="77" height="14"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Pasaporte Nº]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="119" y="245" width="300" height="14"/>
+					<textElement>
+						<font isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migTipoVisa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="259" width="478" height="27"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[ha presentado su documentación completa en la Unidad de Migraciones Laborales, con el objeto de obtener la aprobación de Autorización Laboral y Carné Ocupacional bajo relación de dependencia,para obtener la Visa, en calidad de: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="staticText" x="40" y="352" width="222" height="15"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[El prenombrado señor ha obtenido la Visa]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="256" y="352" width="267" height="15"/>
+					<textElement>
+						<font isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{migTipoVisa}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="367" width="478" height="15"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[,encontrándose vigente, normada en el Art. 44 del Reglamento de la Ley de Extranjería.]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="118" y="54" width="400" height="15"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{cargoViceTrabajo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="78" width="400" height="15"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{cargoDirectorEmpleo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="39" width="400" height="15"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{viceTrabajo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement key="staticText" x="40" y="12" width="230" height="16"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MEMORANDO Nº]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="273" y="12" width="245" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{numAutorizacion}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement key="image" x="0" y="0" width="555" height="68"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{image}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="296" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="40" y="46" width="478" height="49"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[La Dirección de Empleo y Reconversión Laboral, ha analizado la documentación adjunta, concluyendo que el trámite en mención reúne los requisitos establecidos por esta Dirección. Con este fundamento se recomienda otorgar la Autorización Laboral y Carné Ocupacional, para que el extranjero en mención obtenga la Visa 12 - VI.]]></text>
+			</staticText>
+			<frame>
+				<reportElement key="frame" style="table" x="45" y="243" width="474" height="37"/>
+				<staticText>
+					<reportElement key="staticText" style="table" x="0" y="0" width="474" height="14"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Acción:                    Nombre                                     Firma                                  Cargo]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table" x="74" y="14" width="143" height="23"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{nombreEmpleado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="362" y="14" width="112" height="23"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{cargoEmpleado}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement key="staticText" style="table" x="45" y="257" width="74" height="23"/>
+				<textElement/>
+				<text><![CDATA[Elaborado por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="213" width="474" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{directorEmpleo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="40" y="121" width="479" height="14"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atentamente,]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

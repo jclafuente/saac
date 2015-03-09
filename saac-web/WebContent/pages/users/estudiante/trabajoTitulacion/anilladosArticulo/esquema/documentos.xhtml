@@ -1,0 +1,207 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:panelGrid columns="1"  width="100%" styleClass="borderGary">
+
+            <ice:panelGroup styleClass="borderGray">
+                <ice:panelGroup styleClass="titulosCenter">
+                    <ice:outputText value="PLAN APROBADO "   />
+                </ice:panelGroup>
+
+                <ice:panelGroup >
+                    <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                    var="var" style="width: 100%;">
+                        <ice:column >
+                            <f:facet name="header">
+                                <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                            </f:facet>
+                            <ice:panelGroup>
+                                <ice:outputLink target="_blank" value="/saac/archivos/planTitulacion.pdf"  >
+                                    Documento
+                                </ice:outputLink>
+                            </ice:panelGroup>
+                        </ice:column>
+
+                    </ice:dataTable>
+                </ice:panelGroup>
+
+
+            </ice:panelGroup>
+
+            <ice:panelGrid columns="2" columnClasses="col45,col55" width="100%" styleClass="borderGary">
+
+
+                <ice:panelGroup >
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="CARGA DE ANILLADOS"   />
+                        </ice:panelGroup>
+
+                        <ice:panelGrid columns="1">
+                            <ace:fileEntry id="fileEntryCargaDocumentos" immediate="true"
+                                           useOriginalFilename="true"
+                                           useSessionSubdir="false"
+                                           relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                           fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                            </ace:fileEntry>
+
+                            <ice:message for="fileEntrySolicitante" errorClass="error" style="color: #2A6CC2"  />
+                        </ice:panelGrid>
+                        <ice:dataTable  rows="20"  value="#{atencionControlador.listadoArchivos}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column style="width: 80%;">
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                        #{archivo.arcDescripcion}
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column style="width: 20%;">
+                                <center>
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                    </f:facet>
+
+                                    <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                        <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                    </ice:commandLink>
+                                </center>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="CARGA DE ARTICULO CIENTIFICO"   />
+                        </ice:panelGroup>
+
+                        <ice:panelGrid columns="1">
+                            <ace:fileEntry id="fileEntryCargaArticulo" immediate="true"
+                                           useOriginalFilename="true"
+                                           useSessionSubdir="false"
+                                           relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                           fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                            </ace:fileEntry>
+
+                            <ice:message for="fileEntryCargaArticulo" errorClass="error" style="color: #2A6CC2"  />
+                        </ice:panelGrid>
+                        <ice:dataTable  rows="20"  value="#{atencionControlador.listadoArchivos}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column style="width: 80%;">
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                        #{archivo.arcDescripcion}
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column style="width: 20%;">
+                                <center>
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                    </f:facet>
+
+                                    <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                        <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                    </ice:commandLink>
+                                </center>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+
+
+                </ice:panelGroup >
+
+
+
+                <ice:panelGroup >
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="DOCUMENTOS REVISADOS"   />
+                        </ice:panelGroup>
+
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column style="width: 20%;">
+                                <center>
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Observaciones"></ice:outputLabel>
+                                    </f:facet>
+
+                                    <ice:commandButton value="Observaciones"  actionListener="#{docenteControlador.abrirObservaciones()}" immediate="true">
+                                        <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                    </ice:commandButton>
+                                </center>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="INFORME DE LA COMISION DE SEGUIMIENTO"   />
+                        </ice:panelGroup>
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Informe de reunión
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                        </ice:dataTable>
+                    </ice:panelGroup>
+
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </ice:panelGrid>
+    </ui:composition>
+</html>

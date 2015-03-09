@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<ice:form id="temaNuevoForm">
+		<ice:panelGroup styleClass="borderGray">
+			<center>
+				<ice:panelGrid columns="3" columnClasses="col25,col50,col25"
+					styleClass="borderGray">
+
+					<f:facet name="header">
+						<ice:outputLabel value="Temas de Trabajo de Titulacion " />
+					</f:facet>
+
+					<ice:outputLabel value="Carrera:" styleClass="label" />
+					<ice:outputLabel
+						value="#{aprobacionTemaControlador.temaTitulacion.temTitNombre}" />
+					<ice:outputLabel value="" styleClass="label" />
+
+					<ice:outputLabel value="Linea Investigación:" styleClass="label" />
+					<ice:outputLabel
+						value="#{aprobacionTemaControlador.temaTitulacion.areaInvestigacion.lineaInvestigacion.linInvNombre}" />
+					<ice:outputLabel value="" styleClass="label" />
+
+
+					<ice:outputLabel value="Area Investigación:" styleClass="label" />
+					<ice:outputLabel
+						value="#{aprobacionTemaControlador.temaTitulacion.areaInvestigacion.areInvNombre}" />
+					<ice:outputLabel value="" styleClass="label" />
+
+					<ice:outputLabel value="Tema:" styleClass="label" />
+					<ice:inputTextarea id="txtNombre" cols="60" rows="3"
+						value="#{aprobacionTemaControlador.temaTitulacion.temTitNombre}"
+						readonly="true" />
+					<ice:outputLabel value="" styleClass="label" />
+
+
+
+					<ice:outputLabel value="Sintesis del Tema:" styleClass="label" />
+					<ice:inputTextarea id="txtSintesis" cols="100" rows="3"
+						value="#{aprobacionTemaControlador.temaTitulacion.temTitDescripcion}"
+						readonly="true" />
+					<ice:outputLabel value="" styleClass="label" />
+
+				</ice:panelGrid>
+
+				<ice:commandButton value="Aprobar" title="Guardar el registro"
+					panelConfirmation="confirmacionSeleccion"
+					action="#{aprobacionTemaControlador.btnAprobarTemaTitulacion('APROBADO')}" 
+					partialSubmit="true"/>
+
+				<ice:commandButton value="Negar" title="Actualizar el registro"
+					action="#{aprobacionTemaControlador.btnAprobarTemaTitulacion('NEGADO')}"
+					panelConfirmation="confirmacionSeleccion" 
+					partialSubmit="true"/>
+					
+				<ice:panelConfirmation id="confirmacionSeleccion"
+					title="Confirmación"
+					message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+					type="normal" rendered="true" />
+
+			</center>
+		</ice:panelGroup>
+	</ice:form>
+</ui:composition>
+</html>

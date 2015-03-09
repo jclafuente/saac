@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="page_title">RAPROBACION DEL FORMATO DEL ANILLADO</ui:define>
+        <ui:define name="content">
+
+            <!--HEAD DE LA PAGINA-->
+            <ice:panelGroup styleClass="titulosLeft">
+                <ice:outputText value="APROBACION DEL FORMATO DEL ANILLADO"   />
+            </ice:panelGroup>
+
+            <!--BODY DE LA PAGINA-->
+
+            <ice:form id="temaForm" >
+                <ice:panelGroup styleClass="borderGray" style="height: 25px;" rendered="#{coordinadorCarreraControlador.panelDatos}">
+                    <ice:commandButton value="Volver" style="float: right;" title="Volver a la lista"
+                                       rendered="#{coordinadorCarreraControlador.panelDatos}"
+                                       action="#{coordinadorCarreraControlador.inicializacion()}"/>
+                </ice:panelGroup>
+            </ice:form>
+
+            <ice:panelGroup rendered="#{coordinadorCarreraControlador.panelDatos}">
+                <ui:include src="aprobacionFormatoData.xhtml" />
+            </ice:panelGroup>
+
+            <ice:panelGroup rendered="#{!coordinadorCarreraControlador.panelDatos}">
+                <ui:include src="aprobacionFormatoDataList.xhtml"/>
+            </ice:panelGroup>
+        </ui:define>
+    </ui:composition>
+</html>

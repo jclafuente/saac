@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bbfa7877-7d15-4b47-98a6-65c82ead485b">
+	<property name="ireport.zoom" value="0.6209213230591555"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="image" class="java.lang.String"/>
+	<group name="text">
+		<groupHeader>
+			<band height="396">
+				<staticText>
+					<reportElement uuid="12848091-d9d0-4bf4-a991-b055b2ae0a87" x="50" y="0" width="469" height="20"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Certifico que de acuerdo con el Reglamento correspondiente, se ha procedido a los siguiente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="cd4bf0cc-f8e9-4b3f-93e3-50812a14dad0" x="50" y="224" width="469" height="20"/>
+					<textElement textAlignment="Center">
+						<font isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Atentamente,]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="cd87f907-7b55-4ae5-bf40-32584e01ac27" x="50" y="309" width="469" height="20"/>
+					<textElement textAlignment="Center">
+						<font isBold="true" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Ing, Jorge Viteri Moya, MBA.-MSc.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="12848091-d9d0-4bf4-a991-b055b2ae0a87" x="50" y="30" width="469" height="20"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Certifico que de acuerdo con el Reglamento correspondiente, se ha procedido a los siguiente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="30ded300-1451-4825-8ad7-24aae7635a50" x="50" y="60" width="170" height="20"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Estado del Tema de Tesis propuesto:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="19f440e1-eb77-4c63-a39d-f0f9574b333b" x="220" y="60" width="299" height="20"/>
+					<textElement textAlignment="Justified">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[APROBADO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a4b385c8-6d3c-4e9d-9475-259154e89f8d" x="50" y="90" width="155" height="20"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Previo a la obtención del título de:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="7decb060-1618-4ef7-8f19-635f108428c0" x="205" y="90" width="314" height="40"/>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[INGENIERO EN INFORMÁTICA Y CIENCIAS DE LA COMPUTACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f4c83962-b4cd-453a-a452-e50865645003" x="50" y="130" width="469" height="40"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Previo el nombramiento de Director de Tesis, deberá cumplir con lo señalado en los artículos 50 y 52 del reglamento para la elaboración y defensa del Trabajo de Titulación.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e5fa5a46-c8ce-4328-a812-895ed0b8472a" x="50" y="180" width="469" height="40"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Por otra parte me permito indicar a usted que el plazo para la realización del trabajo de titulación es de 8 meses contados a partir de la presente fecha.]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<image>
+				<reportElement uuid="1ad6361d-354e-47b8-8f3f-bff23df865bf" x="17" y="0" width="538" height="80"/>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="276" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f93c1e2e-db98-4305-bdba-115a107c895d" x="141" y="150" width="378" height="40"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[" DISEÑAR EL SISTEMA INTEGRADO DE ADMINISTRACION, CONTROL Y SEGUIMIENTO DE LA FACULTAD DE CIENCIAS DE LA INGENIAERIA "]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="e88472ee-f2bb-4ae6-a5ce-c206d1c033b2" x="50" y="10" width="469" height="1" forecolor="#001577"/>
+			</line>
+			<staticText>
+				<reportElement uuid="e6f0daec-2eed-4ec1-8c2e-90a7b325225c" x="50" y="110" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARRERA	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f93c1e2e-db98-4305-bdba-115a107c895d" x="50" y="50" width="469" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APROBACIÓN DE PLAN DE TESIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="17f8ec3f-3457-4fe3-beaf-be4c9b51ebba" x="50" y="150" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEMA		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4deb0d1d-2185-476c-9456-8175075d2141" x="50" y="190" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTUDIANTE	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="66d9ba6e-072f-4064-b7f6-76d0b82fa1dd" x="50" y="230" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bba481c2-bdea-409e-b4d0-f81c45f7b479" x="141" y="110" width="378" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ingeniería Informática y Ciencias de la Computación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="312c46a1-0344-409d-a0fd-87d951869d70" x="141" y="190" width="378" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sr. Juan Carlos Lafuente Muñoz]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b5dfe22-c5b2-441f-88c5-112a6841ab9e" x="141" y="230" width="378" height="20"/>
+				<textElement/>
+				<text><![CDATA[Quito DM, 24 de junio de 2012]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="e88472ee-f2bb-4ae6-a5ce-c206d1c033b2" x="50" y="270" width="469" height="1" forecolor="#001577"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30"/>
+	</detail>
+	<summary>
+		<band height="19" splitType="Stretch"/>
+	</summary>
+</jasperReport>

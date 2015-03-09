@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <center>
+            <ice:panelGrid columns="2" columnClasses="col75,col45" width="100%"  >
+                <ice:panelGrid columns="2" columnClasses="col25,col75"  width="100%" styleClass="borderGray"  >
+                    <f:facet name="header" >
+                        <ice:outputLabel value="Información General " />
+                    </f:facet>
+
+                    <ice:outputLabel value="Carrera:" />
+                    <ice:outputText value="Ing. Informática y Ciencias de la Computación" />
+
+                    <ice:outputLabel value="Linea Investigación:" />
+                    <ice:outputText value="Desarrollo Software" /> 
+
+                    <ice:outputLabel value="Area Investigación:" />
+                    <ice:outputText value="Software Libre (Open Source)" />
+
+                    <ice:outputLabel value="Docente Reponsable:" />
+                    <ice:outputText value="Ing. Victor Hugo Galvez" />
+
+                    <ice:outputLabel value="Tema del plan:" />
+                    <ice:outputText value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" />
+
+                    <ice:outputLabel value="Sintesis del Tema:" styleClass="label"/>
+                    <ice:outputText value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería." />
+                    
+                    <ice:menuItemSeparator />
+                    <ice:menuItemSeparator />
+
+                    <ice:outputLabel value="Fecha Limite de entrega:" />
+                    <ice:outputText value="8 meses despues de la Aprobación" />
+                </ice:panelGrid>
+
+                <ice:panelGroup>
+                    <ice:panelGrid columns="2" columnClasses="col25,col75" width="100%" styleClass="borderGray"  >
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Estudiante de Plan " />
+                        </f:facet>
+
+                        <ice:outputLabel value="Nombre: " />
+                        <ice:outputText value="Juan Carlos Lafuente" />
+
+                        <ice:outputLabel value="Movil: " />
+                        <ice:outputText value="095635575" />
+
+                        <ice:outputLabel value="Fijo: " />
+                        <ice:outputText value="095635575" />
+
+                        <ice:outputLabel value="E-mail: " />
+                        <ice:outputText value="095635575" />
+                    </ice:panelGrid>
+
+
+                </ice:panelGroup>
+
+            </ice:panelGrid>
+        </center>
+    </ui:composition>
+</html>

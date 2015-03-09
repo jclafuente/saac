@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <center>
+            <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%"  >
+                <ice:panelGroup>
+                    <center>
+                        <ice:panelGrid columns="2" columnClasses="col20,col80" width="100%"  styleClass="borderGray"  >
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Analisis del Programa de Vinculación " />
+                            </f:facet>
+
+                            <ice:outputLabel value="Nombre del programa:" styleClass="label"/>
+                            <ice:outputText id="txtNombrePrograma"
+                                            value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería."/>
+
+                            <ice:outputLabel value="Justificación:" styleClass="label"/>
+                            <ice:outputText id="txtSintesis" 
+                                            value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería."/>
+
+                        </ice:panelGrid>
+                    </center>
+                </ice:panelGroup>
+                <ice:panelGroup>
+                    <center>
+
+                        <ice:panelGrid columns="2" columnClasses="col20,col80" width="100%" styleClass="borderGray"  >
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Coordinador Responsable " />
+                            </f:facet>
+
+                            <ice:outputLabel value="Coordinador:" />
+                            <ice:outputText value="Ing. Galo Ramos" />
+
+                            <ice:outputLabel value="Carrera: " />
+                            <ice:outputText value="Ingeniería en Informática y Ciencias de la Computación" />
+
+                            <ice:outputLabel value="Telefono: " />
+                            <ice:outputText value="095635575" />
+
+                            <ice:outputLabel value="E-mail: " />
+                            <ice:outputText value="galo_ramos@ute.edu.ec" />
+                        </ice:panelGrid>
+                    </center>
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </center>
+    </ui:composition>
+</html>

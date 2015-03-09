@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <center>
+            <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%"  >
+
+                <ice:panelGrid columns="2" columnClasses="col25,col75"  width="100%" styleClass="borderGray"  >
+                    <f:facet name="header" >
+                        <ice:outputLabel value="Registrar la aprobación del Proyecto de Investigación" />
+                    </f:facet>
+
+                    <ice:outputLabel value="Título del proyecto:" />
+                    <ice:outputText value="Proyecto de Investigacion numero 1" />
+
+                    <ice:outputLabel value="Duración del Proyecto:" />
+                    <ice:outputText value="12 meses" /> 
+
+                    <ice:outputLabel value="Monto del Proyecto:" />
+                    <ice:outputText value="$ 12.000" />
+
+                </ice:panelGrid>
+
+                <ice:panelGroup>
+                    <ice:panelGrid columns="2" columnClasses="col25,col75" width="100%" styleClass="borderGray"  >
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Docente Responsable " />
+                        </f:facet>
+
+                        <ice:outputLabel value="Nombre: " />
+                        <ice:outputText value="Ing. Ruben Blades" />
+
+                        <ice:outputLabel value="Movil: " />
+                        <ice:outputText value="095635575" />
+
+                        <ice:outputLabel value="Fijo: " />
+                        <ice:outputText value="022635575" />
+
+                        <ice:outputLabel value="E-mail: " />
+                        <ice:outputText value="ruben_blades@ute.edu.ec" />
+                    </ice:panelGrid>
+
+
+                </ice:panelGroup>
+
+            </ice:panelGrid>
+        </center>
+    </ui:composition>
+</html>

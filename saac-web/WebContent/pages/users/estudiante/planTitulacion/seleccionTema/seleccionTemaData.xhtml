@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="temaNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+                    <ice:panelGrid columns="2" columnClasses="col25,col75" styleClass="borderGray"  >
+
+                        <ice:outputLabel value="Primer Tema:" styleClass="label"/>
+
+                        <ice:selectOneMenu id="selTema1" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería2" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería3" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+
+                        <ice:outputLabel value="Segundo Tema:" styleClass="label"/>
+                        <ice:selectOneMenu id="selTema2" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería2" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería3" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+
+                        <ice:outputLabel value="Tercer Tema:" styleClass="label"/>
+                        <ice:selectOneMenu id="selSelTema3" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería2" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería3" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+
+                    </ice:panelGrid>
+                </center>
+                <center>
+                    <ice:commandButton value="Finalizar la selección de temas" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       />
+                    
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

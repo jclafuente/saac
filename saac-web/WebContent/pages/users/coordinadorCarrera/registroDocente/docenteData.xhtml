@@ -1,0 +1,272 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="estudianteNuevoForm" >
+            <icecore:singleSubmit />
+            <ice:panelGroup styleClass="borderGray"  >
+                <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%" >
+                    <ice:panelGroup styleClass="borderGray" >
+                        <center>
+                            <ice:panelGroup styleClass="titulosCenter">
+                                <ice:outputLabel value=" " />
+                            </ice:panelGroup>
+                            <ace:accordion id="accordion" collapsible="true" autoHeight="false">
+                                <ace:accordionPane id="toDoList" title="My To Do List">
+                                    <ice:outputLabel value="Documento de Identidad:" styleClass="label" />
+                                    <ace:maskedEntry id="sinInput" value="#{coordinadorCarreraControlador.persona.perDocumentoIdentidad}" mask="999999999-9">
+                                        <ace:ajax execute="@this" render="sinOutput"/>
+                                    </ace:maskedEntry>
+                                    <ice:message for="txtDocumento" errorClass="error"/>
+                                </ace:accordionPane>
+                                <ace:accordionPane id="toDoList1" title="My To Do List">
+                                    <ice:outputLabel value="Nombre:" styleClass="label"/>
+                                    <ice:inputText id="txtNombre" value="#{coordinadorCarreraControlador.persona.perNombre}"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"/>
+                                    <ice:message for="txtNombre" errorClass="error"/>
+                                </ace:accordionPane>
+                            </ace:accordion>
+                            <ice:panelGrid columns="3" columnClasses="col30,col40,col30" styleClass="borderGray"  >
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Datos Personales" />
+                                </f:facet>
+
+
+
+
+
+                                <ice:outputLabel value="Apellido:" styleClass="label"/>
+                                <ice:inputText id="txtApellido" value="#{coordinadorCarreraControlador.persona.perApellido}" 
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" 
+                                               title="Apellido" style="width: 200px;"/>
+                                <ice:message for="txtApellido" errorClass="error"/>
+
+                                <ice:outputLabel value="Fecha de Nacimiento:" styleClass="label"/>
+                                <ice:selectInputDate id="datFechaNacimiento" value="#{coordinadorCarreraControlador.persona.perFechaNacimiento}" 
+                                                     renderAsPopup="true" title="Fecha de Nacimiento"
+                                                     required="true" requiredMessage="#{msg['campo.vacio']}" >
+                                    <f:convertDateTime timeZone="America/Guayaquil"/>
+                                </ice:selectInputDate>
+                                <ice:message for="datFechaNacimiento" errorClass="error"/>
+
+                                <ice:outputLabel value="Teléfono Fijo:" styleClass="label"/>
+                                <ice:inputText id="txtTelefonoFijo" value="#{coordinadorCarreraControlador.persona.perTelfonoFijo}"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Teléfono Fijo de conctato" style="width: 200px;"/>
+                                <ice:message for="txtTelefonoFijo" errorClass="error"/>
+
+                                <ice:outputLabel value="Teléfono Móvil:" styleClass="label"/>
+                                <ice:inputText id="txtTelefonoMovil" value="#{coordinadorCarreraControlador.persona.perTelefonoMovil}" 
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Teléfono Móvil de conctato" style="width: 200px;"/>
+                                <ice:message for="txtTelefonoMovil" errorClass="error"/>
+
+                                <ice:outputLabel value="E-mail:" styleClass="label"/>
+                                <ice:inputText id="txtEmail" value="#{coordinadorCarreraControlador.persona.perEmail}"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" 
+                                               title="Ingrese el Email en el cual recibira notificaciones" style="width: 200px;"/>
+                                <ice:message for="txtEmail" errorClass="error"/>
+
+                                <ice:outputLabel value="Estado Civil:" styleClass="label"/>
+                                <ice:selectOneMenu id="selEstadoCivil" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.estadoCivilSelected}"
+                                                   disabled="false" title="Estado Civil" >
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoEstadoCivil}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selEstadoCivil" errorClass="error"/>
+
+
+                                <ice:outputLabel value="Genero:" styleClass="label"/>
+                                <ice:selectOneMenu id="selGenero" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.generoSelected}"
+                                                   disabled="false" title="Genero">
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoGenero}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selGenero" errorClass="error"/>
+
+                                <ice:outputLabel value="Nacionalidad:" styleClass="label"/>
+                                <ice:selectOneMenu id="selNacionalidad" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.nacionalidadSelected}"
+                                                   disabled="false" title="Nacionalidad">
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoNacionalidad}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selNacionalidad" errorClass="error"/>
+
+                                <ice:outputLabel value="Dirección:" styleClass="label"/>
+                                <ice:inputTextarea id="txtDireccion" value="#{coordinadorCarreraControlador.persona.perDireccion}" cols="29" rows="3" 
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                                <ice:message for="txtDireccion" errorClass="error"/>
+
+                            </ice:panelGrid>
+                        </center>
+
+
+                    </ice:panelGroup>
+                    <ice:panelGroup  >
+                        <ice:panelGroup styleClass="borderGray"  >
+                            <center>
+                                <ice:panelGroup styleClass="titulosCenter">
+                                    <ice:outputLabel value="Asignaciones " />
+                                </ice:panelGroup>
+
+                                <ice:panelGrid columns="1"  >
+                                    <ice:outputLabel value="Indique a donde se le asiganara" />
+                                    <ice:selectOneRadio valueChangeListener="#{coordinadorCarreraControlador.cambiarTipoAsignacion}" layout="pageDirection"
+                                                        partialSubmit="true" immediate="true">
+                                        <f:selectItem itemLabel="Facultad " itemValue="facultad" />
+                                        <f:selectItem itemLabel="Carrera" itemValue="carrera" />
+                                    </ice:selectOneRadio>
+                                </ice:panelGrid>
+
+                                <ice:panelGrid id="panel" columns="3" columnClasses="col25,col50,col25" rendered="#{coordinadorCarreraControlador.tipoAsignacionFacultad}">
+                                    <ice:outputLabel value="Facultad:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selFacultad" style="width: 210px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{coordinadorCarreraControlador.facultadSelected}"
+                                                       title="Facultad" >
+                                        <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{coordinadorCarreraControlador.listadoFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selFacultad" errorClass="error"/>
+                                </ice:panelGrid>
+                                <ice:panelGrid columns="3" columnClasses="col25,col50,col25" rendered="#{coordinadorCarreraControlador.tipoAsignacionCarrera}">
+
+                                    <ice:outputLabel value="Facultad2:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selFacultad2" style="width: 210px;"
+                                                       value="#{coordinadorCarreraControlador.facultadSelected}"
+                                                       valueChangeListener="#{coordinadorCarreraControlador.cargarCarrerasPorFacultad}"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       title="Facultad" >
+                                        <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{coordinadorCarreraControlador.listadoFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selFacultad2" errorClass="error"/>
+
+                                    <ice:outputLabel value="Carrera:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selCarrera" style="width: 210px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{coordinadorCarreraControlador.carreraSelected}"
+                                                       title="Facultad">
+                                        <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{coordinadorCarreraControlador.listadoCarreraPorFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selCarrera" errorClass="error"/>
+                                </ice:panelGrid>
+
+                            </center>
+                        </ice:panelGroup>
+                        <ice:panelGroup styleClass="borderGray"  >
+                            <center>
+                                <ice:panelGroup styleClass="titulosCenter">
+                                    <ice:outputLabel value="Asginacion de roles " />
+                                </ice:panelGroup>
+
+                                <ice:panelGrid  columns="3" columnClasses="col25,col50,col25" >
+                                    <ice:outputLabel value="Roles:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selCargo" style="width: 210px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{coordinadorCarreraControlador.rolSelected}"
+                                                       title="Roles" >
+                                        <f:selectItem itemLabel="--Seleccione--" itemValue=""/>
+                                        <f:selectItems value="#{coordinadorCarreraControlador.listadoRoles}" />
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selCargo" errorClass="error"/>
+                                </ice:panelGrid>
+
+                            </center>
+                        </ice:panelGroup>
+                    </ice:panelGroup>
+
+                </ice:panelGrid>
+                <ice:panelGroup styleClass="borderGray"  >
+                    <ice:panelCollapsible expanded="false" immediate="true" >
+                        <f:facet name="header">
+                            <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                <h:outputText value="Carga de Documentos" styleClass="panelHeaderStyle"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <ice:panelGroup >
+                            <!--ice:panelGrid columns="1">
+                                <ace:fileEntry id="fileEntrySolicitante" immediate="true"
+                                               useOriginalFilename="true"
+                                               useSessionSubdir="false"
+                                               relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                               fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                    <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                                </ace:fileEntry>
+
+                                <ice:message for="fileEntrySolicitante" errorClass="error" style="color: #2A6CC2"  />
+                            </ice:panelGrid-->
+                            <!--ice:dataTable  rows="20" id="datosArchivos" value="#{atencionControlador.listadoArchivos}" var="archivo" style="width: 100%;">
+                                <ice:column style="width: 80%;">
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                    </f:facet>
+                                    <ice:panelGroup>
+                                        <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                            #{archivo.arcDescripcion}
+                                        </ice:outputLink>
+                                    </ice:panelGroup>
+                                </ice:column>
+
+                                <ice:column style="width: 20%;">
+                                    <center>
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                        </f:facet>
+
+                                        <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                            <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                        </ice:commandLink>
+                                    </center>
+                                </ice:column>
+                            </ice:dataTable-->
+                        </ice:panelGroup>
+                    </ice:panelCollapsible>
+                </ice:panelGroup>
+                <!--                <ice:panelCollapsible expanded="false" immediate="true" >
+                                    <f:facet name="header">
+                                        <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                            <h:outputText value="ICEfaces Ajax Push" styleClass="panelHeaderStyle"/>
+                                        </h:panelGrid>
+                                    </f:facet>
+                
+                                    <b>Dirección</b>
+                
+                
+                                </ice:panelCollapsible>-->
+
+
+
+                <center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{coordinadorCarreraControlador.guardarUsuario()}" 
+                                       rendered="#{coordinadorCarreraControlador.persona.perCodigo == null}"/>
+                    <ice:commandButton value="Actualizar" title="Actualizar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{coordinadorCarreraControlador.actualizarUsuario()}"
+                                       rendered="#{coordinadorCarreraControlador.persona.perCodigo != null}"/>
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

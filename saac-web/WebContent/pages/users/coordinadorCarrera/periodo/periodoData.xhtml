@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="estudianteNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%" >
+                    <ice:panelGroup styleClass="borderGray" >
+                        <center>
+                            <ice:panelGroup styleClass="borderGrayInfo">
+                                <ice:outputLabel value="Datos Personales " />
+                            </ice:panelGroup>
+                            <ice:panelGrid columns="3" columnClasses="col30,col40,col30" >
+
+                                <ice:outputLabel value="Documento de Identidad:" styleClass="label" />
+                                <ice:inputText id="txtDocumento" value="#{coordinadorCarreraControlador.persona.perDocumentoIdentidad}" 
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"/>
+                                <ice:message for="txtDocumento" errorClass="error"/>
+
+                                <ice:outputLabel value="Nombre:" styleClass="label"/>
+                                <ice:inputText id="txtNombre" value="#{coordinadorCarreraControlador.persona.perNombre}"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"/>
+                                <ice:message for="txtNombre" errorClass="error"/>
+
+                                <ice:outputLabel value="Apellido:" styleClass="label"/>
+                                <ice:inputText id="txtApellido" value="#{coordinadorCarreraControlador.persona.perApellido}" 
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" 
+                                               title="Apellido" style="width: 200px;"/>
+                                <ice:message for="txtApellido" errorClass="error"/>
+
+                                <ice:outputLabel value="Fecha de Nacimiento:" styleClass="label"/>
+                                <ice:selectInputDate id="datFechaNacimiento" value="#{coordinadorCarreraControlador.persona.perFechaNacimiento}" 
+                                                     renderAsPopup="true" title="Fecha de Nacimiento"
+                                                     required="true" requiredMessage="#{msg['campo.vacio']}" >
+                                    <f:convertDateTime timeZone="America/Guayaquil"/>
+                                </ice:selectInputDate>
+                                <ice:message for="datFechaNacimiento" errorClass="error"/>
+
+                                <ice:outputLabel value="Teléfono Fijo:" styleClass="label"/>
+                                <ice:inputText id="txtTelefonoFijo" value="#{coordinadorCarreraControlador.persona.perTelfonoFijo}"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Teléfono Fijo de conctato" style="width: 200px;"/>
+                                <ice:message for="txtTelefonoFijo" errorClass="error"/>
+
+                                <ice:outputLabel value="Teléfono Móvil:" styleClass="label"/>
+                                <ice:inputText id="txtTelefonoMovil" value="#{coordinadorCarreraControlador.persona.perTelefonoMovil}" 
+                                               required="true" requiredMessage="#{msg['campo.vacio']}"
+                                               title="Teléfono Móvil de conctato" style="width: 200px;"/>
+                                <ice:message for="txtTelefonoMovil" errorClass="error"/>
+
+                                <ice:outputLabel value="E-mail:" styleClass="label"/>
+                                <ice:inputText id="txtEmail" value="#{coordinadorCarreraControlador.persona.perEmail}"
+                                               required="true" requiredMessage="#{msg['campo.vacio']}" 
+                                               title="Ingrese el Email en el cual recibira notificaciones" style="width: 200px;"/>
+                                <ice:message for="txtEmail" errorClass="error"/>
+
+                                <ice:outputLabel value="Estado Civil:" styleClass="label"/>
+                                <ice:selectOneMenu id="selEstadoCivil" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.estadoCivilSelected}"
+                                                   disabled="false" title="Estado Civil" >
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoEstadoCivil}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selEstadoCivil" errorClass="error"/>
+
+
+                                <ice:outputLabel value="Genero:" styleClass="label"/>
+                                <ice:selectOneMenu id="selGenero" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.generoSelected}"
+                                                   disabled="false" title="Genero">
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoGenero}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selGenero" errorClass="error"/>
+
+                                <ice:outputLabel value="Nacionalidad:" styleClass="label"/>
+                                <ice:selectOneMenu id="selNacionalidad" style="width: 210px;"
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                   value="#{coordinadorCarreraControlador.nacionalidadSelected}"
+                                                   disabled="false" title="Nacionalidad">
+                                    <f:selectItem itemLabel="--Seleccione--" itemValue=""></f:selectItem>
+                                    <f:selectItems value="#{coordinadorCarreraControlador.listadoNacionalidad}"></f:selectItems>
+                                </ice:selectOneMenu>
+                                <ice:message for="selNacionalidad" errorClass="error"/>
+
+                                <ice:outputLabel value="Dirección:" styleClass="label"/>
+                                <ice:inputTextarea id="txtDireccion" value="#{coordinadorCarreraControlador.persona.perDireccion}" cols="29" rows="3" 
+                                                   required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                                <ice:message for="txtDireccion" errorClass="error"/>
+
+                            </ice:panelGrid>
+                        </center>
+
+
+                    </ice:panelGroup>
+                    <!-- ice:panelGroup>
+                        <ice:panelGroup styleClass="borderGray"  >
+                            <center>
+                                <ice:panelGroup styleClass="borderGrayInfo">
+                                    <ice:outputLabel value="Asignaciones " />
+                                </ice:panelGroup>
+
+                                <ice:panelGrid columns="1"  >
+                                    <ice:outputLabel value="Indique a donde se le asiganara" />
+                                    <ice:selectOneRadio valueChangeListener="#{docenteControlador.cambiarTipoAsignacion}" layout="pageDirection"
+                                                        partialSubmit="true" immediate="true">
+                                        <f:selectItem itemLabel="Facultad " itemValue="facultad" />
+                                        <f:selectItem itemLabel="Carrera" itemValue="carrera" />
+                                    </ice:selectOneRadio>
+                                </ice:panelGrid>
+
+                                <ice:panelGrid id="panel" columns="3" columnClasses="col25,col50,col25" rendered="#{docenteControlador.tipoAsignacionFacultad}">
+                                    <ice:outputLabel value="Facultad:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selFacultad" style="width: 250px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{docenteControlador.facultadSelected}"
+                                                       title="Facultad" >
+                                        <f:selectItem itemLabel="Seleccione" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{docenteControlador.listadoFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selFacultad" errorClass="error"/>
+                                </ice:panelGrid>
+                                <ice:panelGrid columns="3" columnClasses="col25,col50,col25" rendered="#{docenteControlador.tipoAsignacionCarrera}">
+
+                                    <ice:outputLabel value="Facultad:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selFacultad2" style="width: 250px;"
+
+                                                       value="#{docenteControlador.facultadSelected}"
+                                                       valueChangeListener="#{docenteControlador.cargarCarrerasPorFacultad}"
+                                                       partialSubmit="true" immediate="true"
+                                                       title="Facultad" >
+                                        <f:selectItem itemLabel="Seleccione" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{docenteControlador.listadoFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selFacultad2" errorClass="error"/>
+
+                                    <ice:outputLabel value="Carrera:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selCarrera" style="width: 250px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{docenteControlador.carreraSelected}"
+                                                       title="Facultad">
+                                        <f:selectItem itemLabel="Seleccione" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{docenteControlador.listadoCarreraPorFacultad}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selCarrera" errorClass="error"/>
+                                </ice:panelGrid>
+
+                            </center>
+                        </ice:panelGroup>
+                        <ice:panelGroup styleClass="borderGray"  >
+                            <center>
+                                <ice:panelGroup styleClass="borderGrayInfo">
+                                    <ice:outputLabel value="Cargo " />
+                                </ice:panelGroup>
+
+                                <ice:panelGrid  columns="3" columnClasses="col25,col50,col25" >
+                                    <ice:outputLabel value="Cargo:" styleClass="label"/>
+                                    <ice:selectOneMenu id="selCargo" style="width: 250px;"
+                                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                                       value="#{docenteControlador.facultadSelected}"
+                                                       title="Facultad" >
+                                        <f:selectItem itemLabel="Seleccione" itemValue=""></f:selectItem>
+                                        <f:selectItems value="#{docenteControlador.listadoRoles}"></f:selectItems>
+                                    </ice:selectOneMenu>
+                                    <ice:message for="selCargo" errorClass="error"/>
+                                </ice:panelGrid>
+
+                            </center>
+                        </ice:panelGroup>
+                    </ice:panelGroup-->
+
+                </ice:panelGrid>
+                
+                <!--center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro"
+                                       action="#{docenteControlador.guardarEstudiante()}" 
+                                       rendered="#{docenteControlador.persona.perCodigo == null}"/>
+                                       
+                    <ice:commandButton value="Actualizar" title="Actualizar el registro"
+                                       action="#{docenteControlador.actualizarEstudiante()}"
+                                       rendered="#{docenteControlador.persona.perCodigo != null}"/>
+                </center-->
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

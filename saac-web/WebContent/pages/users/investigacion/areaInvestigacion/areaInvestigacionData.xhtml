@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="lineaInvestigacionNuevoForm" >
+            <!--            <icecore:singleSubmit />-->
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+
+                    <ice:panelGrid columns="3" columnClasses="col25,col50,col25" styleClass="borderGray">
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Datos de la área de investigación" />
+                        </f:facet>
+                        
+                        <ice:outputLabel value="Carrera:" styleClass="label"/>
+                        <ice:selectOneMenu id="selCarreraNew" style="min-width: 100%;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           value="#{lineaInvestigacionControlador.carreraSelected}"
+                                           readonly="#{lineaInvestigacionControlador.lineaInvestigacion.linInvCodigo != null}"
+                                           title="Carrera" partialSubmit="true">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItems value="#{lineaInvestigacionControlador.listadoCarreraPorFacultad}"></f:selectItems>
+                        </ice:selectOneMenu>
+                        <ice:message for="selCarreraNew" errorClass="error"/>
+
+                        <ice:outputLabel value="Linea Investigacion:" styleClass="label"/>
+                        <ice:selectOneMenu id="selLineaInvestigacionNew" style="min-width: 100%;" 
+                                           value="#{lineaInvestigacionControlador.carreraSelected}"
+                                           title="Linea Investigacion">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Linea Investigacion 1" itemValue="1"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:message for="selLineaInvestigacionNew" errorClass="error"/>
+
+                        <ice:outputLabel value="Nombre:" styleClass="label" />
+                        <ice:inputText id="txtNombre" value="#{lineaInvestigacionControlador.lineaInvestigacion.linInvNombre}" 
+                                       required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 200px;" title="Nombre"/>
+                        <ice:message for="txtNombre" errorClass="error"/>
+
+                        <ice:outputLabel value="Descripción:" styleClass="label" />
+                        <ice:inputText id="txtDescripcion" value="#{lineaInvestigacionControlador.lineaInvestigacion.linInvDescripcion}" 
+                                       required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 200px;" title="Descripción"/>
+                        <ice:message for="txtDescripcion" errorClass="error"/>
+
+                        <ice:outputLabel value="Estado:" styleClass="label"/>
+                        <ice:selectOneMenu id="selEstado" style="width: 210px;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           value="#{lineaInvestigacionControlador.estado}"
+                                           title="Estado">
+                            <f:selectItem itemLabel="--Seleccione--"  itemValue=""/>
+                            <f:selectItem itemLabel="Activo"  itemValue="#{true}"/>
+                            <f:selectItem itemLabel="Inactivo"  itemValue="#{false}" />
+
+                        </ice:selectOneMenu>
+                        <ice:message for="selEstado" errorClass="error"/>
+
+                    </ice:panelGrid>
+                </center>
+
+
+                <center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro" 
+                                       panelConfirmation="confirmacion"
+                                       rendered="#{lineaInvestigacionControlador.lineaInvestigacion.linInvCodigo == null}"
+                                       action="#{lineaInvestigacionControlador.guardarLineaInvestigacionPorCarrera()}"  />
+                    <ice:commandButton value="Actualizar" title="Actualizar el registro" 
+                                       panelConfirmation="confirmacion"
+                                       rendered="#{lineaInvestigacionControlador.lineaInvestigacion.linInvCodigo != null}"
+                                       action="#{lineaInvestigacionControlador.actualizarLineaInvestigacionPorCarrera()}"  />
+                    <ice:panelConfirmation id="confirmacion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

@@ -1,0 +1,241 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="revisionPlanNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+                    <ice:panelGrid columns="3" columnClasses="col25,col50,col25" styleClass="borderGray" >
+                        <f:facet name="header" >
+                            <ice:outputLabel value="Proyecto de Vinculación " />
+                        </f:facet>
+
+                        <ice:outputLabel value="Carrera:" styleClass="label"/>
+                        <ice:selectOneMenu id="selCarrera" style="min-width: 280px;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Informática y Ciencias de la Computación" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Mecatrónica" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. de Petróleos" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:message for="selCarrera" errorClass="error"/>
+
+                        <ice:outputLabel value="Programa:" styleClass="label"/>
+                        <ice:selectOneMenu id="selPrograma" style="min-width: 280px;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Programa 1" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Programa 2" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Programa 3" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:message for="selPrograma" errorClass="error"/>
+
+                        <ice:outputLabel value="Periodo:" styleClass="label"/>
+                        <ice:selectOneMenu style="min-width: 280px;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Carrera">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Septiembre 2012 - Febrero 2013 " itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Marzo 2013 - Julio 2013" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Septiembre 2013 - Febrero 2014 " itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:message for="selPeriodos" errorClass="error"/>
+
+                        <ice:outputLabel value="Docentes:" styleClass="label"/>
+                        <ice:selectOneMenu id="selProfesores" style="min-width: 280px;"
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"
+                                           title="Profesores">
+                            <f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Galo Ramos" itemValue="1"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Victor Hugo Galvez" itemValue="2"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                            <f:selectItem itemLabel="Ing. Ramiro Pazmiño" itemValue="3"></f:selectItem>
+                        </ice:selectOneMenu>
+                        <ice:message for="selProfesores" errorClass="error"/>
+
+                        <ice:outputLabel value="Aula:" styleClass="label"/>
+                        <ice:inputText id="txtDato1"  required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                        <ice:message for="txtDato1" errorClass="error"/>
+
+                        <ice:outputLabel value="Título del proyecto:" styleClass="label"/>
+                        <ice:inputTextarea cols="40" rows="3" 
+                                           required="true" requiredMessage="#{msg['campo.vacio']}"/>
+                        <ice:message for="txtNombre" errorClass="error"/>
+
+                    </ice:panelGrid>
+                    <ice:panelGrid columns="2" columnClasses="col55,col45" width="100%"  >
+                        <ice:panelGrid columns="3" columnClasses="col25,col50,col25" styleClass="borderGray" width="100%">
+
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Datos de la Organización Beneficiada " />
+                            </f:facet>
+
+                            <ice:outputLabel value="Nombre de la Organizacion Beneficiada:" styleClass="label"/>
+                            <ice:inputText id="txtDato2"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:commandLink value="verificar" style="color: blue;"
+                                             partialSubmit="true">
+                            </ice:commandLink>
+
+                            <ice:outputLabel value="Nombre del Representante de la Organizacion:" styleClass="label"/>
+                            <ice:inputText id="txtDato3"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:message for="txtDato3" errorClass="error"/>
+
+                            <ice:outputLabel value="Direccion de la Organizacion:" styleClass="label"/>
+                            <ice:inputText id="txtDato4"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:message for="txtDato4" errorClass="error"/>
+
+                            <ice:outputLabel value="Telefonos:" styleClass="label"/>
+                            <ice:inputText id="txtDato5"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:message for="txtDato5" errorClass="error"/>
+
+                            <ice:outputLabel value="Numero de Beneficiarios Directos:" styleClass="label"/>
+                            <ice:inputText id="txtDato6"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:message for="txtDato6" errorClass="error"/>
+
+                            <ice:outputLabel value="Numero de Beneficiarios Inirectos:" styleClass="label" />
+                            <ice:inputText id="txtDato7"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                            <ice:message for="txtDato7" errorClass="error"/>
+
+                        </ice:panelGrid>
+                        <ice:panelGrid columns="1"  styleClass="borderGray" width="100%">
+
+                            <f:facet name="header" >
+                                <ice:outputLabel value="Patrocinio" />
+                            </f:facet>
+
+                            <ice:commandButton value="Agregar" title="Agregar"
+                                               immediate="true">
+                            </ice:commandButton>
+                            <center>
+                                <ice:dataTable  rows="10" 
+                                                value="#{docenteControlador.listadoPersonas.get(0)}"
+                                                var="estudiante" style="width: 100%;" >
+                                    <ice:column style="width: 60%;">
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Descripcion" ></ice:outputLabel>
+                                        </f:facet>
+                                        <center>
+                                            <ice:inputText styleClass="labelScreen" style="width: 90%;"/>
+                                        </center>
+                                    </ice:column>
+
+                                    <ice:column>
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Cantidad" ></ice:outputLabel>
+                                        </f:facet>
+                                        <center>
+                                            <ice:inputText styleClass="labelScreen" style="width: 80%;"/>
+                                        </center>
+                                    </ice:column>
+
+                                    <ice:column style="width: 30%;">
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Funcion / Aplicación" ></ice:outputLabel>
+                                        </f:facet>
+                                        <center>
+                                            <ice:inputText styleClass="labelScreen" style="width: 80%;"/>
+                                        </center>
+                                    </ice:column>
+
+
+
+                                    <ice:column style="width: 10%;">
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                        </f:facet><center>
+                                            <ice:commandButton value="Eliminar" style="font-size: 10px;" title="Seleccionar"
+                                                               immediate="true">
+                                            </ice:commandButton>
+                                        </center>
+                                    </ice:column>
+                                </ice:dataTable>
+
+                            </center>
+
+                        </ice:panelGrid>
+                    </ice:panelGrid>
+
+
+
+
+                    <ice:panelGrid columns="1"  styleClass="borderGray" width="100%" >
+                        <f:facet name="header">
+                            <h:outputLabel value="Seccion de Documentos" />
+                        </f:facet>
+                        <ice:panelCollapsible expanded="true" immediate="true" >
+                            <f:facet name="header">
+                                <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                    <h:outputText value="Carga de Proyecto de Vinculación" styleClass="panelHeaderStyle"/>
+                                </h:panelGrid>
+                            </f:facet>
+                            <ice:panelGroup >
+                                <ice:panelGrid columns="1">
+                                    <ace:fileEntry id="fileEntryCargaDocumentos" immediate="true"
+                                                   useOriginalFilename="true"
+                                                   useSessionSubdir="false"
+                                                   relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                                   fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                        <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                                    </ace:fileEntry>
+
+                                    <ice:message for="fileEntrySolicitante" errorClass="error" style="color: #2A6CC2"  />
+                                </ice:panelGrid>
+                                <ice:dataTable  rows="20" id="datosArchivosCargados" value="#{atencionControlador.listadoArchivos}" 
+                                                var="archivo" style="width: 100%;">
+                                    <ice:column style="width: 80%;">
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                        </f:facet>
+                                        <ice:panelGroup>
+                                            <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                                #{archivo.arcDescripcion}
+                                            </ice:outputLink>
+                                        </ice:panelGroup>
+                                    </ice:column>
+
+                                    <ice:column style="width: 20%;">
+                                        <center>
+                                            <f:facet name="header">
+                                                <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                            </f:facet>
+
+                                            <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                                <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                            </ice:commandLink>
+                                        </center>
+                                    </ice:column>
+                                </ice:dataTable>
+                            </ice:panelGroup>
+                        </ice:panelCollapsible>
+
+                    </ice:panelGrid>
+
+
+
+
+
+                    <ice:commandButton value="Registrar Estructura del Plan" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion" />
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

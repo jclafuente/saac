@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:panelCollapsible expanded="false" immediate="true" >
+            <f:facet name="header">
+                <h:panelGrid columns="1" styleClass="panelCollapsible">
+                    <h:outputText value="8. CRONOGRAMA" styleClass="panelHeaderStyle"/>
+                </h:panelGrid>
+            </f:facet>
+
+            <ice:panelGroup >
+                <ice:commandButton value="Agregar" title="Agregar"
+                                   immediate="true">
+                </ice:commandButton>
+                <center>
+                    <ice:dataTable  rows="10" id="dataListCronograma" 
+                                    value="#{docenteControlador.listadoPersonas.get(0)}"
+                                    var="estudiante" style="width: 100%;" >
+                        <ice:column>
+                            <f:facet name="header">
+                                <ice:outputLabel value="Actividades" ></ice:outputLabel>
+                            </f:facet>
+                            <center>
+                                <ice:inputText styleClass="labelScreen" style="width: 90%;"/>
+                            </center>
+                        </ice:column>
+
+                        <ice:column style="width: 250px;">
+                            <center>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="meses" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGrid columns="16" >
+
+                                    <ice:outputLabel value="1" for="check1" />
+                                    <ice:selectBooleanCheckbox id="check1" value="false" />
+                                    <ice:outputLabel value="2" for="check2" />
+                                    <ice:selectBooleanCheckbox id="check2" value="false"/>
+                                    <ice:outputLabel value="3" for="check2" />
+                                    <ice:selectBooleanCheckbox id="check3" value="false"/>
+                                    <ice:outputLabel value="4" for="check4" />
+                                    <ice:selectBooleanCheckbox id="check4" value="false"/>
+                                    <ice:outputLabel value="5" for="check5" />
+                                    <ice:selectBooleanCheckbox id="check5" value="false"/>
+                                    <ice:outputLabel value="6" for="check6" />
+                                    <ice:selectBooleanCheckbox id="check6" value="false"/>
+                                    <ice:outputLabel value="7" for="check7" />
+                                    <ice:selectBooleanCheckbox id="check7" value="false"/>
+                                    <ice:outputLabel value="8" for="check8" />
+                                    <ice:selectBooleanCheckbox id="check8" value="false"/>
+
+                                </ice:panelGrid>
+                            </center>
+                        </ice:column>
+
+                        <ice:column style="width: 10%;">
+                            <f:facet name="header">
+                                <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                            </f:facet>
+                            <ice:commandButton value="Eliminar" style="font-size: 10px;" title="Seleccionar"
+                                               immediate="true">
+                            </ice:commandButton>
+                        </ice:column>
+                    </ice:dataTable>
+                </center>
+            </ice:panelGroup>
+        </ice:panelCollapsible>
+    </ui:composition>
+</html>

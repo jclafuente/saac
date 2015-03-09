@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="observacionForm" >
+            <ice:panelPopup rendered="#{docenteControlador.panelObservacion2}" draggable="false" autoCentre="true" modal="true"  styleClass="border-contenedor-popup">
+                <f:facet name="header">
+                    <ice:panelGrid width="800">
+                        <ice:outputLabel value="Registro de nuevo estudiante" />
+                    </ice:panelGrid>
+                </f:facet>
+                <f:facet name="body">
+                    <ice:panelGrid columns="1" width="800">
+                        <ice:panelGroup scrollHeight="250px">
+
+                            <ice:panelGrid columns="3" columnClasses="col25,col50,col25" styleClass="borderGray" width="100%">
+
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Datos del Estudiante " />
+                                </f:facet>
+
+                                <ice:outputLabel value="Documento de identidad" styleClass="label"/>
+                                <ice:inputText id="txtDato2"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato2" errorClass="error"/>
+
+                                <ice:outputLabel value="Nombre:" styleClass="label"/>
+                                <ice:inputText id="txtDato3"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato3" errorClass="error"/>
+
+                                <ice:outputLabel value="Direccion:" styleClass="label"/>
+                                <ice:inputText id="txtDato4"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato4" errorClass="error"/>
+
+                                <ice:outputLabel value="Telefonos:" styleClass="label"/>
+                                <ice:inputText id="txtDato5"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato5" errorClass="error"/>
+
+                                <ice:outputLabel value="Carrera:" styleClass="label"/>
+                                <ice:inputText id="txtDato6"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato6" errorClass="error"/>
+
+                                <ice:outputLabel value="Semestre:" styleClass="label" />
+                                <ice:inputText id="txtDato7"  required="true" requiredMessage="#{msg['campo.vacio']}" style="width: 90%"/>
+                                <ice:message for="txtDato7" errorClass="error"/>
+
+                            </ice:panelGrid>
+                        </ice:panelGroup>
+
+                    </ice:panelGrid>
+                    
+                        <ice:commandButton value="Guardar" action="#{docenteControlador.cerrarObservaciones2()}" />
+                        <ice:commandButton value="Cerrar" action="#{docenteControlador.cerrarObservaciones2()}" style="float: right" />
+                    
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+    </ui:composition>
+</html>

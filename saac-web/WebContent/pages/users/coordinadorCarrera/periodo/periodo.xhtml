@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="page_title">SAAC - Estudiantes</ui:define>
+        <ui:define name="content">
+
+            <!--HEAD DE LA PAGINA-->
+            <table width="100%" border="0" cellspacing="0">
+                <td class="iceDatTblColHdr" style="text-align: left;">
+                    <ice:outputText value="LISTADO DE PERIODOS " 
+                    				style="font-size: 12px; 
+                    				font-weight: bold; 
+                    				color: black; 
+                    				padding-left: 5px;"/>
+                </td>
+            </table>
+
+            <!--BODY DE LA PAGINA-->
+
+            <ice:form id="estudianteForm" >
+                <ice:panelGroup styleClass="borderGray">
+                    <ice:commandButton value="Nuevo" action="#{coordinadorCarreraControlador.activarPanelDatos()}"  />
+                    <ice:commandButton value="Volver" style="float: right;" title="Volver a la lista"
+                                       rendered="#{coordinadorCarreraControlador.panelDatos}"
+                                       action="#{coordinadorCarreraControlador.inicializacion()}"/>
+                </ice:panelGroup>
+            </ice:form>
+
+            <ice:panelGroup rendered="#{coordinadorCarreraControlador.panelDatos}">
+                <ui:include src="periodoData.xhtml" />
+            </ice:panelGroup>
+
+            <ui:include src="periodoDataList.xhtml"/>
+
+        </ui:define>
+    </ui:composition>
+</html>

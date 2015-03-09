@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<ice:form id="carreraNuevoForm">
+		<ice:panelGroup styleClass="borderGray">
+			<center>
+				<ice:panelGrid columns="3" columnClasses="col25,col50,col25"
+					styleClass="borderGray">
+
+					<f:facet name="header">
+						<ice:outputText value="Datos de la Carrera" />
+					</f:facet>
+
+					<ice:outputLabel value="Nombre:" styleClass="label" />
+
+					<ice:inputText id="txtNombre" style="width: 240px; "
+						value="#{administracionCarreraControlador.carrera.carNombre}"
+						required="true" requiredMessage="#{msg['campo.vacio']}"
+						title="Nombre" />
+
+					<ice:message for="txtNombre" errorClass="error" />
+
+					<ice:outputLabel value="Descripcion:" styleClass="label" />
+
+					<ice:inputText id="txtDescripcion" style="width: 240px;"
+						value="#{administracionCarreraControlador.carrera.carDescripcion}"
+						required="true" requiredMessage="#{msg['campo.vacio']}"
+						title="Descripción" />
+
+					<ice:message for="txtDescripcion" errorClass="error" />
+
+					<ice:outputLabel value="Facultad:" styleClass="label" />
+
+					<ice:selectOneMenu id="selFacultad" style="width: 250px;"
+						required="true" requiredMessage="#{msg['campo.vacio']}"
+						value="#{administracionCarreraControlador.facultadSelected}"
+						disabled="false" title="Facultad">
+
+						<f:selectItem itemLabel="--Seleccione--" itemValue="">
+						</f:selectItem>
+
+						<f:selectItems
+							value="#{administracionCarreraControlador.listadoFacultadCarrera}">
+						</f:selectItems>
+
+					</ice:selectOneMenu>
+
+					<ice:message for="selFacultad" errorClass="error" />
+
+				</ice:panelGrid>
+			</center>
+			<center>
+				<ice:commandButton value="Guardar" title="Guardar el registro"
+					action="#{administracionCarreraControlador.crearCarrera()}"
+					panelConfirmation="confirmacionSeleccion"
+					rendered="#{administracionCarreraControlador.carrera.carCodigo == null}" />
+
+				<ice:commandButton value="Actualizar" title="Actualizar el registro"
+					action="#{administracionCarreraControlador.actualizarCarrera()}"
+					panelConfirmation="confirmacionSeleccion"
+					rendered="#{administracionCarreraControlador.carrera.carCodigo != null}" />
+
+				<ice:panelConfirmation id="confirmacionSeleccion"
+					title="Confirmación"
+					message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+					type="normal" rendered="true" />
+			</center>
+		</ice:panelGroup>
+	</ice:form>
+
+	<!--  ice:panelGroup renderedOnUserRole="USER" >
+            <p>No tiene acceso </p>
+        </ice:panelGroup-->
+</ui:composition>
+</html>
+

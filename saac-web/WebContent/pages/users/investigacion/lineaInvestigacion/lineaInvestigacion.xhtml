@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="page_title">SAAC - Estudiantes</ui:define>
+        <ui:define name="content">
+
+            <!--HEAD DE LA PAGINA-->
+            <ice:panelGroup styleClass="titulosLeft">
+                <ice:outputText value="LINEAS DE INVESTIGACION "   />
+            </ice:panelGroup>
+
+
+            <!--BODY DE LA PAGINA-->
+
+            <ice:form id="lineaInvestigacionForm" >
+                <ice:panelGroup styleClass="borderGray">
+                    <ice:commandButton value="Nuevo" action="#{lineaInvestigacionControlador.activarPanelDatos()}"  />
+                    <ice:commandButton value="Volver" style="float: right;" title="Volver a la lista"
+                                       rendered="#{lineaInvestigacionControlador.panelDatos}"
+                                       action="#{lineaInvestigacionControlador.inicializacion()}"/>
+                </ice:panelGroup>
+            </ice:form>
+
+            <ice:panelGroup rendered="#{lineaInvestigacionControlador.panelDatos}">
+                <ui:include src="lineaInvestigacionData.xhtml" />
+            </ice:panelGroup>
+            <ice:panelGroup rendered="#{!lineaInvestigacionControlador.panelDatos}">
+                <ui:include src="lineaInvestigacionDataList.xhtml"/>
+            </ice:panelGroup>
+        </ui:define>
+    </ui:composition>
+</html>

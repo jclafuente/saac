@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="observacionForm2" >
+            <ice:panelPopup rendered="#{coordinadorCarreraControlador.panelObservacion}" draggable="false" autoCentre="true" modal="true"  styleClass="border-contenedor-popup">
+                <f:facet name="header">
+                    <ice:panelGrid width="800">
+                        <ice:outputLabel value="OBSERVACIONES" />
+                    </ice:panelGrid>
+                </f:facet>
+                <f:facet name="body">
+                    <ice:panelGrid columns="1" width="800">
+                        <ice:panelGroup style="float: right; font-weight: bold; font-size: 14px;">
+                            <ice:outputText value="Porcentaje de avance: " />
+                            <ice:outputText value="40%" />
+                        </ice:panelGroup>
+                        <ice:panelGroup scrollHeight="400px">
+
+                            <ice:dataTable  rows="20"  value="#{coordinadorCarreraControlador.listadoItemRevisiones}" 
+                                            var="var" style="width: 100%;">
+                                <ice:column style="width: 10px">
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="No." ></ice:outputLabel>
+                                    </f:facet>
+                                    <ice:outputText value="#{var.id}" />
+                                </ice:column>
+
+
+                                <ice:column>
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Observación" ></ice:outputLabel>
+                                    </f:facet>
+                                    <ice:outputText value="#{var.observacion}" />
+                                </ice:column>
+
+                            </ice:dataTable>
+                        </ice:panelGroup>
+                    </ice:panelGrid>
+                    <center>
+                        <ice:commandButton value="Cerrar" action="#{coordinadorCarreraControlador.cerrarObservaciones()}" />
+                    </center>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+    </ui:composition>
+</html>

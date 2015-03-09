@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="revisionPlanNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+
+                
+                <ui:include src="esquemaEvaluacion/infoGeneral.xhtml" />
+
+                <ui:include src="esquemaEvaluacion/documentos.xhtml" />
+
+                <ice:panelGrid columns="2" columnClasses="col45,col55" styleClass="borderGray" width="100%" >
+                    <f:facet name="header">
+                        <h:outputLabel value="Seccion de Documentos" />
+                    </f:facet>
+                    <ice:panelCollapsible expanded="true" immediate="true" >
+                        <f:facet name="header">
+                            <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                <h:outputText value="Informe de Pre-Aprobacion del plan " styleClass="panelHeaderStyle"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <ice:panelGroup >
+                            <ice:panelGrid columns="1">
+                                <ace:fileEntry id="fileEntryCargaDocumentos" immediate="true"
+                                               useOriginalFilename="true"
+                                               useSessionSubdir="false"
+                                               relativePath="/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}"
+                                               fileEntryListener="#{atencionControlador.listener}" maxFileSize="10000000"   maxFileSizeMessage="Tamaño maximo 10MB"  >
+                                    <h:commandButton value="Cargar Archivo" styleClass="boton" />
+                                </ace:fileEntry>
+
+                                <ice:message for="fileEntrySolicitante" errorClass="error" style="color: #2A6CC2"  />
+                            </ice:panelGrid>
+                            <ice:dataTable  rows="20" id="datosArchivosCargados" value="#{atencionControlador.listadoArchivos}" 
+                                            var="archivo" style="width: 100%;">
+                                <ice:column style="width: 80%;">
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                    </f:facet>
+                                    <ice:panelGroup>
+                                        <ice:outputLink target="_blank" value="#{tramiteControlador.pathInicial}/archivos/#{atencionControlador.tramiteSeleccionado.guiaNumero}/#{archivo.arcDescripcion}"  >
+                                            #{archivo.arcDescripcion}
+                                        </ice:outputLink>
+                                    </ice:panelGroup>
+                                </ice:column>
+
+                                <ice:column style="width: 20%;">
+                                    <center>
+                                        <f:facet name="header">
+                                            <ice:outputLabel value="Eliminar"></ice:outputLabel>
+                                        </f:facet>
+
+                                        <ice:commandLink value="Eliminar"  actionListener="#{atencionControlador.quitarArchivo}" immediate="true">
+                                            <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                        </ice:commandLink>
+                                    </center>
+                                </ice:column>
+                            </ice:dataTable>
+                        </ice:panelGroup>
+                    </ice:panelCollapsible>
+
+                </ice:panelGrid>
+
+
+                <center>
+                    <ice:commandButton value="Enviar a Decano para aprobación" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion" />
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+        <ui:include src="esquemaEvaluacion/popupRevisados.xhtml" />
+        <ui:include src="esquemaEvaluacion/popupPorRevision.xhtml" />
+    </ui:composition>
+</html>

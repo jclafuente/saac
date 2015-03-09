@@ -1,0 +1,312 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="revisionPlanNuevoForm" >
+            <ice:panelGroup styleClass="borderGray"  >
+                <center>
+                    <ice:panelGrid columns="2" columnClasses="col65,col45" width="100%"  >
+                        <ice:panelGroup>
+                            <ice:panelGrid columns="2" columnClasses="col25,col75"  width="100%" styleClass="borderGray"  >
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Revisión de plan de titulación " />
+                                </f:facet>
+
+                                <ice:outputLabel value="Carrera:" />
+                                <ice:outputText value="Ing. Informática y Ciencias de la Computación" />
+
+                                <ice:outputLabel value="Linea Investigación:" />
+                                <ice:outputText value="Desarrollo Software" /> 
+
+                                <ice:outputLabel value="Area Investigación:" />
+                                <ice:outputText value="Software Libre (Open Source)" />
+
+                                <ice:outputLabel value="Docente Reponsable:" />
+                                <ice:outputText value="Ing. Victor Hugo Galvez" />
+
+                                <ice:outputLabel value="Tema del plan:" />
+                                <ice:outputText value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería" />
+
+                                <ice:outputLabel value="Sintesis del Tema:" styleClass="label"/>
+                                <ice:inputTextarea id="txtSintesis" cols="100" rows="3" 
+                                                   value="Diseñar el Sistema Integrado de Administración, Control y Seguimiento de Procesos de la Facultad de Ciencias de la Ingeniería."
+                                                   readonly="true"/>
+                            </ice:panelGrid>
+                            <ice:panelGrid columns="2" columnClasses="col25,col75"  width="100%" styleClass="borderGray"  >
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Historial de status" />
+                                </f:facet>
+
+                                <ice:dataTable  rows="10" id="dataList" var="var" width="100%" value="#{coordinadorCarreraControlador.listadoPersonas.get(0)}">
+                                    <ice:column>
+                                        <center>
+                                            <f:facet name="header">
+                                                <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                            </f:facet>
+                                            <ice:panelGroup>
+                                                <ice:outputLabel value="12 junio 2012" />
+                                            </ice:panelGroup>
+                                        </center>
+                                    </ice:column>
+
+                                    <ice:column>
+                                        <center>
+                                            <f:facet name="header">
+                                                <ice:outputLabel value="Docente" ></ice:outputLabel>
+                                            </f:facet>
+                                            <ice:panelGroup>
+                                                <ice:outputLabel value="Comsion de Pre Aprobacion" />
+                                            </ice:panelGroup>
+                                        </center>
+                                    </ice:column>
+                                    <ice:column>
+                                        <center>
+                                            <f:facet name="header">
+                                                <ice:outputLabel value="Estado" ></ice:outputLabel>
+                                            </f:facet>
+                                            <ice:panelGroup>
+                                                <ice:outputLabel value="Pre Aprobado por la comision" />
+                                            </ice:panelGroup>
+                                        </center>
+                                    </ice:column>
+                                    <f:facet name="footer">
+                                        <center>
+                                            <ice:dataPaginator id="paginador" for="dataList" paginator="true" fastStep="10" paginatorMaxPages="10">
+                                                <f:facet name="first">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-first.gif" style="border:none;" title="Pagina Inicial"/>
+                                                </f:facet>
+                                                <f:facet name="last">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-last.gif" style="border:none;" title="Pagina Final"/>
+                                                </f:facet>
+                                                <f:facet name="previous">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-previous.gif" style="border:none;" title="Pagina Previa"/>
+                                                </f:facet>
+                                                <f:facet name="next">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-next.gif" style="border:none;" title="Pagina Siguiente"/>
+                                                </f:facet>
+                                                <f:facet name="fastforward">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-ff.gif" style="border:none;" title="Avance Rapido"/>
+                                                </f:facet>
+                                                <f:facet name="fastrewind">
+                                                    <ice:graphicImage url="/resources/css/rime/css-images/arrow-fr.gif" style="border:none;" title="Retorno Rapido"/>
+                                                </f:facet>
+                                            </ice:dataPaginator>
+                                        </center>
+                                    </f:facet>
+                                </ice:dataTable>
+                            </ice:panelGrid>
+
+                        </ice:panelGroup>
+                        <ice:panelGroup>
+                            <ice:panelGrid columns="2" columnClasses="col25,col75" width="100%" styleClass="borderGray"  >
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Estudiante de Plan " />
+                                </f:facet>
+
+                                <ice:outputLabel value="Nombre: " />
+                                <ice:outputText value="Juan Carlos Lafuente" />
+
+                                <ice:outputLabel value="Movil: " />
+                                <ice:outputText value="095635575" />
+
+                                <ice:outputLabel value="Fijo: " />
+                                <ice:outputText value="095635575" />
+
+                                <ice:outputLabel value="E-mail: " />
+                                <ice:outputText value="095635575" />
+                            </ice:panelGrid>
+
+                            <ice:panelGrid columns="2" columnClasses="col25,col75" width="100%" styleClass="borderGray"  >
+                                <f:facet name="header" >
+                                    <ice:outputLabel value="Datos del Curso de Plan " />
+                                </f:facet>
+
+                                <ice:outputLabel value="Periodo: " />
+                                <ice:outputText value="Septiembre 2012 - Febrero 2013 " />
+
+                                <ice:outputLabel value="Docente: " />
+                                <ice:outputText value="Ing. Ramiro Pazmiño" />
+
+                            </ice:panelGrid>
+                        </ice:panelGroup>
+
+                    </ice:panelGrid>
+                </center>
+                <ice:panelGrid columns="2" columnClasses="col45,col55" styleClass="borderGray" width="100%" >
+                    <f:facet name="header">
+                        <h:outputLabel value="Seccion de Documentos" />
+                    </f:facet>
+                    
+
+                    <ice:panelCollapsible expanded="true" immediate="true" >
+                        <f:facet name="header">
+                            <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                <h:outputText value="Documentos de Plan de Titulacion" styleClass="panelHeaderStyle"/>
+                            </h:panelGrid>
+                        </f:facet>
+
+                        <ice:dataTable  rows="20" id="datosArchivos" value="#{coordinadorCarreraControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                       Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Responsable" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Juan Carlos Lafuente" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Rol" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Estudiante" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            
+
+                            <f:facet name="footer">
+                                <center>
+                                    <ice:dataPaginator id="paginador" for="datosArchivos" paginator="true" fastStep="10" paginatorMaxPages="10">
+                                        <f:facet name="first">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-first.gif" style="border:none;" title="Pagina Inicial"/>
+                                        </f:facet>
+                                        <f:facet name="last">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-last.gif" style="border:none;" title="Pagina Final"/>
+                                        </f:facet>
+                                        <f:facet name="previous">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-previous.gif" style="border:none;" title="Pagina Previa"/>
+                                        </f:facet>
+                                        <f:facet name="next">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-next.gif" style="border:none;" title="Pagina Siguiente"/>
+                                        </f:facet>
+                                        <f:facet name="fastforward">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-ff.gif" style="border:none;" title="Avance Rapido"/>
+                                        </f:facet>
+                                        <f:facet name="fastrewind">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-fr.gif" style="border:none;" title="Retorno Rapido"/>
+                                        </f:facet>
+                                    </ice:dataPaginator>
+                                </center>
+                            </f:facet>
+                        </ice:dataTable>
+
+                    </ice:panelCollapsible>
+                    <ice:panelCollapsible expanded="true" immediate="true" >
+                        <f:facet name="header">
+                            <h:panelGrid columns="2" styleClass="panelCollapsible">
+                                <h:outputText value="Informe de Pre-Aprobacion del plan" styleClass="panelHeaderStyle"/>
+                            </h:panelGrid>
+                        </f:facet>
+
+                        <ice:dataTable  rows="20" id="datosInformePreAprobacion" value="#{coordinadorCarreraControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                       Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Responsable" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Juan Carlos Lafuente" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Rol" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="Estudiante" />
+                                </ice:panelGroup>
+                            </ice:column>
+                            
+                            
+
+                            <f:facet name="footer">
+                                <center>
+                                    <ice:dataPaginator id="paginador" for="datosInformePreAprobacion" paginator="true" fastStep="10" paginatorMaxPages="10">
+                                        <f:facet name="first">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-first.gif" style="border:none;" title="Pagina Inicial"/>
+                                        </f:facet>
+                                        <f:facet name="last">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-last.gif" style="border:none;" title="Pagina Final"/>
+                                        </f:facet>
+                                        <f:facet name="previous">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-previous.gif" style="border:none;" title="Pagina Previa"/>
+                                        </f:facet>
+                                        <f:facet name="next">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-next.gif" style="border:none;" title="Pagina Siguiente"/>
+                                        </f:facet>
+                                        <f:facet name="fastforward">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-ff.gif" style="border:none;" title="Avance Rapido"/>
+                                        </f:facet>
+                                        <f:facet name="fastrewind">
+                                            <ice:graphicImage url="/resources/css/rime/css-images/arrow-fr.gif" style="border:none;" title="Retorno Rapido"/>
+                                        </f:facet>
+                                    </ice:dataPaginator>
+                                </center>
+                            </f:facet>
+                        </ice:dataTable>
+
+                    </ice:panelCollapsible>
+                </ice:panelGrid>
+
+                <center>
+                    <ice:commandButton value="Enviar a Decano para aprobación" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion" />
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+    </ui:composition>
+</html>

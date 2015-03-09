@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="facultadNuevoForm" >
+            <ice:panelGroup styleClass="borderGray" >
+                <center>
+                    <ice:panelGroup styleClass="borderGrayInfo">
+                        <ice:outputLabel value="Datos del Rol " />
+                    </ice:panelGroup>
+                    <ice:panelGrid columns="3" columnClasses="col30,col45,col25" >
+
+                        <ice:outputLabel value="Rol:" styleClass="label" style="float: right;"/>
+                        <ice:inputText id="txtRol" value="#{administracionRolControlador.rol.rolNombre}"
+                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                       style="width: 350px;"/>
+                        <ice:message for="txtRol" errorClass="error"/>
+
+                        <ice:outputLabel value="Descripcion:" styleClass="label" style="float: right;"/>
+                        <ice:inputText id="txtDescripcion" value="#{administracionRolControlador.rol.rolDescripcion}"
+                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                       style="width: 350px;"/>
+                        <ice:message for="txtDescripcion" errorClass="error"/>
+
+                    </ice:panelGrid>
+                </center>
+                <center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro"
+                                       action="#{administracionRolControlador.crearRol()}" 
+                                       rendered="#{administracionRolControlador.rol.rolCodigo == null}"/>
+                                       
+                    <ice:commandButton value="Actualizar" title="Actualizar el registro"  
+                                       action="#{administracionRolControlador.actualizarRol()}"
+                                       rendered="#{administracionRolControlador.rol.rolCodigo != null}"/>
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+
+    </ui:composition>
+</html>
+

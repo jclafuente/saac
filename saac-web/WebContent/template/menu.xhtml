@@ -1,0 +1,322 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component" >
+    <ui:composition >
+        <ice:panelGroup id="menu" >
+            <ice:panelGroup id="bloq-sup-infoUsario" > 
+                <ice:panelGroup id="cornerLeft01"  />
+                <ice:form id="menuForm" >
+                    <ice:panelGroup style="margin: 5px 0 0 20px; float: left; color: white;">
+                        <ice:menuBar id="menuBar" style="color: white;" >
+                            <ice:menuItem  value="Inicio"  styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                           actionListener="#{menuController.activarSubMenu(0)}" />
+                            <ice:menuItem  value="Administracion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                           actionListener="#{menuController.activarSubMenu(1)}" 
+                                           renderedOnUserRole="ADMIN" />
+                            <ice:menuItem value="Decano" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(2)}" 
+                                          renderedOnUserRole="DECANO" />
+                            <ice:menuItem  value="Secretaria" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                           actionListener="#{menuController.activarSubMenu(3)}"
+                                           renderedOnUserRole="SECRETARIA" />
+                            <ice:menuItem  value="Coord. Carrera" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                           actionListener="#{menuController.activarSubMenu(4)}" 
+                                           renderedOnUserRole="COORDINADOR_CARRERA"/>
+                            <ice:menuItem value="Titulación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(5)}" 
+                                          renderedOnUserRole="TITULACION" />
+                            <ice:menuItem  value="Investigación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                           actionListener="#{menuController.activarSubMenu(6)}" 
+                                           renderedOnUserRole="INVESTIGACION" />
+                            <ice:menuItem value="Vinculación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(7)}" 
+                                          renderedOnUserRole="VINCULACION" />
+                            <ice:menuItem value="Estudiante" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(8)}"
+                                          renderedOnUserRole="ESTUDIANTE"/>
+                            <ice:menuItem value="Docente" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(9)}"
+                                          renderedOnUserRole="DOCENTE"/>
+
+                            <ice:menuItem value="Director de Vinculación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(10)}"
+                                          renderedOnUserRole="DIRECTOR_VINCULACION"/>
+
+                            <!-- //////////////////////////////////////////////////////////// -->
+<!--                             <ice:menuItem value="Director" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu()}" 
+                                         renderedOnUserRole="DIRECTOR"/>-->
+
+<!--                            <ice:menuItem value="Curso de Plan" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu()}"
+                                          renderedOnUserRole="DOCENTE_PLAN"/>-->
+<!--                            <ice:menuItem value="Comite Pre-Aprobacion de Plan" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu()}"
+                                          renderedOnUserRole="DOCENTE_APROBADOR"/>
+                            <ice:menuItem value="Comite Calificador del Trabajo" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu()}" 
+                                          renderedOnUserRole="DOCENTE_CALIFICADOR"/>-->
+
+<!--                            <ice:menuItem value="Comite Investigacion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu()}" 
+                                          renderedOnUserRole="COMISION_INVESTIGACION" />-->
+                        </ice:menuBar>
+                    </ice:panelGroup>
+                </ice:form>
+                <ice:panelGroup id="cornerRight01" />
+            </ice:panelGroup>
+        </ice:panelGroup>
+
+        <ice:panelGroup id="contenido2">
+            <ice:panelGroup id="contenidoDer2">
+                <ice:panelGrid columns="1" rendered="#{menuController.renderSubMenu}">
+                    <ice:form id="subMenuForm" >
+                        <ice:menuBar id="subMenuBar" >
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- ADMINISTRACION -->
+                            <ice:menuItem value="Facultades" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu1}"
+                                          action="#{navegacionControlador.navegacionString('/pages/admin/facultad/facultad.jsf','Facultades')}" />
+                            <ice:menuItem value="Carreras" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu1}"
+                                          action="#{navegacionControlador.navegacionString('/pages/admin/carrera/carrera.jsf','Carreras')}" />
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DECANO -->
+                            <ice:menuItem value="Plan de Titulación " styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}">
+                                <ice:menuItem value="Comisión de Evaluación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/planTitulacion/comiteEvaluacion/comiteEvaluacion.jsf','Evaluacion de plan')}" />
+                                <ice:menuItem value="Aprobar Plan" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/planTitulacion/aprobacionPlan/aprobacionPlan.jsf','Aprobación del Plan')}" />
+                                <ice:menuItem value="Asignar Director" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/planTitulacion/designacionDirector/designacionDirector.jsf','Asignación de Director')}" />
+                            </ice:menuItem>
+
+                            <ice:menuItem value="Trabajo de Titulación " styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}">
+                                <ice:menuItem value="Comisión de Calificación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/trabajoTitulacion/comiteCalificador/comiteCalificador.jsf','Comite Calificador del Trabajo')}" />
+                                <ice:menuItem value="Aprobar Trabajo" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/trabajoTitulacion/aprobacionTrabajo/aprobacionTrabajo.jsf','Aprobación del Trabajo')}" />
+                            </ice:menuItem>
+
+                            <ice:menuItem value="Programa de Vinculación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}" >
+                                <ice:menuItem value="Aprobar Programa" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu2}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/decano/vinculacion/aprobacionPrograma/aprobacionPrograma.jsf','Comision de Aprobacion del Plan')}" />
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- SECRETARIA -->
+                            <ice:menuItem value="Generar y Receptar Orden de Pago" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu3}"
+                                          action="#{navegacionControlador.navegacionString('/pages/users/secretaria/receptarOrdenPago/receptarOrdenPago.jsf','Recepción de Orden de Pago')}" />
+                            <ice:menuItem value="Receptar Anillados" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu3}"
+                                          action="#{navegacionControlador.navegacionString('/pages/users/secretaria/receptarAnillados/receptarAnillados.jsf','Recepción de Anillados')}" />
+                            <ice:menuItem value="Generar Documento de Firmas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu3}"
+                                          action="#{navegacionControlador.navegacionString('/pages/users/secretaria/generarDocumentoFirmas/generarDocumentoFirmas.jsf','Generación de Documento de Firmas')}" />
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- COOR. CARRERA -->                       
+                            <ice:menuItem value="Registrar docentes" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/registroDocente/docente.jsf','Registro de docentes')}" />
+                            <ice:menuItem value="Plan de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}" >
+
+                                <ice:menuItem value="Comisión de Pre-Aprobación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/planTitulacion/comitePreAprobacion/comitePreAprobacion.jsf','Comision de Aprobacion del Plan')}" />
+                                <ice:menuItem value="Listar Planes Pre-Aprobados" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/planTitulacion/listadoTemasPreAprobados/listadoTemas.jsf','Listado de Planes Aprobados')}" />
+                            </ice:menuItem>
+
+                            <ice:menuItem value="Trabajo de Titulación " styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}" >
+                                 <ice:menuItem value="Prorrogas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/trabajoTitulacion/prorroga/prorroga.jsf','Aprobación del Formato del Trabajo')}" />
+                                <ice:menuItem value="Aprobar Formato" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/trabajoTitulacion/aprobacionFormato/aprobacionFormato.jsf','Aprobación del Formato del Trabajo')}" />
+                                <ice:menuItem value="Aprobar Orden de Empastado" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/trabajoTitulacion/aprobarOrdenEmpastado/ordenEmpastado.jsf','Aprobar Orden de Empastado')}" />
+                            </ice:menuItem>
+
+                            <ice:menuItem value="Programa de Vinculación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}" >
+                                <ice:menuItem value="Propuesta de Programa" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu4}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/coordinadorCarrera/programaVinculacion/programaVinculacion/programaVinculaicon.jsf','Comision de Aprobacion del Plan')}" />
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- COOR. TITULACION  -->   
+                            <ice:menuItem value="Registrar Curso de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu5}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/titulacion/registrarCursoPlan/registrarCursoPlan.jsf','Registrar Curso de Titulación')}" />
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- COOR. INVESTIGACION  -->   
+                            <ice:menuItem value="Comisión de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}"
+                                          action="#{navegacionControlador.navegacionString('/pages/users/investigacion/comInvestigacion/comInvestigacion.jsf','')}"  />
+                            <ice:menuItem value="Lineas de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}" >
+                                <ice:menuItem value="Lineas de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}" 
+                                              action="#{navegacionControlador.navegacionString('/pages/users/investigacion/lineaInvestigacion/lineaInvestigacion.jsf','')}"  />
+                                <ice:menuItem value="Areas de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}" 
+                                              action="#{navegacionControlador.navegacionString('/pages/users/investigacion/areaInvestigacion/areaInvestigacion.jsf','')}"/>
+                            </ice:menuItem>
+                            <ice:menuItem value="Proyectos de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}" >
+                                <ice:menuItem value="Registrar la Aprobación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/investigacion/proyectosInvestigacion/aprobacionProyecto/aprobacionProyecto.jsf','Aprobacion del Proyecto')}" />
+                                <ice:menuItem value="Revisar Avances del Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/investigacion/proyectosInvestigacion/revisarAvancesProyecto/revisarAvancesProyecto.jsf','Revision del Proyecto')}" />
+                                <ice:menuItem value="Listado de Proyectos" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu6}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/investigacion/proyectosInvestigacion/listadoProyectos/listadoProyectos.jsf','Comision de Aprobacion del Plan')}" />
+                            </ice:menuItem>
+
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- COOR. VINCULACION  -->   
+                            <ice:menuItem value="Analisis de Programas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu7}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/vinculacion/analisisPrograma/analisisPrograma.jsf','')}"/>
+
+                            <ice:menuItem value="Planificar Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu7}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/vinculacion/planificarProyecto/planificarProyecto.jsf','')}"/>
+                            <ice:menuItem value="Evaluar Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu7}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/vinculacion/evaluarProyecto/evaluarProyecto.jsf','')}"/>
+                            <ice:menuItem value="Generación de Indicadores" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu7}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/vinculacion/generacionIndicadores/indicadores.jsf','')}"/>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- ESTUDIANTE --> 
+                            <ice:menuItem value="Plan de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}" >
+                                <ice:menuItem value="Seleccionar Tema" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}" 
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/planTitulacion/seleccionTema/seleccionTema.jsf','')}"/>
+                                <ice:menuItem value="Desarrollar Plan" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/planTitulacion/desarrolloPlan/desarrolloPlan.jsf','')}" />
+                            </ice:menuItem>
+                            <ice:menuItem value="Trabajo de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}" >
+                                <ice:menuItem value="Desarrollar Trabajo" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/trabajoTitulacion/desarrolloTrabajo/desarrolloTrabajo.jsf','Desarrollo del Trabajo')}" />
+                                <ice:menuItem value="Rectificar Trabajo" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/trabajoTitulacion/rectificacionTrabajo/rectificacionTrabajo.jsf','Rectificación del Formato')}" />
+                                <ice:menuItem value="Registrar Anillado y Art. Cientifico" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/trabajoTitulacion/anilladosArticulo/anilladosArticulo.jsf','')}" />
+                                <ice:menuItem value="Registrar Documento de Firmas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu8}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/estudiante/trabajoTitulacion/registroDocumentoFirmas/registroDocumentoFirmas.jsf','Registro del documento de firmas')}" />
+                            </ice:menuItem>
+
+                            <ice:menuItem id="mailing" value="Test Envio de mail" action="#{accesoController.sendPassword()}" styleClass="styleMenuJnk2"
+                                          rendered="#{menuController.subMenu8}" />
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DOCENTE --> 
+                            <ice:menuItem value="Plan de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" >
+                                <ice:menuItem value="Proponer Tema" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/planTitulacion/propuestaTema/tema.jsf','')}" />
+                                <ice:menuItem value="Seleccionar Estudiante" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/planTitulacion/seleccionEstudiante/seleccionEstudiante.jsf','')}" />
+                                <ice:menuItem value="Revisar Desarrollo del Plan" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/planTitulacion/revisionPlan/revisionPlan.jsf','')}" />
+                                <ice:menuItem value="Revisar Cambios del Plan" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/planTitulacion/revisionCambios/revisionCambios.jsf','Revision de Cambios')}" />
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DIRECTOR --> 
+                            <ice:menuItem value="Trabajo de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DIRECTOR" >
+                                <ice:menuItem value="Revisar Desarrollo del Trabajo" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/trabajoTitulacion/desarrolloTrabajo/desarrolloTrabajo.jsf','Desarrollo del Trabajo')}" />
+                                <ice:menuItem value="Revisar Cambios del Trabajo" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/trabajoTitulacion/revisionCambios/revisionCambios.jsf','Desarrollo del Trabajo')}" />
+                                <ice:menuItem value="Registrar Informe Final" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/trabajoTitulacion/informeFinalTrabajo/informeTrabajo.jsf','Informes Final')}" />
+                                <ice:menuItem value="Registrar Fecha de Grado" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/trabajoTitulacion/registroFechaGrado/fechaGrado.jsf','Registro Fecha de Grado')}" />
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DOCENTE_PLAN --> 
+                            <ice:menuItem value="Curso de Plan de Titulación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_PLAN" >
+                                <ice:menuItem value="Registrar Estudiantes" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/cursoPlan/registroEstudiante/estudiante.jsf','Registro de Estudiantes')}" />
+                                <ice:menuItem value="Revisar Planes del Curso" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/cursoPlan/revisionPlan/revisionPlan.jsf','Revision de Planes')}" />
+
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DOCENTE_TUTOR_VINCULACION --> 
+                            <ice:menuItem value="Proyecto de Vinculación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="TUTOR_VINCULACION" >
+                                <ice:menuItem value="Estructurar Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/proyectosVinculacion/estructurarProyecto/estructurarProyecto.jsf','Registro de Estudiantes')}" />
+                                <ice:menuItem value="Ejecutar Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/proyectosVinculacion/ejecucionProyecto/ejecucionProyecto.jsf','Revision de Planes')}" />
+                                <ice:menuItem value="Registrar Informe del Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/proyectosVinculacion/registrarInformeProyecto/registrarInformeProyecto.jsf','Revision de Planes')}" />
+                            </ice:menuItem>
+
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DOCENTE_INVESTIGADOR --> 
+                            <ice:menuItem value="Proyecto de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"  >
+                                <ice:menuItem value="Registrar Proyecto" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/proyectosInvestigacion/registroProyecto/registroProyecto.jsf','Registro del Proyecto')}" />
+                                <ice:menuItem value="Registrar Informe de Avance" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                              action="#{navegacionControlador.navegacionString('/pages/users/docente/proyectosInvestigacion/registrarAvancesProyecto/registrarAvancesProyecto.jsf','Registrar Avances del Proyecto')}" />
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- COMISION  -->  
+                            <ice:menuItem value="Comisiones designadas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"  >
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION INVESTIGACION  -->   
+                                <ice:menuItem value="Comisión de Investigación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_COM_INVESTIGACION">
+                                    <ice:menuItem value="Aprobar Temas" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comiteInvestigacion/aprobacionTema/aprobacionTema.jsf','Aprobación de Temas')}" />
+                                    <ice:menuItem value="Revisar Artículo Científico" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comiteInvestigacion/revisionArticulo/revisionArticulo.jsf','Revisión de Artículo Científico')}" />
+                                </ice:menuItem>
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION PRE APROBACION --> 
+                                <ice:menuItem value="Comisión de Pre-Aprobación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_PREAPROBADOR" >
+                                    <ice:menuItem value="Pre-Aprobar Planes" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comitePreAprobacion/preAprobacionPlan/preAprobacionPlan.jsf','')}" />
+                                </ice:menuItem>
+
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION EVALUACION --> 
+                                <ice:menuItem value="Comisión de Evaluación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_APROBADOR" >
+                                    <ice:menuItem value="Evaluar Planes" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comiteEvaluacion/evaluacionPlan/evaluacionPlan.jsf','Evaluación de Planes')}" />
+                                </ice:menuItem>
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION CALIFICACION -->
+                                <ice:menuItem value="Comisión de Calificación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_CALIFICADOR" >
+                                    <ice:menuItem value="Calificar Trabajos" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comiteCalificacion/calificacionTrabajo/calificacionTrabajo.jsf','Calificación del Trabajo')}" />
+                                </ice:menuItem>
+
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION SEGUIMIENTO -->
+                                <ice:menuItem value="Comisión de Seguimiento" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_COM_SEGUIMIENTO" >
+                                    <ice:menuItem value="Registrar Acta de Reunión" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comisionSeguimiento/registrarReunion/registrarReunion.jsf','')}" />
+                                </ice:menuItem>
+
+                                <!-- ///////////////////////////////////////////// -->
+                                <!-- COMISION VINCULACION -->
+                                <ice:menuItem value="Comisión de Vinculación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}" renderedOnUserRole="DOCENTE_COM_VINCULACION" >
+                                    <ice:menuItem value="Analisis del Programa" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu9}"
+                                                  action="#{navegacionControlador.navegacionString('/pages/users/docente/comisionVinculacion/analisisPrograma/analisisPrograma.jsf','Calificación del Trabajo')}" />
+                                </ice:menuItem>
+                            </ice:menuItem>
+
+                            <!-- ///////////////////////////////////////////// -->
+                            <!-- DIRECTOR VINCULACION  -->   
+                            <ice:menuItem value="Enviar a la Comision de Vinculación" styleClass="styleMenuJnk2" rendered="#{menuController.subMenu10}" 
+                                          action="#{navegacionControlador.navegacionString('/pages/users/directorVinculacion/comisionVinculacion/comisionVinculacion.jsf','')}"  />
+
+
+                        </ice:menuBar>
+                    </ice:form>
+                </ice:panelGrid>
+            </ice:panelGroup>
+        </ice:panelGroup>
+    </ui:composition>
+</html>
+
+
+

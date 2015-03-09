@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="page_title">SAAC - Estudiantes</ui:define>
+        <ui:define name="content">
+
+            <!--HEAD DE LA PAGINA-->
+            <ice:panelGroup styleClass="titulosLeft">
+                <ice:outputText value="EVALUACION DE PLANES PRE APROBADOS"   />
+            </ice:panelGroup>
+
+            <!--BODY DE LA PAGINA-->
+
+            <ice:form id="temaForm" >
+                <ice:panelGroup styleClass="borderGray" style="height: 25px;" rendered="#{docenteControlador.panelDatos}">
+<!--                    <ice:commandButton value="Nuevo" action="#{docenteControlador.activarPanelDatos()}"  />-->
+                    <ice:commandButton value="Volver" style="float: right;" title="Volver a la lista"
+                                       rendered="#{docenteControlador.panelDatos}"
+                                       action="#{docenteControlador.inicializacion()}"/>
+                </ice:panelGroup>
+            </ice:form>
+
+            <ice:panelGroup rendered="#{docenteControlador.panelDatos}">
+                <ui:include src="evaluacionPlanData.xhtml" />
+            </ice:panelGroup>
+
+            <ice:panelGroup rendered="#{!docenteControlador.panelDatos}">
+                <ui:include src="evaluacionPlanDataList.xhtml"/>
+            </ice:panelGroup>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">
+            
+                <!--HEAD DE LA PAGINA-->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <td class="iceDatTblColHdr" style="text-align: left; ">
+                    <ice:outputText value="PAGINA 1" style="font-size: 12px; font-weight: bold; color: black; padding-left: 5px;"/>
+                    </td>
+                </table>
+
+                <!--BODY DE LA PAGINA-->
+                <ice:form id="seleccionProcesoForm" >
+                    <ice:panelGrid columns="1"   >
+                        <ice:panelGroup styleClass="borderGray" style="margin-bottom: 4px; background-color: #CDCDCD; font-weight: bold;">
+                            <ice:outputLabel value="Pagina 1 " />
+                        </ice:panelGroup>
+                        
+                        <ice:panelTabSet styleClass="tabSet" tabPlacement="bottom" align="right">
+                            <ice:panelTab label="label1"> 
+                                <ice:outputText value="Label" />
+                            </ice:panelTab>
+                            <ice:panelTab label="label2"> 
+                                <ice:outputText value="Label2" />
+                            </ice:panelTab>
+                            <ice:panelTab label="label3">
+                                <ice:outputText value="Label3" /> 
+                            </ice:panelTab>
+                        </ice:panelTabSet> 
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" >
+                            <ice:outputLabel value="Nombre:" />
+                            <ice:inputText />
+                            <ice:outputLabel value="Apellido:" />
+                            <ice:inputText />
+
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectOneRadio layout="pageDirection"> 
+                                <f:selectItem itemLabel="Item1" itemValue="Item1" />
+                                <f:selectItem itemLabel="Item2" itemValue="Item2" />
+                                <f:selectItem itemLabel="Item3" itemValue="Item3" />
+                            </ice:selectOneRadio> 
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectOneMenu >
+                                <f:selectItem itemLabel="Item1" itemValue="1" />
+                                <f:selectItem itemLabel="Item2" itemValue="2" /> 
+                                <f:selectItem itemLabel="Item3" itemValue="3" />
+                                <f:selectItem itemLabel="Item4" itemValue="4" />
+                                <f:selectItems value="#{backingBean.selectItems}" />
+                            </ice:selectOneMenu> 
+                        </ice:panelGrid>
+
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectOneListbox size="10" >
+                                <f:selectItem itemLabel="Label1" itemValue="1" />
+                                <f:selectItem itemLabel="Label2" itemValue="2" />
+                                <f:selectItem itemLabel="Label3" itemValue="3" />
+                                <f:selectItem itemLabel="Label4" itemValue="4" />
+                                <f:selectItems value="#{backingBean.selectItems}" />
+                            </ice:selectOneListbox>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectManyCheckbox disabledClass="disabled" enabledClass="enabled">
+                                <f:selectItem itemLabel="Label1" itemValue="1" />
+                                <f:selectItem itemLabel="Label2" itemValue="2" />
+                            </ice:selectManyCheckbox>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectInputDate renderAsPopup="true"></ice:selectInputDate>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:selectBooleanCheckbox value="true" id="check" readonly="true" disabled="true" />
+                            <ice:outputLabel value="Check" for="check" />
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:outputFormat value="Hello {0}!">
+                                <f:param value="World" />
+                            </ice:outputFormat>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:outputProgress labelPosition="embed"></ice:outputProgress> 
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:outputConnectionStatus></ice:outputConnectionStatus>
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:menuBar value="hello" styleClass="foo" orientation="horizontal"> 
+                                <ice:menuItem value="Hello" styleClass="bar"> 
+                                    <ice:menuItem value="Bar" />
+                                </ice:menuItem>
+                                <ice:menuItem value="One" />
+                                <ice:menuItem value="Two" />
+                                <ice:menuItem value="Three" />
+                            </ice:menuBar>
+
+                        </ice:panelGrid>
+
+                        <ice:panelGrid columns="2" columnClasses="col50,col50" styleClass="borderGray">
+                            <ice:inputSecret></ice:inputSecret>
+                        </ice:panelGrid>
+
+                    </ice:panelGrid>
+                </ice:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>

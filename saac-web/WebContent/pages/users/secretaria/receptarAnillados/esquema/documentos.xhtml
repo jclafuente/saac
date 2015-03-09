@@ -1,0 +1,209 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:panelGrid columns="1"  width="100%" styleClass="borderGary">
+
+            <ice:panelGroup styleClass="borderGray">
+                <ice:panelGroup styleClass="titulosCenter">
+                    <ice:outputText value="PLAN APROBADO "   />
+                </ice:panelGroup>
+
+                <ice:panelGroup >
+                    <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                    var="var" style="width: 100%;">
+                        <ice:column >
+                            <f:facet name="header">
+                                <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                            </f:facet>
+                            <ice:panelGroup>
+                                <ice:outputLink target="_blank" value="/saac/archivos/planTitulacion.pdf"  >
+                                    Documento
+                                </ice:outputLink>
+                            </ice:panelGroup>
+                        </ice:column>
+
+                    </ice:dataTable>
+                </ice:panelGroup>
+
+
+            </ice:panelGroup>
+
+            <ice:panelGrid columns="2" columnClasses="col45,col55" width="100%" styleClass="borderGary">
+
+
+                <ice:panelGroup >
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="SELECCION DE LA ENTREGA DE LOS DOCUMENTOS FISICOS "   />
+                        </ice:panelGroup>
+
+                        <ice:panelGroup >
+                            <center>
+                                <ice:panelGrid columns="3" columnClasses="col70, col5,col25" width="80%">
+
+                                    <ice:outputLabel value="Anillados del Trabajo de Titulación (Impresos)" for="check1" />
+                                    <ice:selectBooleanCheckbox id="check1" value="false" />
+                                    <ice:message for="check1" errorClass="error"/>
+
+                                    <ice:outputLabel value="Articulo Cientifico del Trabajo de Titulación (Impreso)" for="check2" />
+                                    <ice:selectBooleanCheckbox id="check2" value="false"/>
+                                    <ice:message for="check2" errorClass="error"/>
+                                </ice:panelGrid>
+                            </center>
+                        </ice:panelGroup>
+                        
+                    </ice:panelGroup>
+
+                </ice:panelGroup >
+
+
+
+                <ice:panelGroup >
+<!--                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="DOCUMENTOS REVISADOS"   />
+                        </ice:panelGroup>
+
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column style="width: 20%;">
+                                <center>
+                                    <f:facet name="header">
+                                        <ice:outputLabel value="Observaciones"></ice:outputLabel>
+                                    </f:facet>
+
+                                    <ice:commandButton value="Observaciones"  actionListener="#{docenteControlador.abrirObservaciones()}" immediate="true">
+                                        <f:attribute name="select" value="#{archivo}"></f:attribute>
+                                    </ice:commandButton>
+                                </center>
+                            </ice:column>
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="INFORME DE LA COMISION DE SEGUIMIENTO"   />
+                        </ice:panelGroup>
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Informe de reunión
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    -->
+                    
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="ANILLADOS DEL TRABAJO DE TITULACION"   />
+                        </ice:panelGroup>
+
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    
+                    
+                    <ice:panelGroup styleClass="borderGray">
+                        <ice:panelGroup styleClass="titulosCenter">
+                            <ice:outputText value="ARTICULO CIENTIFICO"   />
+                        </ice:panelGroup>
+
+
+                        <ice:dataTable  rows="20" value="#{docenteControlador.listadoPersonas.get(0)}" 
+                                        var="archivo" style="width: 100%;">
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Archivo" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLink target="_blank" value="/saac/archivos/procedimiento_titulacion.pdf"  >
+                                        Documento
+                                    </ice:outputLink>
+                                </ice:panelGroup>
+                            </ice:column>
+
+                            <ice:column>
+                                <f:facet name="header">
+                                    <ice:outputLabel value="Fecha" ></ice:outputLabel>
+                                </f:facet>
+                                <ice:panelGroup>
+                                    <ice:outputLabel value="12 Junio de 2012" />
+                                </ice:panelGroup>
+                            </ice:column>
+
+                        </ice:dataTable>
+                    </ice:panelGroup>
+                    
+                    
+                    
+
+                </ice:panelGroup>
+            </ice:panelGrid>
+        </ice:panelGrid>
+    </ui:composition>
+</html>

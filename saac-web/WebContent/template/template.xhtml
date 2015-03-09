@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<meta name="Resource-type" content="Document" />
+	<meta name="Revisit-after" content="7 days" />
+	<meta name="robots" content="ALL" />
+	<meta name="DESCRIPTION" content="Universidad Tecnologica Equinoccial" />
+	<meta name="KEYWORDS" content="UTE, Ecuador" />
+	<link rel="shortcut icon"
+		href="#{request.contextPath}/resources/img/favicon.ico" />
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/css/rime/rime.css"
+		type="text/css" />
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/cssLayout.css" type="text/css"
+		media="screen" />
+	<title><ui:insert name="page_title">SISTEMA DE ASISTENCIA ACADEMICA - SAAC</ui:insert></title>
+</h:head>
+
+
+<h:body styleClass="ice-skin-rime">
+	<div id="main">
+		<ui:insert name="header">
+			<ui:include src="/template/header.xhtml" />
+		</ui:insert>
+
+		<ui:insert id="top" name="top">
+			<ui:include src="/template/menu.xhtml" />
+		</ui:insert>
+
+		<ice:panelGroup id="contenido">
+			<ice:panelGroup id="contenidoDer">
+
+				<ice:panelGroup id="messagesUp">
+					<center>
+						<ice:messages globalOnly="true" />
+					</center>
+				</ice:panelGroup>
+
+				<ice:panelGroup id="panelBase">
+
+					<ui:insert name="content">
+
+					</ui:insert>
+				</ice:panelGroup>
+
+				<ui:insert name="messages">
+					<ice:panelGroup id="messagesDown">
+						<center>
+							<ice:messages globalOnly="true" />
+						</center>
+					</ice:panelGroup>
+				</ui:insert>
+
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+		<ui:insert name="bottom">
+			<ice:form id="infoForm">
+				<ice:panelPopup rendered="#{messageSender.visible}" draggable="true"
+					autoCentre="true" modal="true" styleClass="border-contenedor-popup">
+					<f:facet name="header">
+						<ice:panelGrid width="350">
+							<center>
+								<ice:outputLabel value="#{messageSender.title}" />
+							</center>
+						</ice:panelGrid>
+					</f:facet>
+					<f:facet name="body">
+						<ice:panelGrid width="350" style=" text-align: center">
+							<ice:outputText style="font-size: 80%;"
+								value="#{messageSender.message}" />
+							<br />
+							<center>
+								<ice:commandButton value="Aceptar"
+									action="#{messageSender.close}" />
+							</center>
+						</ice:panelGrid>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:form>
+			<ui:include src="/template/bottom.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+<h:outputStylesheet library="org.icefaces.component.skins"
+	name="rime.css" />
+</html>

@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:form id="facultadNuevoForm" >
+            <ice:panelGroup styleClass="borderGray" >
+                <center>
+                    <ice:panelGrid columns="3" columnClasses="col30,col45,col25" styleClass="borderGray">
+
+                        <f:facet name="header" >
+                            <ice:outputText value="Datos de la Facultad" />
+                        </f:facet>
+                        
+                        <ice:outputLabel value="Facultad:" styleClass="label" style="float: right;"/>
+                        <ice:inputText id="txtFacultad" value="#{administracionFacultadControlador.facultad.facNombre}"
+                                       required="true" requiredMessage="#{msg['campo.vacio']}"
+                                       style="width: 350px;"/>
+                        <ice:message for="txtFacultad" errorClass="error"/>
+
+                    </ice:panelGrid>
+                </center>
+                <center>
+                    <ice:commandButton value="Guardar" title="Guardar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{administracionFacultadControlador.crearFacultad()}" 
+                                       rendered="#{administracionFacultadControlador.facultad.facCodigo == null}"/>
+                                       
+                    <ice:commandButton value="Actualizar" title="Actualizar el registro"
+                                       panelConfirmation="confirmacionSeleccion"
+                                       action="#{administracionFacultadControlador.actualizarFacultad()}"
+                                       rendered="#{administracionFacultadControlador.facultad.facCodigo != null}"/>
+                                       
+                    <ice:panelConfirmation id="confirmacionSeleccion"
+                                           title="Confirmación"
+                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+                                           acceptLabel="Aceptar"
+                                           cancelLabel="Cancelar"
+                                           autoCentre="true"
+                                           type="normal"
+                                           rendered="true"/>  
+                </center>
+            </ice:panelGroup>
+        </ice:form>
+
+        <!--ice:panelGroup renderedOnUserRole="USER" >
+            <p>No tiene acceso </p>
+        </ice:panelGroup-->
+    </ui:composition>
+</html>
+

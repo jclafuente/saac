@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="page_title">SAAC - Facultades</ui:define>
+	<ui:define name="content">
+
+		<!--ice:panelGroup renderedOnUserRole="ADMIN"-->
+		<ice:panelGroup>
+			<!--HEAD DE LA PAGINA-->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<td class="iceDatTblColHdr" style="text-align: left;"><ice:outputText
+						value="LISTADO DE ROLES "
+						style="font-size: 12px; 
+                        				font-weight: bold; 
+                        				color: black; 
+                        				padding-left: 5px;" />
+				</td>
+			</table>
+
+			<!--BODY DE LA PAGINA-->
+			<ice:form id="facultadForm">
+				<ice:panelGroup styleClass="borderGray">
+					<ice:commandButton value="Nuevo"
+						action="#{administracionRolControlador.activarPanelDatos()}"
+						partialSubmit="true" />
+					<ice:commandButton value="Volver" style="float: right;"
+						title="Volver a la lista"
+						rendered="#{administracionRolControlador.panelDatos}"
+						action="#{administracionRolControlador.inicializacion()}" />
+				</ice:panelGroup>
+			</ice:form>
+
+			<ice:panelGroup rendered="#{administracionRolControlador.panelDatos}">
+				<ui:include src="rolData.xhtml" />
+			</ice:panelGroup>
+
+			<ui:include src="rolDataList.xhtml" />
+
+		</ice:panelGroup>
+
+		<ice:panelGroup renderedOnUserRole="USUARIO">
+			<p>No tiene acceso</p>
+		</ice:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>
+

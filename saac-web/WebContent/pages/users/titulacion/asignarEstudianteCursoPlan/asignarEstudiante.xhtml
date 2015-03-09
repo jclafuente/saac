@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="page_title">SAAC - Estudiantes</ui:define>
+	<ui:define name="content">
+
+		<!--HEAD DE LA PAGINA-->
+		<ice:panelGroup styleClass="titulosLeft">
+			<ice:outputText value="ASIGNAR ESTUDIANTES" />
+		</ice:panelGroup>
+
+		<!--BODY DE LA PAGINA-->
+
+		<ice:form id="asignarEstudianteForm">
+			<ice:panelGroup styleClass="borderGray" style="height: 25px;">
+
+				<ice:commandButton value="Nuevo"
+					action="#{asignarEstudianteCursoPlanControlador.activarPanelDatos()}" />
+
+				<ice:commandButton value="Volver" style="float: right;"
+					title="Volver a la lista"
+					rendered="#{asignarEstudianteCursoPlanControlador.panelDatos}"
+					action="#{asignarEstudianteCursoPlanControlador.retornarPagina()}" />
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:panelGroup
+			rendered="#{asignarEstudianteCursoPlanControlador.panelDatos}">
+			<ui:include src="asignarEstudianteData.xhtml" />
+		</ice:panelGroup>
+
+		<ice:panelGroup
+			rendered="#{!asignarEstudianteCursoPlanControlador.panelDatos}">
+			<ui:include src="asignarEstudianteDataList.xhtml" />
+		</ice:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>
