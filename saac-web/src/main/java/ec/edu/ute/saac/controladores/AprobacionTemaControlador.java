@@ -71,8 +71,12 @@ public class AprobacionTemaControlador {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String error = (String) e.getMessage();
+			utilitarios.ponerMensajeError(Utilitarios.ERROR, error);
+			utilitarios
+					.error(AdministracionControlador.class.getName(),
+							"Error al inicializar los datos en: AprobacionTemaControlador",
+							e);
 		}
 	}
 
@@ -129,17 +133,13 @@ public class AprobacionTemaControlador {
 			setListadoTemaTitulacion(getListadoTemaTitulacion());
 			setPanelDatos(Boolean.FALSE);
 			
+			sender.sendInfoPopup("Proceso finalizado");
+	/*		MessageSender.sendInfo(Utilitarios.REGISTRO_GUARDADO, null);
+			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_GUARDADO, " ");*/
 
 		} catch (Exception e) {
-			MessageSender.sendInfo(Utilitarios.REGISTRO_ACTUALIZADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_ACTUALIZADO, " ");
-			inicializacion();
 
-			String error = (String) e.getMessage();
-			utilitarios.ponerMensajeError(Utilitarios.ERROR_REGISTRO_GUARDADO,
-					error);
-			utilitarios.error(AdministracionControlador.class.getName(),
-					"Error al procesar registro", e);
+
 		}
 
 	}
@@ -155,7 +155,7 @@ public class AprobacionTemaControlador {
 
 	public void activarPanelDatos() {
 		setPanelDatos(true);
-		// limpiarCombos();
+
 	}
 
 	public Collection<Carrera> getListadoCarreras() {

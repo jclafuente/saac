@@ -16,10 +16,17 @@ import org.apache.commons.logging.LogFactory;
 
 import com.mysql.fabric.xmlrpc.base.Array;
 
+import ec.edu.ute.saac.entidades.Carrera;
 import ec.edu.ute.saac.entidades.Catalogo;
+import ec.edu.ute.saac.entidades.CursoTitulacion;
+import ec.edu.ute.saac.entidades.Facultad;
 import ec.edu.ute.saac.entidades.GrupoCatalogo;
+import ec.edu.ute.saac.entidades.LineaInvestigacion;
+import ec.edu.ute.saac.entidades.Periodos;
 import ec.edu.ute.saac.entidades.Persona;
+import ec.edu.ute.saac.entidades.PersonaCarrera;
 import ec.edu.ute.saac.entidades.Rol;
+import ec.edu.ute.saac.entidades.TemasTitulacion;
 import ec.edu.ute.saac.entidades.Usuario;
 import ec.edu.ute.saac.entidades.UsuarioRol;
 import ec.edu.ute.saac.servicios.administracion.IAdministracionServicio;
@@ -29,39 +36,50 @@ import ec.edu.ute.saac.utils.Utilitarios;
 @ViewScoped
 public class RegistrarEstudiantePlanControlador {
 
-	private static final Log log = LogFactory.getLog(RegistrarEstudiantePlanControlador.class);
 	private MessageSender sender;
 	private Utilitarios utilitarios;
-	private boolean PanelDatos;
+	private boolean panelDatos;
+	private PersonaCarrera personaCarrera;
 	private Persona persona;
-	private Usuario usuario;
-	private Catalogo catalogo;
-	private UsuarioRol usuarioRol;
+	private Rol rol;
 
-	public Collection<UsuarioRol> listadoPersonaEstudiante;
-	public Collection<Catalogo> listadoCatalogoNac;
-	public Collection<Catalogo> listadoCatalogoEstCiv;
-	public Collection<Catalogo> listadoCatalogoGenero;
+	private Integer facultadSelected;
+	private Integer carreraSelected;
+	private Integer nacionalidadSelected;
+	private Integer estadoCivilSelected;
+	private Integer generoSelected;
 
-	public Integer nacionalidadSelected;
-	public Integer estadoCivSelected;
-	public Integer generoSelected;
-
+	private Collection<Facultad> listadoFacultad;
+	private Collection<Carrera> listadoCarrera;
+	private Collection<PersonaCarrera> listadoPersonaCarrera;
+	private Collection<Persona> listadoPersonaEstudiante;
+	private Collection<Catalogo>listadoCatalogoNacionalidad;
+	private Collection<Catalogo>listadoCatalogoEstadoCivil;
+	private Collection<Catalogo>listadoCatalogoGenero;
+	private Collection<Persona>listadoPersonaUsuarioRol;
+	
 	@Inject
 	private IAdministracionServicio administracionServicio;
 
-	public void inicializacionEntidades() {
+	public void activarPanelDatos() {
+		setPanelDatos(Boolean.TRUE);
+	}
+
+	private void inicializacionEntidades() {
 		sender = (MessageSender) Utilitarios.getManagedBean("messageSender");
 		utilitarios = new Utilitarios();
+		personaCarrera = new PersonaCarrera();
 		persona = new Persona();
-		catalogo = new Catalogo();
-		usuario=new Usuario();
-		usuarioRol=new UsuarioRol();
+		rol=new Rol();
 
-		listadoPersonaEstudiante = new ArrayList<UsuarioRol>();
-		listadoCatalogoNac = new ArrayList<Catalogo>();
-		listadoCatalogoEstCiv = new ArrayList<Catalogo>();
-		listadoCatalogoGenero = new ArrayList<Catalogo>();
+		listadoFacultad = new ArrayList<Facultad>();
+		listadoCarrera = new ArrayList<Carrera>();
+		listadoPersonaCarrera = new ArrayList<PersonaCarrera>();
+		listadoPersonaEstudiante = new ArrayList<Persona>();
+		listadoCatalogoNacionalidad=new ArrayList<Catalogo>();
+		listadoCatalogoEstadoCivil=new ArrayList<Catalogo>();
+		listadoCatalogoGenero=new ArrayList<Catalogo>();
+		listadoPersonaUsuarioRol=new ArrayList<Persona>();
 	}
 
 	@PostConstruct
@@ -71,92 +89,46 @@ public class RegistrarEstudiantePlanControlador {
 
 			inicializacionEntidades();
 			setPanelDatos(Boolean.FALSE);
-			//usuario.setPersona(new Persona());
-			if (CollectionUtils.isEmpty(listadoPersonaEstudiante)) {
-				setListadoPersonaEstudiante(administracionServicio
-						.obtenerPersonaEstudiante());
-			}
 
-			if (CollectionUtils.isEmpty(listadoCatalogoNac)) {
-				setListadoCatalogoNac(administracionServicio
-						.obtenerCatalogoNac());
+			if (CollectionUtils.isEmpty(listadoFacultad)) {
+				setListadoFacultad(administracionServicio.obtenerFacultad());
 			}
-
-			if (CollectionUtils.isEmpty(listadoCatalogoEstCiv)) {
-				setListadoCatalogoEstCiv(administracionServicio
-						.obtenerCatalogoEstadoCiv());
+			
+			if (CollectionUtils.isEmpty(listadoCatalogoNacionalidad)) {
+				setListadoCatalogoNacionalidad(administracionServicio.obtenerCatalogoNac() );
 			}
-
+			
+			if (CollectionUtils.isEmpty(listadoCatalogoEstadoCivil)) {
+				setListadoCatalogoEstadoCivil(administracionServicio.obtenerCatalogoEstadoCiv());
+			}
+			
 			if (CollectionUtils.isEmpty(listadoCatalogoGenero)) {
-				setListadoCatalogoGenero(administracionServicio
-						.obtenerCatalogoGenero());
+				setListadoCatalogoGenero(administracionServicio.obtenerCatalogoGenero());
+			}
+			
+			if (CollectionUtils.isEmpty(listadoPersonaUsuarioRol)) {
+				setListadoPersonaUsuarioRol(administracionServicio.obtenerPeronaUsuarioRol());
 			}
 
-		} catch (Exception e) {
-
-		}
-	}
-
-	public void crearEstudiante() {
-		try {
-
-			//usuario.setPerEstado(true);
-			/*persona.setUsuario(new Usuario());
-			persona.getUsuario().setUsuCodigo(usuario.getUsuCodigo());
-			persona.getUsuario().setUsuUserName(usuario.getUsuUserName());
-			persona.getUsuario().setUsuPassword(usuario.getUsuPassword());
-			persona.getUsuario().setUsuFchRegistro(usuario.getUsuFchRegistro());
-			persona.getUsuario().setUsuEstado(usuario.getUsuEstado());*/
-		//	usuario.setPersona(new Persona());
-			
-		//	usuario.getPersona().getCatalogoNacionalidad().setCatCodigo(nacionalidadSelected);
-		//	usuario.getPersona().getCatalogoEstadoCivil().setCatCodigo(estadoCivSelected);
-	//		usuario.getPersona().getCatalogoGenero().setCatCodigo(generoSelected);
-			/*persona.setCatalogoNacionalidad(new Catalogo());
-			persona.getCatalogoNacionalidad().setCatCodigo(nacionalidadSelected);
-			persona.setCatalogoEstadoCivil(new Catalogo());
-			persona.getCatalogoEstadoCivil().setCatCodigo(estadoCivSelected);
-			persona.setCatalogoGenero(new Catalogo());
-			persona.getCatalogoGenero().setCatCodigo(generoSelected);*/
-			
-			administracionServicio.crearUsuarioRol(usuarioRol);
-			
-			//administracionServicio.crearPersona(persona);
-
-			MessageSender.sendInfo(Utilitarios.REGISTRO_GUARDADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_GUARDADO, " ");
-			sender.sendInfoPopup("Registro Ingresado");
-
-			inicializacion();
 		} catch (Exception e) {
 			String error = (String) e.getMessage();
-			utilitarios.ponerMensajeError(Utilitarios.ERROR_REGISTRO_GUARDADO,
-					error);
-			utilitarios.error(AdministracionControlador.class.getName(),
-					"Error al procesar registro", e);
+			utilitarios.ponerMensajeError(Utilitarios.ERROR, error);
+			utilitarios
+					.error(RegistrarCursoPlanControlador.class.getName(),
+							"Error al inicializar los datos en: RegistrarCursoPlanControlador",
+							e);
 		}
+
 	}
 
-	public void crearUsuarioRol(){
-		
-		try {
-			
-			administracionServicio.crearUsuarioRol(usuarioRol);
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void cbChangeCatalogoNac(ValueChangeEvent valueChangeEvent) {
+	public void cbChangeFacultad(ValueChangeEvent valueChangeEvent) {
 
-		Integer CatNacCodigo = NumberUtils.createInteger(String
+		Integer facCodigo = NumberUtils.createInteger(String
 				.valueOf(valueChangeEvent.getNewValue()));
 
 		try {
-			catalogo.setCatCodigo(CatNacCodigo);
+			setListadoCarrera(administracionServicio
+					.obtenerCarreraFacultad(facCodigo));
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -164,84 +136,102 @@ public class RegistrarEstudiantePlanControlador {
 		}
 	}
 
-	private void initPersona() {
-		// /setPersona(new Persona());
+	public void btnCargarListaPersonaCarrera() {
+		try {
+
+			/*
+			 * setListadoPersonaCarrera(administracionServicio
+			 * .obtenerPersonaCarrera(facultadSelected, carreraSelected));
+			 */
+
+			setListadoPersonaEstudiante(administracionServicio
+					.obtenerPersonaCarreraFacultad(facultadSelected,
+							carreraSelected));
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void actualizarEstudiante() {
+		try {
+			
+			
+			administracionServicio.actualizarPersona(persona);
+			sender.sendInfoPopup("Registro Actualizado");
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 	public void seleccionarEstudiante(Persona persona) {
-		// setPersona(persona);
-		// setPanelDatos(true);
-	}
-
-	public void activarPanelDatos() {
-		initPersona();
-		setPanelDatos(true);
+		setNacionalidadSelected(persona.getCatalogoNacionalidad().getCatCodigo());
+		setEstadoCivilSelected(persona.getCatalogoEstadoCivil().getCatCodigo());
+		setGeneroSelected(persona.getCatalogoGenero().getCatCodigo());
+		setPersona(persona);
+		// setPersonaCarrera(personaCarrera);
+		setPanelDatos(Boolean.TRUE);
 	}
 
 	public boolean isPanelDatos() {
-		return PanelDatos;
+		return panelDatos;
 	}
 
 	public void setPanelDatos(boolean panelDatos) {
-		PanelDatos = panelDatos;
+		this.panelDatos = panelDatos;
 	}
 
-	public Collection<Catalogo> getListadoCatalogoNac() {
-		return listadoCatalogoNac;
+	public PersonaCarrera getPersonaCarrera() {
+		return personaCarrera;
 	}
 
-	public void setListadoCatalogoNac(Collection<Catalogo> listadoCatalogoNac) {
-		this.listadoCatalogoNac = listadoCatalogoNac;
+	public void setPersonaCarrera(PersonaCarrera personaCarrera) {
+		this.personaCarrera = personaCarrera;
 	}
 
-	public Integer getNacionalidadSelected() {
-		return nacionalidadSelected;
+	public Integer getFacultadSelected() {
+		return facultadSelected;
 	}
 
-	public void setNacionalidadSelected(Integer nacionalidadSelected) {
-		this.nacionalidadSelected = nacionalidadSelected;
+	public void setFacultadSelected(Integer facultadSelected) {
+		this.facultadSelected = facultadSelected;
 	}
 
-	public Integer getEstadoCivSelected() {
-		return estadoCivSelected;
+	public Integer getCarreraSelected() {
+		return carreraSelected;
 	}
 
-	public void setEstadoCivSelected(Integer estadoCivSelected) {
-		this.estadoCivSelected = estadoCivSelected;
+	public void setCarreraSelected(Integer carreraSelected) {
+		this.carreraSelected = carreraSelected;
 	}
 
-	public Collection<Catalogo> getListadoCatalogoEstCiv() {
-		return listadoCatalogoEstCiv;
+	public Collection<Facultad> getListadoFacultad() {
+		return listadoFacultad;
 	}
 
-	public void setListadoCatalogoEstCiv(
-			Collection<Catalogo> listadoCatalogoEstCiv) {
-		this.listadoCatalogoEstCiv = listadoCatalogoEstCiv;
+	public void setListadoFacultad(Collection<Facultad> listadoFacultad) {
+		this.listadoFacultad = listadoFacultad;
 	}
 
-	public Integer getGeneroSelected() {
-		return generoSelected;
+	public Collection<Carrera> getListadoCarrera() {
+		return listadoCarrera;
 	}
 
-	public void setGeneroSelected(Integer generoSelected) {
-		this.generoSelected = generoSelected;
+	public void setListadoCarrera(Collection<Carrera> listadoCarrera) {
+		this.listadoCarrera = listadoCarrera;
 	}
 
-	public Collection<Catalogo> getListadoCatalogoGenero() {
-		return listadoCatalogoGenero;
+	public Collection<PersonaCarrera> getListadoPersonaCarrera() {
+		return listadoPersonaCarrera;
 	}
 
-	public void setListadoCatalogoGenero(
-			Collection<Catalogo> listadoCatalogoGenero) {
-		this.listadoCatalogoGenero = listadoCatalogoGenero;
-	}
-
-	public Catalogo getCatalogo() {
-		return catalogo;
-	}
-
-	public void setCatalogo(Catalogo catalogo) {
-		this.catalogo = catalogo;
+	public void setListadoPersonaCarrera(
+			Collection<PersonaCarrera> listadoPersonaCarrera) {
+		this.listadoPersonaCarrera = listadoPersonaCarrera;
 	}
 
 	public Persona getPersona() {
@@ -252,29 +242,82 @@ public class RegistrarEstudiantePlanControlador {
 		this.persona = persona;
 	}
 
-	public Collection<UsuarioRol> getListadoPersonaEstudiante() {
+	public Collection<Persona> getListadoPersonaEstudiante() {
 		return listadoPersonaEstudiante;
 	}
 
 	public void setListadoPersonaEstudiante(
-			Collection<UsuarioRol> listadoPersonaEstudiante) {
+			Collection<Persona> listadoPersonaEstudiante) {
 		this.listadoPersonaEstudiante = listadoPersonaEstudiante;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Integer getNacionalidadSelected() {
+		return nacionalidadSelected;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setNacionalidadSelected(Integer nacionalidadSelected) {
+		this.nacionalidadSelected = nacionalidadSelected;
 	}
 
-	public UsuarioRol getUsuarioRol() {
-		return usuarioRol;
+	public Collection<Catalogo> getListadoCatalogoNacionalidad() {
+		return listadoCatalogoNacionalidad;
 	}
 
-	public void setUsuarioRol(UsuarioRol usuarioRol) {
-		this.usuarioRol = usuarioRol;
+	public void setListadoCatalogoNacionalidad(
+			Collection<Catalogo> listadoCatalogoNacionalidad) {
+		this.listadoCatalogoNacionalidad = listadoCatalogoNacionalidad;
 	}
+
+	public Integer getEstadoCivilSelected() {
+		return estadoCivilSelected;
+	}
+
+	public void setEstadoCivilSelected(Integer estadoCivilSelected) {
+		this.estadoCivilSelected = estadoCivilSelected;
+	}
+
+	public Integer getGeneroSelected() {
+		return generoSelected;
+	}
+
+	public void setGeneroSelected(Integer generoSelected) {
+		this.generoSelected = generoSelected;
+	}
+
+	public Collection<Catalogo> getListadoCatalogoEstadoCivil() {
+		return listadoCatalogoEstadoCivil;
+	}
+
+	public void setListadoCatalogoEstadoCivil(
+			Collection<Catalogo> listadoCatalogoEstadoCivil) {
+		this.listadoCatalogoEstadoCivil = listadoCatalogoEstadoCivil;
+	}
+
+	public Collection<Catalogo> getListadoCatalogoGenero() {
+		return listadoCatalogoGenero;
+	}
+
+	public void setListadoCatalogoGenero(Collection<Catalogo> listadoCatalogoGenero) {
+		this.listadoCatalogoGenero = listadoCatalogoGenero;
+	}
+
+	public Collection<Persona> getListadoPersonaUsuarioRol() {
+		return listadoPersonaUsuarioRol;
+	}
+
+	public void setListadoPersonaUsuarioRol(
+			Collection<Persona> listadoPersonaUsuarioRol) {
+		this.listadoPersonaUsuarioRol = listadoPersonaUsuarioRol;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+
 
 }

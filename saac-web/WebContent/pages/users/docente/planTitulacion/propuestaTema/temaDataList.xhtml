@@ -10,22 +10,21 @@
 		<ice:panelGrid columns="1" width="100%">
 			<ice:panelGroup styleClass="borderGray">
 				<center>
-					<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
-
+					<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
 						<ice:outputLabel value="Carrera:" styleClass="label" />
-
 						<ice:selectOneMenu id="selCarrera1" style="width: 210px;"
 							required="true" requiredMessage="#{msg['campo.vacio']}"
 							partialSubmit="true"
 							value="#{propuestaTemaControlador.carreraSelected}"
 							valueChangeListener="#{propuestaTemaControlador.cbChangeCarrera}"
 							title="Carrera">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="">
+							<f:selectItem itemLabel="Select" itemValue="0">
 							</f:selectItem>
 							<f:selectItems
 								value="#{propuestaTemaControlador.listadoCarreras}" var="items"
 								itemLabel="#{items.carNombre}" itemValue="#{items.carCodigo}" />
 						</ice:selectOneMenu>
+						<ice:message for="selCarrera1" errorClass="error" />
 
 						<ice:outputLabel value="Linea Investigación:" styleClass="label" />
 						<ice:selectOneMenu id="selLineaInvestigacion1"
@@ -34,14 +33,14 @@
 							value="#{propuestaTemaControlador.lineaInvestigacionSelected}"
 							valueChangeListener="#{propuestaTemaControlador.cbChangeLineaInvestigacion}"
 							partialSubmit="true" title="Linea de Investigación">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="">
+							<f:selectItem itemLabel="Select" itemValue="0">
 							</f:selectItem>
 							<f:selectItems
 								value="#{propuestaTemaControlador.listadolineaInvestigacion}"
 								var="itemsLIn" itemLabel="#{itemsLIn.linInvNombre}"
 								itemValue="#{itemsLIn.linInvCodigo}" />
-
 						</ice:selectOneMenu>
+						<ice:message for="selLineaInvestigacion1" errorClass="error" />
 
 						<ice:outputLabel value="Area Investigación:" styleClass="label" />
 						<ice:selectOneMenu id="selAreaInvestigación1"
@@ -49,14 +48,14 @@
 							value="#{propuestaTemaControlador.areaInvestigacionSelected}"
 							requiredMessage="#{msg['campo.vacio']}" partialSubmit="true"
 							title="Area de Investigacion">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="">
+							<f:selectItem itemLabel="Select" itemValue="0">
 							</f:selectItem>
 							<f:selectItems
 								value="#{propuestaTemaControlador.listadoaAreaInvestigacion}"
 								var="itemsAIn" itemLabel="#{itemsAIn.areInvNombre}"
 								itemValue="#{itemsAIn.areInvCodigo}" />
-
 						</ice:selectOneMenu>
+						<ice:message for="selAreaInvestigación1" errorClass="error" />
 
 					</ice:panelGrid>
 
@@ -64,7 +63,8 @@
 						action="#{propuestaTemaControlador.btnCargarListaTema()}"
 						partialSubmit="true" />
 				</center>
-				<ice:dataTable rows="10" id="dataList"
+
+				<ice:dataTable rows="5" id="dataList"
 					value="#{propuestaTemaControlador.listadoTemaTitulacion}"
 					var="tema" style="width: 100%;">
 
@@ -76,6 +76,7 @@
 							<ice:outputLabel value="#{tema.temTitNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
@@ -85,6 +86,7 @@
 								value="#{tema.areaInvestigacion.lineaInvestigacion.carrera.carNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
@@ -94,6 +96,7 @@
 								value="#{tema.areaInvestigacion.lineaInvestigacion.linInvNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
@@ -102,6 +105,17 @@
 							<ice:outputLabel value="#{tema.areaInvestigacion.areInvNombre}" />
 						</center>
 					</ice:column>
+
+					<ice:column>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Propuesto por"></ice:outputLabel>
+							</f:facet>
+							<ice:outputLabel
+								value="#{tema.perCodigo.perNombre} #{tema.perCodigo.perApellido} " />
+						</center>
+					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
@@ -124,7 +138,6 @@
 							</ice:commandButton>
 						</center>
 					</ice:column>
-
 					<f:facet name="footer">
 						<center>
 							<ice:dataPaginator id="paginador" for="dataList" paginator="true"
@@ -163,7 +176,6 @@
 						</center>
 					</f:facet>
 				</ice:dataTable>
-
 			</ice:panelGroup>
 		</ice:panelGrid>
 	</ice:form>

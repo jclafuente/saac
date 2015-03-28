@@ -38,13 +38,15 @@ public class TemasTitulacionFacade extends AbstractFacade<TemasTitulacion> {
 	public TemasTitulacionFacade() {
 		super(TemasTitulacion.class);
 	}
-
+ 
 	public Collection<TemasTitulacion> obtenerTemaTitulacion(Integer carCodigo,
 			Integer linInvCodigo, Integer areaInvCodigo) throws Exception {
 
 		Collection<TemasTitulacion> result = null;
 		Criteria criteria = ((Session) getEntityManager().getDelegate())
 				.createCriteria(TemasTitulacion.class);
+		criteria.createAlias("perCodigo", "perA");
+		criteria.setFetchMode("perA", FetchMode.JOIN);
 		criteria.createAlias("areaInvestigacion", "temA");
 		criteria.setFetchMode("temA", FetchMode.JOIN);
 		criteria.createAlias("temA.lineaInvestigacion", "linA");

@@ -10,7 +10,7 @@
 		<ice:panelGrid columns="1" width="100%">
 			<ice:panelGroup styleClass="borderGray">
 				<center>
-					<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
+					<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
 						<ice:outputLabel value="Carrera:" styleClass="label" />
 						<ice:selectOneMenu id="selCarrera1"
 							value="#{aprobacionTemaControlador.carreraSelected}"
@@ -18,10 +18,11 @@
 							style="width: 210px;" partialSubmit="true"
 							requiredMessage="#{msg['campo.vacio']}" title="Carrera">
 							<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
-							<f:selectItems value="#{aprobacionTemaControlador.listadoCarreras}"
-								var="items" itemLabel="#{items.carNombre}"
-								itemValue="#{items.carCodigo}" />
+							<f:selectItems
+								value="#{aprobacionTemaControlador.listadoCarreras}" var="items"
+								itemLabel="#{items.carNombre}" itemValue="#{items.carCodigo}" />
 						</ice:selectOneMenu>
+						<ice:message for="selCarrera1" errorClass="error" />
 
 						<ice:outputLabel value="Linea Investigación:" styleClass="label" />
 						<ice:selectOneMenu id="selLineaInvestigacion1"
@@ -37,6 +38,7 @@
 								var="itemsLIn" itemLabel="#{itemsLIn.linInvNombre}"
 								itemValue="#{itemsLIn.linInvCodigo}" />
 						</ice:selectOneMenu>
+						<ice:message for="selLineaInvestigacion1" errorClass="error" />
 
 						<ice:outputLabel value="Area Investigación:" styleClass="label" />
 						<ice:selectOneMenu id="selAreaInvestigación1"
@@ -49,47 +51,47 @@
 								value="#{aprobacionTemaControlador.listadoAreaInvestigacion}"
 								var="itemsAIn" itemLabel="#{itemsAIn.areInvNombre}"
 								itemValue="#{itemsAIn.areInvCodigo}" />
-
 						</ice:selectOneMenu>
-
+						<ice:message for="selAreaInvestigación1" errorClass="error" />
 					</ice:panelGrid>
-
 
 					<ice:commandButton value="Cargar Lista" title="Carga lista"
 						action="#{aprobacionTemaControlador.btnCargarListaTemasTitulacion()}"
 						partialSubmit="true" />
-
 				</center>
 
 				<ice:dataTable rows="10" id="dataList"
-					value="#{aprobacionTemaControlador.listadoTemaTitulacion}" var="tema"
-					style="width: 100%;">
+					value="#{aprobacionTemaControlador.listadoTemaTitulacion}"
+					var="tema" style="width: 100%;">
 					<ice:column>
 						<center>
-							<f:facet name="header">
+							<f:facet name="header">	
 								<ice:outputLabel value="Tema"></ice:outputLabel>
 							</f:facet>
-								<ice:outputLabel value="#{tema.temTitNombre}" />
-
+							<ice:outputLabel value="#{tema.temTitNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
 								<ice:outputLabel value="Carrera"></ice:outputLabel>
 							</f:facet>
-							<ice:outputLabel value="#{tema.areaInvestigacion.lineaInvestigacion.carrera.carNombre}" />
+							<ice:outputLabel
+								value="#{tema.areaInvestigacion.lineaInvestigacion.carrera.carNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
 								<ice:outputLabel value="Linea Investigacion"></ice:outputLabel>
 							</f:facet>
-							<ice:outputLabel value="#{tema.areaInvestigacion.lineaInvestigacion.linInvNombre}" />
-
+							<ice:outputLabel
+								value="#{tema.areaInvestigacion.lineaInvestigacion.linInvNombre}" />
 						</center>
 					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
@@ -98,26 +100,37 @@
 							<ice:outputLabel value="#{tema.areaInvestigacion.areInvNombre}" />
 						</center>
 					</ice:column>
+
+					<ice:column>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Propuesto por"></ice:outputLabel>
+							</f:facet>
+							<ice:outputLabel
+								value="#{tema.perCodigo.perNombre} #{tema.perCodigo.perApellido} " />
+						</center>
+					</ice:column>
+
 					<ice:column>
 						<center>
 							<f:facet name="header">
 								<ice:outputLabel value="Estado"></ice:outputLabel>
 							</f:facet>
-								<ice:outputLabel value="#{tema.temTitEstado}" />
+							<ice:outputLabel value="#{tema.temTitEstado}" />
 
 						</center>
 					</ice:column>
-
 					<ice:column style="width: 10%;">
 						<f:facet name="header">
 							<ice:outputLabel value="Seleccionar"></ice:outputLabel>
 						</f:facet>
-
-						<ice:commandButton value="Seleccionar" style="font-size: 10px;"
-							actionListener="#{aprobacionTemaControlador.seleccionarTemaTitulacion(tema)}"
-							immediate="true">
-							<f:attribute name="select" value="#{tema}"></f:attribute>
-						</ice:commandButton>
+						<center>
+							<ice:commandButton value="Seleccionar" style="font-size: 10px;"
+								actionListener="#{aprobacionTemaControlador.seleccionarTemaTitulacion(tema)}"
+								immediate="true">
+								<f:attribute name="select" value="#{tema}"></f:attribute>
+							</ice:commandButton>
+						</center>
 					</ice:column>
 
 					<f:facet name="footer">

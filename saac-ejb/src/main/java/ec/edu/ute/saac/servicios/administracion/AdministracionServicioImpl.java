@@ -13,6 +13,7 @@ import ec.edu.ute.saac.entidades.Facultad;
 import ec.edu.ute.saac.entidades.LineaInvestigacion;
 import ec.edu.ute.saac.entidades.Periodos;
 import ec.edu.ute.saac.entidades.Persona;
+import ec.edu.ute.saac.entidades.PersonaCarrera;
 import ec.edu.ute.saac.entidades.Proceso;
 import ec.edu.ute.saac.entidades.Rol;
 import ec.edu.ute.saac.entidades.SeleccionTema;
@@ -27,6 +28,7 @@ import ec.edu.ute.saac.servicios.CursoTitulacionFacade;
 import ec.edu.ute.saac.servicios.FacultadFacade;
 import ec.edu.ute.saac.servicios.LineaInvestigacionFacade;
 import ec.edu.ute.saac.servicios.PeriodosFacade;
+import ec.edu.ute.saac.servicios.PersonaCarreraFacade;
 import ec.edu.ute.saac.servicios.PersonaFacade;
 import ec.edu.ute.saac.servicios.ProcesoFacade;
 import ec.edu.ute.saac.servicios.RolFacade;
@@ -67,6 +69,8 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 	private ProcesoFacade procesoFacade;
 	@EJB
 	private CursoTitulacionEstudianteFacade cursoTitulacionEstudianteFacade;
+	@EJB
+	private PersonaCarreraFacade personaCarreraFacade;
 	
 	@Override
 	public Collection<Facultad> findAll() {
@@ -278,12 +282,7 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 				linInvCodigo, areaInvCodigo);
 	}
 
-	@Override
-	public Collection<CursoTitulacion> obtenerCursoTitulacion()
-			throws Exception {
-		// TODO Auto-generated method stub
-		return cursoTitulacionFacade.obtenerCursoTitulacion();
-	}
+	
 
 	@Override
 	public void actualizarCursoTitulacion(CursoTitulacion cursoTitulacion)
@@ -415,13 +414,89 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 		procesoFacade.create(proceso);
 	}
 
+	@Override
+	public Collection<LineaInvestigacion> obtenerLineaInvestigacion()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return lineaInvestigacionFacade.findAll();
+	}
+
+	@Override
+	public Collection<AreaInvestigacion> obteneraAreaInvestigacion()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return areaInvestigacionFacade.findAll();
+	}
+
+	@Override
+	public Collection<CursoTitulacion> obtenerCursoTitulacion(Integer periodo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return cursoTitulacionFacade.obtenerCursoTitulacionPeriodo(periodo);
+	}
+
+	@Override
+	public Collection<CursoTitulacion> obtenerCursoTitulacion() throws Exception {
+		// TODO Auto-generated method stub
+		return cursoTitulacionFacade.obtenerCursoTitulacion();
+	}
+
+	@Override
+	public Collection<Facultad> obtenerFacultad() {
+		// TODO Auto-generated method stub
+		return facultadFacade.findAll();
+	}
+
+	@Override
+	public Collection<Carrera> obtenerCarreraFacultad(Integer facCodigo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return carreraFacade.obtenerCarreraFacultad();
+	}
+
+	@Override
+	public Collection<PersonaCarrera> obtenerPersonaCarrera(Integer facCodigo,
+			Integer carCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return personaCarreraFacade.obtenerPersonaCarrera(facCodigo,carCodigo);
+	}
+
+	@Override
+	public void actualizarPersonaCarreraEstudiante(PersonaCarrera personaCarrera)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
+		personaCarreraFacade.edit(personaCarrera);
+	}
+
+	@Override
+	public Collection<Persona> obtenerPersonaCarreraFacultad(Integer facCodigo,
+			Integer carCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return personaFacade.obtenerPersonaCarrera(facCodigo, carCodigo); 
+	}
+
+	@Override
+	public void actualizarPersona(Persona persona) throws Exception {
+		// TODO Auto-generated method stub
+		
+		personaFacade.edit(persona);
+	}
+
+	@Override
+	public Collection<Persona> obtenerPeronaUsuarioRol() throws Exception {
+		// TODO Auto-generated method stub
+		return personaFacade.obtenerPersonaUsuarioRol();
+	}
+
 	
 
 
 	
-	
-
 
 	
+
+	
+
 
 }

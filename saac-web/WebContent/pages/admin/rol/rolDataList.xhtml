@@ -10,6 +10,7 @@
 				<center>
 					<ice:dataTable rows="10" id="datosFacultades"
 						value="#{administracionRolControlador.listadoRoles}" var="rol">
+
 						<ice:column>
 							<center>
 								<f:facet name="header">
@@ -20,6 +21,7 @@
 								</ice:panelGroup>
 							</center>
 						</ice:column>
+
 						<ice:column>
 							<center>
 								<f:facet name="header">
@@ -35,7 +37,6 @@
 							<f:facet name="header">
 								<ice:outputLabel value="Seleccionar"></ice:outputLabel>
 							</f:facet>
-
 							<ice:commandButton value="Seleccionar" style="font-size: 10px;"
 								actionListener="#{administracionRolControlador.seleccionarRol(rol)}"
 								immediate="true">

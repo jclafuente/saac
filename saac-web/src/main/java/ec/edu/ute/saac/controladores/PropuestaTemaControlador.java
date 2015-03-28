@@ -55,7 +55,7 @@ public class PropuestaTemaControlador {
 	public void activarPanelDatos() {
 		
 		limpiarCombos();
-		setTemaTitulacion(new TemasTitulacion());
+		initTemaTitulacion();
 		setPanelDatos(Boolean.TRUE);
 
 	}
@@ -129,6 +129,8 @@ public class PropuestaTemaControlador {
 		try {
 			setListadolineaInvestigacion(administracionServicio
 					.obtenerLineaInvestigacionCarrera(carCodigo));
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -141,8 +143,11 @@ public class PropuestaTemaControlador {
 				.valueOf(valueChangeEvent.getNewValue()));
 
 		try {
+			
 			setListadoaAreaInvestigacion(administracionServicio
-					.obtenerAreaInvestigacionLineaInvestigacion(linInvCodigo));
+					.obtenerAreaInvestigacionLineaInvestigacion(linInvCodigo)); 
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,7 +165,6 @@ public class PropuestaTemaControlador {
 							areaInvestigacionSelected));
 			
 			setPanelDatos(Boolean.FALSE);
-		
 
 		} catch (Exception e) {
 
@@ -192,6 +196,11 @@ public class PropuestaTemaControlador {
 					.obtenerTemaTitulacion(carreraSelected,
 							lineaInvestigacionSelected,
 							areaInvestigacionSelected));
+			
+			sender.sendInfoPopup("Registro Ingresado");
+			MessageSender.sendInfo(Utilitarios.REGISTRO_GUARDADO, null);
+			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_GUARDADO, " ");
+			
 			
 			setPanelDatos(Boolean.FALSE);
 			

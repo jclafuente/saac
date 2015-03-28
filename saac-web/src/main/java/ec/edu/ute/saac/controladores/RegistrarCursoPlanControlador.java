@@ -7,13 +7,16 @@ import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import ec.edu.ute.saac.entidades.CursoTitulacion;
 import ec.edu.ute.saac.entidades.Periodos;
 import ec.edu.ute.saac.entidades.Persona;
+import ec.edu.ute.saac.entidades.PersonaCarrera;
 import ec.edu.ute.saac.entidades.TemasTitulacion;
 import ec.edu.ute.saac.entidades.Usuario;
 import ec.edu.ute.saac.entidades.UsuarioRol;
@@ -27,6 +30,7 @@ public class RegistrarCursoPlanControlador {
 	private MessageSender sender;
 	private Utilitarios utilitarios;
 	private CursoTitulacion cursoTitulacion;
+	private Periodos periodo;
 
 	private boolean panelDatos;
 	private Collection<CursoTitulacion> listadoCursoTitulacion;
@@ -41,15 +45,27 @@ public class RegistrarCursoPlanControlador {
 	@Inject
 	private IAdministracionServicio administracionServicio;
 
-	public RegistrarCursoPlanControlador() {
-
+	public void retornarPagina() {
+		setPanelDatos(Boolean.FALSE);
 	}
+	
+	public void initCursoTitulacion() {
+		setCursoTitulacion(new CursoTitulacion());
+	}
+	
+	public void activarPanelDatos() {
+		limpiarCombos();
+		initCursoTitulacion();
+		setPanelDatos(Boolean.TRUE);
+	}
+
 
 	private void inicializacionEntidades() {
 
 		sender = (MessageSender) Utilitarios.getManagedBean("messageSender");
 		utilitarios = new Utilitarios();
 		cursoTitulacion = new CursoTitulacion();
+		periodo = new Periodos();
 
 		listadoPersonaDocente = new ArrayList<Persona>();
 		listadoCursoTitulacion = new ArrayList<CursoTitulacion>();
@@ -64,25 +80,21 @@ public class RegistrarCursoPlanControlador {
 
 			inicializacionEntidades();
 			setPanelDatos(Boolean.FALSE);
-			// cargarCombos();
+			limpiarCombos();
+
+			if (CollectionUtils.isEmpty(listadoPeriodo)) {
+				setListadoPeriodo(administracionServicio.obtenerPeriodo());
+			}
 
 			if (CollectionUtils.isEmpty(listadoCursoTitulacion)) {
 				setListadoCursoTitulacion(administracionServicio
 						.obtenerCursoTitulacion());
 			}
 
-			if (CollectionUtils.isEmpty(listadoPeriodo)) {
-				setListadoPeriodo(administracionServicio.obtenerPeriodo());
-			}
-
-			/*
-			 * if (CollectionUtils.isEmpty(listadoUsuario)) {
-			 * setListadoUsuario(administracionServicio.obtenerUsuario()); }
-			 */
-
 			if (CollectionUtils.isEmpty(listadoPersonaDocente)) {
 				setListadoPersonaDocente(administracionServicio
 						.obtenerPersonaUsuario());
+
 			}
 
 		} catch (Exception e) {
@@ -96,10 +108,30 @@ public class RegistrarCursoPlanControlador {
 
 	}
 
-	public void retornarPagina() {
-		setPanelDatos(Boolean.FALSE);
-		periodoTitulacionSelected = Integer.valueOf(0);
-		personaDocenteSelected = Integer.valueOf(0);
+	public void cbChangePeriodo(ValueChangeEvent valueChangeEvent) {
+
+		Integer perCodigo = NumberUtils.createInteger(String
+				.valueOf(valueChangeEvent.getNewValue()));
+
+		try {
+			setListadoCursoTitulacion(administracionServicio
+					.obtenerCursoTitulacion(perCodigo));
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void btnCargarListaCursoTitulacion() {
+		try {
+
+			setListadoCursoTitulacion(administracionServicio
+					.obtenerCursoTitulacion(periodoTitulacionSelected));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void btnCrearCursoTitulacion() {
@@ -114,10 +146,6 @@ public class RegistrarCursoPlanControlador {
 			cursoTitulacion.setCurTitEstado("REGISTRADO");
 			// cursoTitulacion.setCurTitNombre("borrar");
 			administracionServicio.crearCursoTitulacion(cursoTitulacion);
-
-			MessageSender.sendInfo(Utilitarios.REGISTRO_GUARDADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_GUARDADO, " ");
-			sender.sendInfoPopup("Registro Ingresado");
 
 			getListadoCursoTitulacion().add(cursoTitulacion);
 			inicializacion();
@@ -147,10 +175,7 @@ public class RegistrarCursoPlanControlador {
 			// cursoTitulacion.setCurTitNombre("borrar");
 			administracionServicio.crearCursoTitulacion(cursoTitulacion);
 
-			MessageSender.sendInfo(Utilitarios.REGISTRO_GUARDADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_GUARDADO, " ");
 			sender.sendInfoPopup("Registro Ingresado");
-
 			getListadoCursoTitulacion().add(cursoTitulacion);
 			inicializacion();
 			// setPanelDatos(Boolean.TRUE);
@@ -173,8 +198,6 @@ public class RegistrarCursoPlanControlador {
 			activarPanelDatos();
 			setPanelDatos(Boolean.TRUE);
 
-			MessageSender.sendInfo(Utilitarios.REGISTRO_ELIMINADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_ELIMINADO, " ");
 			sender.sendInfoPopup("Registro Eliminado");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -185,11 +208,18 @@ public class RegistrarCursoPlanControlador {
 	public void btnActualizarCursoTitulacion() {
 		try {
 
+			cursoTitulacion.setPersona(new Persona());
+			cursoTitulacion.getPersona().setPerCodigo(
+					getPersonaDocenteSelected());
+			cursoTitulacion.setPeriodos(new Periodos());
+			cursoTitulacion.getPeriodos().setPrdCodigo(
+					getPeriodoTitulacionSelected());
+			
 			administracionServicio.actualizarCursoTitulacion(cursoTitulacion);
-			MessageSender.sendInfo(Utilitarios.REGISTRO_ACTUALIZADO, null);
-			utilitarios.ponerMensajeInfo(Utilitarios.REGISTRO_ACTUALIZADO, " ");
+			setListadoCursoTitulacion(administracionServicio.obtenerCursoTitulacion());
+			
 			sender.sendInfoPopup("Registro Actualizado");
-			// setPanelDatos(Boolean.FALSE);
+			
 
 		} catch (Exception e) {
 
@@ -206,13 +236,12 @@ public class RegistrarCursoPlanControlador {
 		setPanelDatos(Boolean.TRUE);
 	}
 
-	public void activarPanelDatos() {
-		setPanelDatos(true);
-		limpiarCombos();
+
+	public void cargarCombos() {
+		setPeriodoTitulacionSelected(periodo.getPrdCodigo());
 	}
 
 	public void limpiarCombos() {
-		setCursoTitulacion(new CursoTitulacion());
 		periodoTitulacionSelected = Integer.valueOf(0);
 		personaDocenteSelected = Integer.valueOf(0);
 	}
@@ -291,4 +320,12 @@ public class RegistrarCursoPlanControlador {
 		this.periodoTitulacionSelected = periodoTitulacionSelected;
 	}
 
+	public Periodos getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodos periodo) {
+		this.periodo = periodo;
+	}
+	
 }

@@ -16,6 +16,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import ec.edu.ute.saac.entidades.CursoTitulacion;
+import ec.edu.ute.saac.entidades.Periodos;
 
 /**
  * 
@@ -35,6 +36,25 @@ public class CursoTitulacionFacade extends AbstractFacade<CursoTitulacion> {
 		super(CursoTitulacion.class);
 	}
 
+	public Collection<CursoTitulacion> obtenerCursoTitulacionPeriodo(
+			Integer periodoCodigo) {
+
+		Collection<CursoTitulacion> result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(CursoTitulacion.class);
+		criteria.createAlias("periodos", "perA");
+		criteria.createAlias("persona", "persA");
+		criteria.setFetchMode("perA", FetchMode.JOIN);
+		criteria.setFetchMode("persA", FetchMode.JOIN);
+
+		if (periodoCodigo > 0) {
+			criteria.add(Restrictions.eq("perA.prdCodigo", periodoCodigo));
+		}
+
+		result = criteria.list();
+		return result;
+	}
+	
 	public Collection<CursoTitulacion> obtenerCursoTitulacion() {
 
 		Collection<CursoTitulacion> result = null;
@@ -44,8 +64,6 @@ public class CursoTitulacionFacade extends AbstractFacade<CursoTitulacion> {
 		criteria.createAlias("persona", "persA");
 		criteria.setFetchMode("perA", FetchMode.JOIN);
 		criteria.setFetchMode("persA", FetchMode.JOIN);
-		
-		
 
 		result = criteria.list();
 		return result;

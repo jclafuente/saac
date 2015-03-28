@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+	<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -15,55 +15,53 @@
                             <ice:menuItem  value="Inicio"  styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
                                            actionListener="#{menuController.activarSubMenu(0)}" />
                             <ice:menuItem  value="Administracion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                           actionListener="#{menuController.activarSubMenu(1)}" 
-                                           renderedOnUserRole="ADMIN" />
+                                           actionListener="#{menuController.activarSubMenu(1)}"/> 
+                                           <!-- renderedOnUserRole="ADMIN" --> 
                             <ice:menuItem value="Decano" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(2)}" 
-                                          renderedOnUserRole="DECANO" />
+                                          actionListener="#{menuController.activarSubMenu(2)}"/> 
+                                          <!-- renderedOnUserRole="DECANO" --> 
                             <ice:menuItem  value="Secretaria" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                           actionListener="#{menuController.activarSubMenu(3)}"
-                                           renderedOnUserRole="SECRETARIA" />
+                                           actionListener="#{menuController.activarSubMenu(3)}"/>
+                                           <!-- renderedOnUserRole="SECRETARIA" --> 
                             <ice:menuItem  value="Coord. Carrera" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                           actionListener="#{menuController.activarSubMenu(4)}" 
-                                           renderedOnUserRole="COORDINADOR_CARRERA"/>
+                                           actionListener="#{menuController.activarSubMenu(4)}"/> 
+                                           <!-- renderedOnUserRole="COORDINADOR_CARRERA" -->
                             <ice:menuItem value="Titulación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(5)}" 
-                                          renderedOnUserRole="TITULACION" />
+                                          actionListener="#{menuController.activarSubMenu(5)}"/> 
+                                          <!-- renderedOnUserRole="TITULACION" --> 
                             <ice:menuItem  value="Investigación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                           actionListener="#{menuController.activarSubMenu(6)}" 
-                                           renderedOnUserRole="INVESTIGACION" />
+                                           actionListener="#{menuController.activarSubMenu(6)}"/> 
+                                           <!-- renderedOnUserRole="INVESTIGACION" --> 
                             <ice:menuItem value="Vinculación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(7)}" 
-                                          renderedOnUserRole="VINCULACION" />
+                                          actionListener="#{menuController.activarSubMenu(7)}"/> 
+                                          <!-- renderedOnUserRole="VINCULACION" --> 
                             <ice:menuItem value="Estudiante" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(8)}"
-                                          renderedOnUserRole="ESTUDIANTE"/>
+                                          actionListener="#{menuController.activarSubMenu(8)}"/>
+                                          <!-- renderedOnUserRole="ESTUDIANTE" -->
                             <ice:menuItem value="Docente" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(9)}"
-                                          renderedOnUserRole="DOCENTE"/>
-
-                            <ice:menuItem value="Director de Vinculación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu(10)}"
-                                          renderedOnUserRole="DIRECTOR_VINCULACION"/>
+                                          actionListener="#{menuController.activarSubMenu(9)}"/>
+                                          <!-- renderedOnUserRole="DOCENTE" -->
+                            <ice:menuItem value="Dir. Vinculación" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(10)}"/>
+                                          <!-- renderedOnUserRole="DIRECTOR_VINCULACION" -->
 
                             <!-- //////////////////////////////////////////////////////////// -->
-<!--                             <ice:menuItem value="Director" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu()}" 
-                                         renderedOnUserRole="DIRECTOR"/>-->
+                           <!--  <ice:menuItem value="Director" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(11)}"/> 
+                                         renderedOnUserRole="DIRECTOR"
 
-<!--                            <ice:menuItem value="Curso de Plan" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu()}"
-                                          renderedOnUserRole="DOCENTE_PLAN"/>-->
-<!--                            <ice:menuItem value="Comite Pre-Aprobacion de Plan" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu()}"
-                                          renderedOnUserRole="DOCENTE_APROBADOR"/>
-                            <ice:menuItem value="Comite Calificador del Trabajo" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu()}" 
-                                          renderedOnUserRole="DOCENTE_CALIFICADOR"/>-->
-
-<!--                            <ice:menuItem value="Comite Investigacion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
-                                          actionListener="#{menuController.activarSubMenu()}" 
-                                          renderedOnUserRole="COMISION_INVESTIGACION" />-->
+                           <ice:menuItem value="Curso de Plan" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(12)}"/>
+                                          renderedOnUserRole="DOCENTE_PLAN"
+                           <ice:menuItem value="Comite Pre-Aprobacion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(13)}"/>
+                                          renderedOnUserRole="DOCENTE_APROBADOR"
+                            <ice:menuItem value="Comite Calificador" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(14)}"/> 
+                                          renderedOnUserRole="DOCENTE_CALIFICADOR"
+                           <ice:menuItem value="Comite Investigacion" styleClass="styleMenuJnk" action="#{navegacionControlador.paginaPrincipal()}"
+                                          actionListener="#{menuController.activarSubMenu(15)}"/> 
+                                          renderedOnUserRole="COMISION_INVESTIGACION"  -->
                         </ice:menuBar>
                     </ice:panelGroup>
                 </ice:form>
@@ -71,9 +69,9 @@
             </ice:panelGroup>
         </ice:panelGroup>
 
-        <ice:panelGroup id="contenido2">
-            <ice:panelGroup id="contenidoDer2">
-                <ice:panelGrid columns="1" rendered="#{menuController.renderSubMenu}">
+        <ice:panelGroup id="contenido2" style="padding-top: 50px;">
+            <ice:panelGroup id="contenidoDer2" >
+                <ice:panelGrid columns="1" > <!-- rendered="#{menuController.renderSubMenu}" -->
                     <ice:form id="subMenuForm" >
                         <ice:menuBar id="subMenuBar" >
 

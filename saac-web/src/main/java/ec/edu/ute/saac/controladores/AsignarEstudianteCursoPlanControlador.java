@@ -64,10 +64,10 @@ public class AsignarEstudianteCursoPlanControlador {
 		setPanelDatos(Boolean.FALSE);
 		try {
 
-			if (CollectionUtils.isEmpty(listadoCursoTitulacion)) {
+			/*if (CollectionUtils.isEmpty(listadoCursoTitulacion)) {
 				setListadoCursoTitulacion(administracionServicio
 						.obtenerCursoTitulacion());
-			}
+			}*/
 
 			if (CollectionUtils.isEmpty(listadoEstudianteSeleccionTema)) {
 				setListadoEstudianteSeleccionTema(administracionServicio
