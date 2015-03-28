@@ -8,82 +8,177 @@
 <ui:composition>
 	<ice:form id="estudianteNuevoForm">
 		<icecore:singleSubmit />
-		<center>
+		<ice:panelGrid columns="1" columnClasses="col30,col40">
 			<ice:panelGrid columns="2" columnClasses="col30,col40">
-
-
 				<ice:panelGrid styleClass="borderGray"
 					style="text-align: left; min-width: 500px;">
 					<ice:panelGroup styleClass="titulosCenter">
-						<ice:outputLabel value="Seguridad " />
+						<ice:outputLabel value="Seguridades" />
 					</ice:panelGroup>
+
 					<ice:panelGrid columns="3" columnClasses="col30,col40,col50">
-
-
 						<ice:outputLabel value="Nombre de Usuario:" styleClass="label" />
-						<ice:inputText id="txtUsuario" required="true"
+						<ice:inputText id="txtNombreUsuario" required="true"
 							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
-							title="Usuario"
-							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuCodigo}" />
-						<ice:message for="txtUsuario" errorClass="error" />
+							title="Nombre de Usuario" />
+						<ice:message for="txtNombreUsuario" errorClass="error" />
 
 						<ice:outputLabel value="Contraseña:" styleClass="label" />
-						<ice:inputText id="txtContraseña" required="true"
+						<ice:inputSecret id="txtContraseña" required="true"
 							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
-							title="Contraseña"
-							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuUserName}" />
+							title="Contraseña" />
 						<ice:message for="txtContraseña" errorClass="error" />
 
-						<ice:outputLabel value="Usuario UTE:" styleClass="label" />
-						<ice:inputText id="txtUsuUTE" required="true"
+						<ice:outputLabel value="Fecha de Registro:" styleClass="label" />
+						<ice:inputText id="txtFechaRegistro" required="true"
 							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
-							title="txtUsuUTE"
-							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuUserName}" />
-						<ice:message for="txtUsuUTE" errorClass="error" />
-
-						<ice:outputLabel value="Fecha Registro:" styleClass="label" />
-						<ice:inputText id="txtFecha" required="true"
-							requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
-							title="Fecha Registro"
-							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuFchRegistro}">
-							<f:convertDateTime pattern="yyyy-MM-dd" type="date" />
-						</ice:inputText>
-						<ice:message for="txtFecha" errorClass="error" />
+							title="Fecha de Registro" />
+						<ice:message for="txtFechaRegistro" errorClass="error" />
 
 						<ice:outputLabel value="Estado:" styleClass="label" />
-						<ice:selectBooleanCheckbox id="chkEstadoU" required="true"
+						<ice:selectBooleanCheckbox id="chkEstadoUsuario" required="true"
 							title="Estado" partialSubmit="true"
-							requiredMessage="#{msg['campo.vacio']}"
-							value="#{registrarEstudiantePlanControlador.usuarioRol.usuario.usuEstado}">
+							requiredMessage="#{msg['campo.vacio']}">
 						</ice:selectBooleanCheckbox>
-						<ice:message for="chkEstadoU" errorClass="error" />
-
-						<ice:commandButton value="Guardar" title="Guardar el registro"
-							panelConfirmation="confirmacionSeleccion"
-							action="#{registrarEstudiantePlanControlador.crearUsuarioRol()}"
-							 />
-
+						<ice:message for="chkEstadoUsuario" errorClass="error" />
+					</ice:panelGrid>
+					<ice:panelGroup styleClass="titulosCenter">
+						<ice:outputLabel value="Privilegios" />
+					</ice:panelGroup>
+					<ice:panelGrid columns="3" columnClasses="col30,col40,col50">
+						<ice:outputLabel value="Roles:" styleClass="label" />
+						<ice:selectOneMenu id="selRol" style="width: 210px;"
+							required="true" requiredMessage="#{msg['campo.vacio']}"
+							partialSubmit="true"
+							value="#{registrarEstudiantePlanControlador.nacionalidadSelected}"
+							title="Rol">
+							<f:selectItem itemLabel="Select" itemValue="0">
+							</f:selectItem>
+							<f:selectItems
+								value="#{registrarEstudiantePlanControlador.listadoPersonaUsuarioRol}"
+								var="items" itemLabel="#{items.usuario.usuarioRolList.}"
+								itemValue="#{items.catCodigo}" />
+						</ice:selectOneMenu>
+						<ice:message for="selRol" errorClass="error" />
 					</ice:panelGrid>
 
 				</ice:panelGrid>
+
+				<ice:panelGrid columns="2" columnClasses="col30,col40">
+					<ice:panelGrid styleClass="borderGray"
+						style="text-align: left; min-width: 500px;">
+
+						<ice:panelGroup styleClass="titulosCenter">
+							<ice:outputLabel value="Datos Personales" />
+						</ice:panelGroup>
+
+						<ice:panelGrid columns="3" columnClasses="col30,col40,col50">
+							<ice:outputLabel value="Documento de Identidad:"
+								styleClass="label" />
+							<ice:inputText id="txtCi" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Documento de Identidad"
+								value="#{registrarEstudiantePlanControlador.persona.perDocumentoIdentidad}" />
+							<ice:message for="txtCi" errorClass="error" />
+
+							<ice:outputLabel value="Nombre:" styleClass="label" />
+							<ice:inputText id="txtNombre" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Nombre"
+								value="#{registrarEstudiantePlanControlador.persona.perNombre}"/>
+							<ice:message for="
+								txtNombre" errorClass="error" />
+
+							<ice:outputLabel value="Apellido:" styleClass="label" />
+							<ice:inputText id="txtApellido" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Apellido"
+								value="#{registrarEstudiantePlanControlador.persona.perApellido}" />
+							<ice:message for="txtApellido" errorClass="error" />
+
+							<ice:outputLabel value="Direccion:" styleClass="label" />
+							<ice:inputText id="txtDireccion" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Direccion" 
+								value="#{registrarEstudiantePlanControlador.persona.perDireccion}"/>
+							<ice:message for="txtDireccion" errorClass="error" />
+
+							<ice:outputLabel value="Telefono Fijo:" styleClass="label" />
+							<ice:inputText id="txtTelFijo" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Telefono Fijo"
+								value="#{registrarEstudiantePlanControlador.persona.perTelfonoFijo}"/>
+							<ice:message for="txtTelFijo" errorClass="error" />
+
+							<ice:outputLabel value="Telefono Movil:" styleClass="label" />
+							<ice:inputText id="txtTelMovil" required="true"
+								requiredMessage="#{msg['campo.vacio']}" style="width: 200px;"
+								title="Telefono Movil" 
+								value="#{registrarEstudiantePlanControlador.persona.perTelefonoMovil}"/>
+							<ice:message for="txtTelMovil" errorClass="error" />
+
+							<ice:outputLabel value="Estado:" styleClass="label" />
+							<ice:selectBooleanCheckbox id="chkEstadoPersona" required="true"
+								title="Estado" partialSubmit="true"
+								requiredMessage="#{msg['campo.vacio']}">
+							</ice:selectBooleanCheckbox>
+							<ice:message for="chkEstadoPersona" errorClass="error" />
+
+							<ice:outputLabel value="Nacionalidad:" styleClass="label" />
+							<ice:selectOneMenu id="selNacionalidad" style="width: 210px;"
+								required="true" requiredMessage="#{msg['campo.vacio']}"
+								value="#{registrarEstudiantePlanControlador.nacionalidadSelected}"
+								title="Nacionalidad">
+								<f:selectItem itemLabel="Select" itemValue="0">
+								</f:selectItem>
+								<f:selectItems
+									value="#{registrarEstudiantePlanControlador.listadoCatalogoNacionalidad}"
+									var="items" itemLabel="#{items.catNemonico}"
+									itemValue="#{items.catCodigo}" />
+							</ice:selectOneMenu>
+							<ice:message for="selNacionalidad" errorClass="error" />
+							
+							<ice:outputLabel value="Estado Civil:" styleClass="label" />
+							<ice:selectOneMenu id="selEstadoCiv" style="width: 210px;"
+								required="true" requiredMessage="#{msg['campo.vacio']}"
+								value="#{registrarEstudiantePlanControlador.nacionalidadSelected}"
+								title="Estado Civil">
+								<f:selectItem itemLabel="Select" itemValue="0">
+								</f:selectItem>
+								<f:selectItems
+									value="#{registrarEstudiantePlanControlador.listadoCatalogoEstadoCivil}"
+									var="items" itemLabel="#{items.catNemonico}"
+									itemValue="#{items.catCodigo}" />
+							</ice:selectOneMenu>
+							<ice:message for="selEstadoCiv" errorClass="error" />
+							
+							<ice:outputLabel value="Genero:" styleClass="label" />
+							<ice:selectOneMenu id="selGenero" style="width: 210px;"
+								required="true" requiredMessage="#{msg['campo.vacio']}"
+								value="#{registrarEstudiantePlanControlador.generoSelected}"
+								title="Genero">
+								<f:selectItem itemLabel="Select" itemValue="0">
+								</f:selectItem>
+								<f:selectItems
+									value="#{registrarEstudiantePlanControlador.listadoCatalogoGenero}"
+									var="items" itemLabel="#{items.catNemonico}"
+									itemValue="#{items.catCodigo}" />
+							</ice:selectOneMenu>
+							<ice:message for="selGenero" errorClass="error" />
+						</ice:panelGrid>
+					</ice:panelGrid>
+				</ice:panelGrid>
 			</ice:panelGrid>
-			<ice:panelConfirmation id="confirmacionSeleccion"
-				title="Confirmación"
-				message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-				acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
-				type="normal" rendered="true" />
+		</ice:panelGrid>
 
+		<ice:panelConfirmation id="confirmacionSeleccion" title="Confirmación"
+			message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+			acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+			type="normal" rendered="true" />
 
-
-			<ice:commandButton value="Eliminar" title="Elimina el registro"
-				panelConfirmation="confirmacionSeleccion"
-				action="#{registrarEstudiantePlanControlador.crearEstudiante()}"
-			 />
-
-
-
-		</center>
-
+		<ice:commandButton value="Actualizar" title="Actualizar el registro"
+			panelConfirmation="confirmacionSeleccion"
+			action="#{registrarEstudiantePlanControlador.actualizarEstudiante()}"/>
 
 	</ice:form>
 </ui:composition>

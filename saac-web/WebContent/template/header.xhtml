@@ -1,29 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:icecore="http://www.icefaces.org/icefaces/core"
-      xmlns:ace="http://www.icefaces.org/icefaces/components"
-      xmlns:ice="http://www.icesoft.com/icefaces/component"
-      >
-    <ui:composition>
-        <ice:panelGroup id="cabecera"> 
-            <ice:panelGroup id="cabecera-bloq-izq"> 
-                <ice:panelGroup id="logoApp"> 
-                </ice:panelGroup>
-            </ice:panelGroup>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+<ui:composition>
+	<ice:panelGroup id="cabecera">
+		<ice:panelGroup id="cabecera-bloq-izq">
+			<ice:panelGroup id="logoApp">
+			</ice:panelGroup>
+		</ice:panelGroup>
 
-            <ice:panelGroup id="cabecera-bloq-der"> 
-                <ice:panelGroup id="usuario"> 
+		<ice:panelGroup id="cabecera-bloq-der">
+			<ice:panelGroup id="usuario">
+				<ice:outputLabel id="num-usuario"
+					value="#{accesoController.usuarioLogeado.persona.perDocumentoIdentidad}" />
 
-                    <ice:outputLabel id="num-usuario" value="#{accesoController.usuarioLogeado.persona.perDocumentoIdentidad}" />
-                    <ice:outputLabel id="nombre-usuario" value="#{accesoController.usuarioLogeado.persona.perNombre} #{accesoController.usuarioLogeado.persona.perApellido}" />
-                    <ice:panelGroup styleClass="header-separator" />
-                    <ice:form>
-                        <ice:commandLink styleClass="linkExit" value="SALIR" action="#{authBackingBean.logout}"/>
-                    </ice:form>
-                </ice:panelGroup>
-            </ice:panelGroup>
-        </ice:panelGroup>
-    </ui:composition>
+				<ice:outputLabel id="nombre-usuario"
+					value="#{accesoController.usuarioLogeado.persona.perNombre} #{accesoController.usuarioLogeado.persona.perApellido}" />
+					
+				<ice:panelGroup styleClass="header-separator" />
+				
+				<ice:form>
+					<ice:commandLink styleClass="linkExit" value="SALIR"
+						action="#{authBackingBean.logout}" />
+				</ice:form>
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</ice:panelGroup>
+</ui:composition>
 </html>

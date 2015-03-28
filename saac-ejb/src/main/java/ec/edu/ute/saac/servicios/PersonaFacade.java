@@ -85,5 +85,51 @@ public class PersonaFacade extends AbstractFacade<Persona> {
 		result = criteria.list();
 		return result;
 	}
+	
+	public Collection<Persona> obtenerPersonaCarrera(Integer facCodigo,
+			Integer carCodigo) throws Exception {
+
+		Collection<Persona> result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(Persona.class);
+		criteria.createAlias("personaCarreraList", "perCarA");
+		criteria.createAlias("perCarA.carrera", "carA");
+		criteria.setFetchMode("carA", FetchMode.JOIN);
+		criteria.createAlias("carA.facultad", "facA");
+		criteria.setFetchMode("facA", FetchMode.JOIN);
+		
+		criteria.createAlias("catalogoNacionalidad", "catnA");
+		criteria.setFetchMode("catnA", FetchMode.JOIN);
+		criteria.createAlias("catalogoEstadoCivil", "catesA");
+		criteria.setFetchMode("catesA", FetchMode.JOIN);
+		criteria.createAlias("catalogoGenero", "catgA");
+		criteria.setFetchMode("catgA", FetchMode.JOIN);
+		
+		
+		if (carCodigo > 0) {
+			criteria.add(Restrictions.eq("carA.carCodigo", carCodigo));
+		}
+		
+		if (facCodigo > 0) {
+			criteria.add(Restrictions.eq("facA.facCodigo", facCodigo));
+		}
+		
+		result = criteria.list();
+		return result;
+	}
+	
+	public Collection<Persona> obtenerPersonaUsuarioRol() throws Exception {
+		Collection<Persona> result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(Persona.class);
+		criteria.createAlias("usuario", "usuA");
+		criteria.createAlias("usuA.usuarioRolList", "usurA");
+		criteria.setFetchMode("usurA", FetchMode.JOIN);
+		
+		result = criteria.list();
+		return result;
+		
+	}
+	
 
 }

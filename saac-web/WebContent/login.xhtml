@@ -7,8 +7,167 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="page_title">LOGIN</ui:insert></title>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon"
+			href="#{request.contextPath}/resources/img/favicon.ico" />
+		<link rel="stylesheet"
+			href="#{request.contextPath}/resources/css/rime/rime.css"
+			type="text/css" />
+		<link rel="stylesheet"
+			href="#{request.contextPath}/resources/cssLayout.css" type="text/css"
+			media="screen" />
+		<title><ui:insert name="page_title">SISTEMA DE ASISTENCIA ACADEMICA - SAAC</ui:insert></title>
+	</h:head>
 </h:head>
-<h:body>
-	<p>Juan Carlos Lafuente</p>
+
+<h:body styleClass="ice-skin-rime">
+	<div id="mainLogin">
+		<ice:panelGroup id="cabecera">
+			<ice:panelGroup id="cabecera-login">
+				<ice:panelGroup id="logoAppLogin">
+				</ice:panelGroup>
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+		<ice:panelGroup id="menu">
+			<ice:panelGroup id="bloq-login">
+				<ice:panelGroup id="cornerLoginLeft01" />
+				<ice:panelGroup id="cornerLoginRight01" />
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+
+		<ice:panelGroup id="contenido">
+			<ice:panelGroup id="contenidoDer">
+				<center>
+					<ice:panelGroup id="panelBase">
+						<h:panelGrid columns="3">
+							<ice:panelGroup styleClass="manualPanel">
+								<ice:outputText
+									value="Documentos de apoyo para los procesos de la Facultad de Ciencias de la Ingeniería" />
+								<ice:menuItemSeparator />
+								<center>
+									<ice:panelGrid columns="3" columnClasses="1,2">
+										<!--<ice:outputLink value="#{request.contextPath}/descargas/ManualDeUsuarioExternoMigracionesLaborales.doc"  > -->
+										<ice:graphicImage
+											url="#{request.contextPath}/resources/img/odf.png"
+											title="Descargue el Manual en Formato Libre ODF" />
+										<!-- </ice:outputLink> -->
+										<ice:outputText />
+										<!-- <ice:outputLink value="#{request.contextPath}/descargas/ManualDeUsuarioExternoMigracionesLaborales.pdf"> -->
+										<ice:graphicImage
+											url="#{request.contextPath}/resources/img/pdfFolder.png"
+											title="Descargue el Manual en Formato PDF" />
+										<!-- </ice:outputLink> -->
+									</ice:panelGrid>
+								</center>
+							</ice:panelGroup>
+
+							<ice:panelGroup>
+								<ice:panelGroup>
+									<center>
+										<ice:panelGroup styleClass="ligthBorder" style="height: 100%;">
+											<ice:outputLabel value="Ingrese al sistema "
+												style="font-size: 16px; font-weight: bold; " />
+											<ice:panelGroup styleClass="login-separator" />
+										</ice:panelGroup>
+
+										<form id="f_login" action="j_security_check" method="post">
+											<center>
+
+												<ice:panelGrid columns="1" style="text-align: center;">
+													<c:if test="#{param['error']=='true'}">
+														<ice:panelGroup>
+															<center>
+																<ice:outputLabel value="USUARIO/CONTRASEÑA INCORRECTO"
+																	style="color: red;" />
+															</center>
+														</ice:panelGroup>
+													</c:if>
+												</ice:panelGrid>
+
+												<ice:panelGrid styleClass="border-contenedor-login"
+													columns="2">
+
+													<ice:panelGrid columns="2" style="text-align: center;">
+														<ice:outputLabel value="USUARIO:" />
+														<input type="text" name="j_username" id="j_username"
+															style="width: 160px; border-radius: 3px; padding-left: 3px;"
+															tabindex="0" />
+														<br />
+														<ice:outputLabel value="CLAVE:" />
+														<input type="password" name="j_password" id="j_password"
+															style="width: 160px; border-radius: 3px; padding-left: 3px;" />
+														<br />
+													</ice:panelGrid>
+
+													<ice:panelGrid style="text-align: center">
+														<ice:graphicImage
+															value="#{request.contextPath}/resources/img/llave.png" />
+													</ice:panelGrid>
+
+												</ice:panelGrid>
+												<br/> <input type="submit" name="login" id="login"
+													value="Ingresar" /> <br />
+											</center>
+										</form>
+
+										<ice:form id="backupPassForm">
+											<ice:panelGroup style="height: 100%;">
+												<ice:panelGroup styleClass="login-separator" />
+												<ice:panelGrid columns="1" style="text-align: center;">
+													<ice:commandLink styleClass="toolLink"
+														action="#{sendController.sendPassword()}">Recuperar contraseña</ice:commandLink>
+												</ice:panelGrid>
+											</ice:panelGroup>
+										</ice:form>
+									</center>
+								</ice:panelGroup>
+
+
+							</ice:panelGroup>
+							<ice:panelGroup styleClass="infoPanel">
+								<center>
+									<ice:outputText
+										value="Este sistema funciona correctamente en Mozilla Firefox 3.0 o superior y Safary 4 o superior " />
+								</center>
+								<h:form>
+									<ice:menuItemSeparator />
+								</h:form>
+								<ice:outputLink value="http://www.mozilla-europe.org/es/firefox/" target="_blank">
+										<ice:graphicImage
+											url="#{request.contextPath}/resources/img/firefox.gif"
+											title="Nosotros recomendamos Mozilla Firefox" />
+								</ice:outputLink>
+							</ice:panelGroup>
+						</h:panelGrid>
+
+
+					</ice:panelGroup>
+				</center>
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+
+		<ice:panelGroup styleClass="bottom">
+			<ice:panelGroup id="contenido3">
+				<ice:panelGroup id="contenidoDer3">
+					<center>
+						<strong style="font-size: 10px; text-align: right;"> ©
+							COPYRIGHT 2012 - <a style="text-decoration: none; color: black;"
+							href="http://www.ute.edu.ec/">UNIVERSIDAD TECNOLOGICA
+								EQUINOCCIAL</a>
+						</strong>
+					</center>
+				</ice:panelGroup>
+			</ice:panelGroup>
+			<ice:panelGroup id="bloq-inf">
+				<ice:panelGroup id="cornerLeft02" />
+				<ice:panelGroup id="cornerRight02" />
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</div>
 </h:body>
+
 </html>

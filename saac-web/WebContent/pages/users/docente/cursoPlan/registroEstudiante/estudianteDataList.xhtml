@@ -7,46 +7,110 @@
 	<ice:form id="estudianteDataListForm">
 		<ice:panelGrid columns="1" width="100%">
 			<ice:panelGroup styleClass="borderGray">
+				<center>
+					<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
+						<ice:outputLabel value="Facultad:" styleClass="label" />
+						<ice:selectOneMenu id="selFacultad1" style="width: 210px;"
+							required="true" requiredMessage="#{msg['campo.vacio']}"
+							partialSubmit="true"
+							value="#{registrarEstudiantePlanControlador.facultadSelected}"
+							valueChangeListener="#{registrarEstudiantePlanControlador.cbChangeFacultad}"
+							title="Facultad">
+							<f:selectItem itemLabel="Select" itemValue="0">
+							</f:selectItem>
+							<f:selectItems
+								value="#{registrarEstudiantePlanControlador.listadoFacultad}"
+								var="items" itemLabel="#{items.facNombre}"
+								itemValue="#{items.facCodigo}" />
+						</ice:selectOneMenu>
+						<ice:message for="selFacultad1" errorClass="error" />
+
+						<ice:outputLabel value="Carrera:" styleClass="label" />
+						<ice:selectOneMenu id="selCarrera1" style="width: 210px;"
+							required="true" requiredMessage="#{msg['campo.vacio']}"
+							partialSubmit="true"
+							value="#{registrarEstudiantePlanControlador.carreraSelected}"
+							title="Carrera">
+							<f:selectItem itemLabel="Select" itemValue="0">
+							</f:selectItem>
+							<f:selectItems
+								value="#{registrarEstudiantePlanControlador.listadoCarrera}"
+								var="items" itemLabel="#{items.carNombre}"
+								itemValue="#{items.carCodigo}" />
+						</ice:selectOneMenu>
+						<ice:message for="selCarrera1" errorClass="error" />
+					</ice:panelGrid>
+
+					<ice:commandButton value="Cargar Lista" title="Carga lista"
+						action="#{registrarEstudiantePlanControlador.btnCargarListaPersonaCarrera()}"
+						partialSubmit="true" />
+				</center>
 				<ice:dataTable rows="10" id="datosEstudiantes"
 					value="#{registrarEstudiantePlanControlador.listadoPersonaEstudiante}"
 					var="estudiante" style="width: 100%;">
-
 					<ice:column>
 						<center>
 							<f:facet name="header">
 								<ice:outputLabel value="Documento de identidad"></ice:outputLabel>
 							</f:facet>
 							<ice:outputLabel
-								value="#{estudiante.usuario.persona.perDocumentoIdentidad}" />
+								value="#{estudiante.perDocumentoIdentidad}" />
 						</center>
 					</ice:column>
 					<ice:column>
 						<center>
 							<f:facet name="header">
-								<ice:outputLabel value="Nombre"></ice:outputLabel>
+								<ice:outputLabel value="Nombre del Estudiante"></ice:outputLabel>
 							</f:facet>
-							<ice:outputLabel value="#{estudiante.usuario.persona.perNombre}" />
+							<ice:outputLabel
+								value="#{estudiante.perNombre} #{estudiante.perApellido}" />
+						</center>
+					</ice:column>
+					<!-- <ice:column>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Nombre de Usuario"></ice:outputLabel>
+							</f:facet>
+							<ice:outputLabel
+								value="#{estudiante.usuario.usuUserName}" />
+						</center>
+					</ice:column> -->
+					<ice:column>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Direccion"></ice:outputLabel>
+							</f:facet>
+							<ice:outputLabel value="#{estudiante.perDireccion}" />
 						</center>
 					</ice:column>
 					<ice:column>
 						<center>
 							<f:facet name="header">
-								<ice:outputLabel value="Apellido"></ice:outputLabel>
+								<ice:outputLabel value="Telefono"></ice:outputLabel>
 							</f:facet>
-							<ice:outputLabel value="#{estudiante.usuario.persona.perApellido}" />
+							<ice:outputLabel value="#{estudiante.perTelefonoMovil}" />
 						</center>
 					</ice:column>
-
+					<ice:column>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Email"></ice:outputLabel>
+							</f:facet>
+							<ice:outputLabel value="#{estudiante.perEmail}" />
+						</center>
+					</ice:column>
 					<ice:column style="width: 10%;">
-						<f:facet name="header">
-							<ice:outputLabel value="Seleccionar"></ice:outputLabel>
-						</f:facet>
-						<ice:commandButton value="Seleccionar" style="font-size: 10px;"
-							title="Seleccionar"
-							actionListener="#{registrarEstudiantePlanControlador.seleccionarEstudiante(estudiante)}"
-							immediate="true">
-							<f:attribute name="select" value="#{estudiante}"></f:attribute>
-						</ice:commandButton>
+						<center>
+							<f:facet name="header">
+								<ice:outputLabel value="Seleccionar"></ice:outputLabel>
+							</f:facet>
+							<ice:commandButton value="Seleccionar" style="font-size: 10px;"
+								title="Seleccionar"
+								actionListener="#{registrarEstudiantePlanControlador.seleccionarEstudiante(estudiante)}"
+								immediate="true">
+								<f:attribute name="select" value="#{estudiante}"></f:attribute>
+							</ice:commandButton>
+						</center>
 					</ice:column>
 
 					<f:facet name="footer">

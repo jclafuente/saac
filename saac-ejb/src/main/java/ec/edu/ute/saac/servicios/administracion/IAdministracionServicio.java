@@ -11,6 +11,7 @@ import ec.edu.ute.saac.entidades.Facultad;
 import ec.edu.ute.saac.entidades.LineaInvestigacion;
 import ec.edu.ute.saac.entidades.Periodos;
 import ec.edu.ute.saac.entidades.Persona;
+import ec.edu.ute.saac.entidades.PersonaCarrera;
 import ec.edu.ute.saac.entidades.Proceso;
 import ec.edu.ute.saac.entidades.Rol;
 import ec.edu.ute.saac.entidades.SeleccionTema;
@@ -25,6 +26,8 @@ public interface IAdministracionServicio {
 	public Collection<Facultad> findAll();
 	public Collection<Carrera> findCarreraFacultad();
 	public Collection<Rol> findAllRol();
+	public Collection<Facultad> obtenerFacultad();
+	public Collection<CursoTitulacion> obtenerCursoTitulacion() throws Exception;
 	public void crearFacultad(Facultad facultad) throws Exception;
 	public void actualizarFacultad(Facultad facultad) throws Exception;
 	public void actualizarCarrera (Carrera carrera) throws Exception;
@@ -32,13 +35,21 @@ public interface IAdministracionServicio {
 	public void crearCarrera(Carrera carrera) throws Exception;
 	public void crearRol(Rol rol) throws Exception;
 	public void crearPersona(Persona persona) throws Exception;
+	public Collection<LineaInvestigacion> obtenerLineaInvestigacion() throws Exception;
+	public Collection<AreaInvestigacion> obteneraAreaInvestigacion() throws Exception;
 	
 	public Collection<Persona> obtenerPersona() throws Exception;
 	public Collection<Persona> obtenerPersonaUsuario() throws Exception;
 	public Collection<Persona> obtenerPersonaUsuarioEstudiante() throws Exception;
 	public Collection<Persona> obtenerPersona(Integer carCodigo, Integer linInvCodigo, Integer areaInvCodigo) throws Exception;
+	public Collection<Persona> obtenerPersonaCarreraFacultad(Integer facCodigo,Integer carCodigo) throws Exception;
+	
+	public void actualizarPersona(Persona persona) throws Exception;
+	
+	public Collection<PersonaCarrera> obtenerPersonaCarrera(Integer facCodigo, Integer carCodigo) throws Exception;
 	
 	public Collection<Carrera> obtenerCarrera() throws Exception;
+	public Collection<Carrera> obtenerCarreraFacultad(Integer facCodigo) throws  Exception;
 	
 	public Collection<LineaInvestigacion> obtenerLineaInvestigacionCarrera(Integer carCodigo) throws Exception;
 	public Collection<AreaInvestigacion> obtenerAreaInvestigacionLineaInvestigacion(Integer linInvCodigo) throws Exception;
@@ -49,7 +60,7 @@ public interface IAdministracionServicio {
 	public void actualizarTemaTitulacion(TemasTitulacion temaTitulacion, String estado) throws Exception;
 	public void actualizarTemaTitulacion(TemasTitulacion temaTitulacion ) throws Exception;
 	
-	public Collection<CursoTitulacion>obtenerCursoTitulacion() throws Exception;
+	public Collection<CursoTitulacion>obtenerCursoTitulacion(Integer periodo) throws Exception;
 	public void crearCursoTitulacion(CursoTitulacion cursoTitulacion) throws Exception;
 	
 	public Collection<UsuarioRol> obtenerPersonaEstudiante() throws Exception;
@@ -85,4 +96,8 @@ public interface IAdministracionServicio {
 	
 	public Collection<Proceso> obtenerProcesoEstudiante()throws Exception;
 	public void crearProceso(Proceso proceso) throws Exception;
+	public void actualizarPersonaCarreraEstudiante(PersonaCarrera personaCarrera) throws Exception;
+	
+	public Collection<Persona> obtenerPeronaUsuarioRol()throws Exception;
+	
 }

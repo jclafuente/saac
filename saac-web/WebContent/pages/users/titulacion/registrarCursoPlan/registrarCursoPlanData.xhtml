@@ -2,8 +2,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
 	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
+
 	<ice:form id="docentePlanNuevoForm">
 		<ice:panelGroup styleClass="borderGray">
 			<center>
@@ -21,127 +24,129 @@
 							</ice:inputText>
 						</ice:panelGrid>
 					</ice:panelGroup>
-					</ice:panelGrid>
+				</ice:panelGrid>
 
-					<ice:panelGrid columns="2" columnClasses="col45,col55"
-						styleClass="borderGray">
+				<ice:panelGrid columns="2" columnClasses="col45,col55"
+					styleClass="borderGray">
 
-						<ice:panelGroup style="text-align: center;">
-							<ice:panelGroup styleClass="titulosCenter">
-								<ice:outputLabel value="Periodo"/>
-							</ice:panelGroup>
-							<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
-								<ice:outputLabel value="Seleccione:" styleClass="label" />
-								<ice:selectOneMenu style="min-width: 150px;" required="true"
-									requiredMessage="#{msg['campo.vacio']}" title="Periodo"
-									partialSubmit="true"
-									value="#{registrarCursoPlanControlador.periodoTitulacionSelected}">
-									<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
-									<f:selectItems
-										value="#{registrarCursoPlanControlador.listadoPeriodo}"
-										var="items" itemLabel="#{items.prdFechaInicio}"
-										itemValue="#{items.prdCodigo}" />
-								</ice:selectOneMenu>
-								<ice:message for="selPeriodos" errorClass="error" />
-							</ice:panelGrid>
+					<ice:panelGroup style="text-align: center;">
+						<ice:panelGroup styleClass="titulosCenter">
+							<ice:outputLabel value="Periodo" />
 						</ice:panelGroup>
+						<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
+							<ice:outputLabel value="Seleccione:" styleClass="label" />
+							<ice:selectOneMenu style="min-width: 150px;" required="true"
+								requiredMessage="#{msg['campo.vacio']}" title="Periodo"
+								partialSubmit="true"
+								value="#{registrarCursoPlanControlador.periodoTitulacionSelected}">
+								<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+								<f:selectItems
+									value="#{registrarCursoPlanControlador.listadoPeriodo}"
+									var="items" itemLabel="#{items.prdFechaInicio}"
+									itemValue="#{items.prdCodigo}" />
+							</ice:selectOneMenu>
+							<ice:message for="selPeriodos" errorClass="error" />
+						</ice:panelGrid>
+					</ice:panelGroup>
 
-						<ice:panelGroup style="text-align: center;">
-							<ice:panelGroup styleClass="titulosCenter">
-								<ice:outputLabel value="Docente" />
-							</ice:panelGroup>
-							<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
-								<ice:outputLabel value="Seleccione:" styleClass="label" />
-								<ice:selectOneMenu id="selProfesores" style="min-width: 150px;"
-									required="true" requiredMessage="#{msg['campo.vacio']}"
-									value="#{registrarCursoPlanControlador.personaDocenteSelected}"
-									title="Profesores" partialSubmit="true">
-									<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
-									<f:selectItems
-										value="#{registrarCursoPlanControlador.listadoPersonaDocente}"
-										var="items" itemLabel="#{items.perNombre}"
-										itemValue="#{items.perCodigo}" />
-								</ice:selectOneMenu>
-								<ice:message for="selProfesores" errorClass="error" />
-							</ice:panelGrid>
+					<ice:panelGroup style="text-align: center;">
+						<ice:panelGroup styleClass="titulosCenter">
+							<ice:outputLabel value="Docente" />
 						</ice:panelGroup>
+						<ice:panelGrid columns="3" columnClasses="col30,col40,col30">
+							<ice:outputLabel value="Seleccione:" styleClass="label" />
+							<ice:selectOneMenu id="selProfesores" style="min-width: 150px;"
+								required="true" requiredMessage="#{msg['campo.vacio']}"
+								value="#{registrarCursoPlanControlador.personaDocenteSelected}"
+								title="Profesores" partialSubmit="true">
+								<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+								<f:selectItems
+									value="#{registrarCursoPlanControlador.listadoPersonaDocente}"
+									var="items"
+									itemLabel="#{items.perNombre} #{items.perApellido} "
+									itemValue="#{items.perCodigo}" />
+							</ice:selectOneMenu>
+							<ice:message for="selProfesores" errorClass="error" />
+						</ice:panelGrid>
+					</ice:panelGroup>
 
-						<center>
-							<ice:commandButton value="Agregar" title="Agregar el registro"
-								panelConfirmation="confirmacionSeleccion"
-								rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo== null}"
-								action="#{registrarCursoPlanControlador.btnCrearCursoTitulacion()}"
-								partialSubmit="true" />
+					<center>
+						<ice:commandButton value="Agregar" title="Agregar el registro"
+							panelConfirmation="confirmacionSeleccion"
+							rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo== null}"
+							action="#{registrarCursoPlanControlador.btnCrearCursoTitulacion()}"
+							partialSubmit="true" />
 
-							<ice:commandButton value="Actualizar"
-								title="Actualizar el registro"
-								panelConfirmation="confirmacionSeleccion"
-								rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo!= null}"
-								action="#{registrarCursoPlanControlador.btnActualizarCursoTitulacion()}"
-								partialSubmit="true" />
-						</center>
+						<ice:commandButton value="Actualizar"
+							title="Actualizar el registro"
+							panelConfirmation="confirmacionSeleccion"
+							rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo!= null}"
+							action="#{registrarCursoPlanControlador.btnActualizarCursoTitulacion()}"
+							partialSubmit="true" />
+					</center>
 
-					</ice:panelGrid>
+				</ice:panelGrid>
 
-					<ice:panelGrid columns="1" styleClass="borderGray"
-						style="min-width: 500px;">
-						<ice:panelGroup>
-							<ice:panelGroup styleClass="titulosCenter">
-								<ice:outputLabel value="Listado curso plan de titulacion" />
-							</ice:panelGroup>
-							<ice:dataTable rows="10" id="dataList" var="curso"
-								value="#{registrarCursoPlanControlador.listadoCursoTitulacion}">
-								<ice:column>
-									<center>
-										<f:facet name="header">
-											<ice:outputLabel value="Nombre del curso"></ice:outputLabel>
-										</f:facet>
-										<ice:outputLabel value="#{curso.curTitNombre}" />
-									</center>
-								</ice:column>
-								<ice:column>
-									<center>
-										<f:facet name="header">
-											<ice:outputLabel value="Periodo"></ice:outputLabel>
-										</f:facet>
-										<ice:outputLabel
-											value="#{curso.periodos.prdFechaInicio} - #{curso.periodos.prdFechaFinal} " />
-									</center>
-								</ice:column>
-								<ice:column>
-									<center>
-										<f:facet name="header">
-											<ice:outputLabel value="Docente Responsable"></ice:outputLabel>
-										</f:facet>
-										<ice:outputLabel value="#{curso.persona.perNombre}" />
-									</center>
-								</ice:column>
-								<ice:column>
-									<center>
-										<f:facet name="header">
-											<ice:outputLabel value="Estado"></ice:outputLabel>
-										</f:facet>
-										<ice:outputLabel value="#{curso.curTitEstado}" />
-									</center>
-								</ice:column>
-
-								<ice:column style="width: 10%;">
+				<ice:panelGrid columns="1" styleClass="borderGray"
+					style="min-width: 500px;">
+					<ice:panelGroup>
+						<ice:panelGroup styleClass="titulosCenter">
+							<ice:outputLabel value="Listado curso plan de titulacion" />
+						</ice:panelGroup>
+						<ice:dataTable rows="10" id="dataList" var="curso"
+							value="#{registrarCursoPlanControlador.listadoCursoTitulacion}">
+							<ice:column>
+								<center>
 									<f:facet name="header">
-										<ice:outputLabel value="Seleccionar"></ice:outputLabel>
+										<ice:outputLabel value="Curso"></ice:outputLabel>
 									</f:facet>
+									<ice:outputLabel value="#{curso.curTitNombre}" />
+								</center>
+							</ice:column>
+							<ice:column>
+								<center>
+									<f:facet name="header">
+										<ice:outputLabel value="Periodo"></ice:outputLabel>
+									</f:facet>
+									<ice:outputLabel
+										value="#{curso.periodos.prdFechaInicio} - #{curso.periodos.prdFechaFinal} " />
+								</center>
+							</ice:column>
+							<ice:column>
+								<center>
+									<f:facet name="header">
+										<ice:outputLabel value="Docente Responsable"></ice:outputLabel>
+									</f:facet>
+									<ice:outputLabel
+										value="#{curso.persona.perNombre} #{curso.persona.perApellido}" />
+								</center>
+							</ice:column>
+							<ice:column>
+								<center>
+									<f:facet name="header">
+										<ice:outputLabel value="Estado"></ice:outputLabel>
+									</f:facet>
+									<ice:outputLabel value="#{curso.curTitEstado}" />
+								</center>
+							</ice:column>
 
-									<ice:commandButton value="Eliminar" style="font-size: 10px;"
-										title="Seleccionar" panelConfirmation="confirmacionSeleccion"
-										immediate="true"
-										action="#{registrarCursoPlanControlador.btnEliminarCursoTitulacion(curso)}"
-										partialSubmit="true">
-									</ice:commandButton>
-									<ice:panelConfirmation id="confirmacion" title="Confirmación"
-										message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-										acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
-										type="normal" rendered="true" />
-								</ice:column>
-								<!--                                <ice:column style="width: 10%;">
+							<ice:column style="width: 10%;">
+								<f:facet name="header">
+									<ice:outputLabel value="Seleccionar"></ice:outputLabel>
+								</f:facet>
+
+								<ice:commandButton value="Eliminar" style="font-size: 10px;"
+									title="Seleccionar" panelConfirmation="confirmacionSeleccion"
+									immediate="true"
+									action="#{registrarCursoPlanControlador.btnEliminarCursoTitulacion(curso)}"
+									partialSubmit="true">
+								</ice:commandButton>
+								<ice:panelConfirmation id="confirmacion" title="Confirmación"
+									message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+									acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+									type="normal" rendered="true" />
+							</ice:column>
+							<!--                                <ice:column style="width: 10%;">
                                     <f:facet name="header">
                                         <ice:outputLabel value="Editar"></ice:outputLabel>
                                     </f:facet>
@@ -150,82 +155,70 @@
                                     </ice:commandButton>
                                 </ice:column>-->
 
-								<f:facet name="footer">
-									<center>
-										<ice:dataPaginator id="paginador" for="dataList"
-											paginator="true" fastStep="10" paginatorMaxPages="10">
-											<f:facet name="first">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-first.gif"
-													style="border:none;" title="Pagina Inicial" />
-											</f:facet>
-											<f:facet name="last">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-last.gif"
-													style="border:none;" title="Pagina Final" />
-											</f:facet>
-											<f:facet name="previous">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-previous.gif"
-													style="border:none;" title="Pagina Previa" />
-											</f:facet>
-											<f:facet name="next">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-next.gif"
-													style="border:none;" title="Pagina Siguiente" />
-											</f:facet>
-											<f:facet name="fastforward">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-ff.gif"
-													style="border:none;" title="Avance Rapido" />
-											</f:facet>
-											<f:facet name="fastrewind">
-												<ice:graphicImage
-													url="/resources/css/rime/css-images/arrow-fr.gif"
-													style="border:none;" title="Retorno Rapido" />
-											</f:facet>
-										</ice:dataPaginator>
-									</center>
-								</f:facet>
-							</ice:dataTable>
-						</ice:panelGroup>
+							<f:facet name="footer">
+								<center>
+									<ice:dataPaginator id="paginador" for="dataList"
+										paginator="true" fastStep="10" paginatorMaxPages="10">
+										<f:facet name="first">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-first.gif"
+												style="border:none;" title="Pagina Inicial" />
+										</f:facet>
+										<f:facet name="last">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-last.gif"
+												style="border:none;" title="Pagina Final" />
+										</f:facet>
+										<f:facet name="previous">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-previous.gif"
+												style="border:none;" title="Pagina Previa" />
+										</f:facet>
+										<f:facet name="next">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-next.gif"
+												style="border:none;" title="Pagina Siguiente" />
+										</f:facet>
+										<f:facet name="fastforward">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-ff.gif"
+												style="border:none;" title="Avance Rapido" />
+										</f:facet>
+										<f:facet name="fastrewind">
+											<ice:graphicImage
+												url="/resources/css/rime/css-images/arrow-fr.gif"
+												style="border:none;" title="Retorno Rapido" />
+										</f:facet>
+									</ice:dataPaginator>
+								</center>
+							</f:facet>
+						</ice:dataTable>
+					</ice:panelGroup>
 
-					</ice:panelGrid>
+				</ice:panelGrid>
 			</center>
 
 			<center>
-
-
 				<ice:commandButton value="Guardar" title="Guardar el registro"
 					panelConfirmation="confirmacionSeleccion"
 					rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo== null}"
 					action="#{registrarCursoPlanControlador.inicializacion()}"
 					partialSubmit="true" />
 
-				<ice:commandButton value="Actualizar" title="Actualizar el registro"
+				<ice:commandButton value="Aceptar" title="Actualizar el registro"
 					action="#{registrarCursoPlanControlador.inicializacion()}"
 					panelConfirmation="confirmacionSeleccion"
 					rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo!= null}"
 					partialSubmit="true" />
 
-				<!--ice:panelConfirmation id="confirmacionSeleccion"
-                                           title="Confirmación"
-                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-                                           acceptLabel="Aceptar"
-                                           cancelLabel="Cancelar"
-                                           autoCentre="true"
-                                           type="normal"
-                                           rendered="true"/-->
-
-
+				<ice:panelConfirmation id="confirmacionSeleccion"
+					title="Confirmación"
+					message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+					type="normal" rendered="true" />
 			</center>
 
 
-			<ice:panelConfirmation id="confirmacionSeleccion"
-				title="Confirmación"
-				message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-				acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
-				type="normal" rendered="true" />
 		</ice:panelGroup>
 	</ice:form>
 </ui:composition>

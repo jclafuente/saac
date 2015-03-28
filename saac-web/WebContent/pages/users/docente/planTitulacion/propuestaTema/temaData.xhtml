@@ -23,7 +23,7 @@
 						value="#{propuestaTemaControlador.carreraSelected}"
 						valueChangeListener="#{propuestaTemaControlador.cbChangeCarrera}"
 						title="Carrera">
-						<f:selectItem itemLabel="--Seleccione--" itemValue="">
+						<f:selectItem itemLabel="--Seleccione--" itemValue="0">
 						</f:selectItem>
 						<f:selectItems value="#{propuestaTemaControlador.listadoCarreras}"
 							var="items" itemLabel="#{items.carNombre}"
@@ -38,7 +38,7 @@
 							value="#{propuestaTemaControlador.lineaInvestigacionSelected}"
 							valueChangeListener="#{propuestaTemaControlador.cbChangeLineaInvestigacion}"
 							partialSubmit="true" title="Linea de Investigación">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="">
+							<f:selectItem itemLabel="--Seleccione--" itemValue="0">
 							</f:selectItem>
 							<f:selectItems
 								value="#{propuestaTemaControlador.listadolineaInvestigacion}"
@@ -53,7 +53,7 @@
 						required="true" requiredMessage="#{msg['campo.vacio']}"
 						value="#{propuestaTemaControlador.areaInvestigacionSelected}"
 						title="Area de Investigacion" partialSubmit="true">
-						<f:selectItem itemLabel="--Seleccione--" itemValue="">
+						<f:selectItem itemLabel="--Seleccione--" itemValue="0">
 						</f:selectItem>
 						<f:selectItems
 							value="#{propuestaTemaControlador.listadoaAreaInvestigacion}"
@@ -66,13 +66,13 @@
 					<ice:outputLabel value="Tema:" styleClass="label" />
 					<ice:inputTextarea id="txtNombre" cols="60" rows="3"
 						required="true" requiredMessage="#{msg['campo.vacio']}"
-						value="#{propuestaTemaControlador.temaTitulacion.temTitNombre}" />
+						value="#{propuestaTemaControlador.temaTitulacion.temTitNombre}" style="overflow:auto;resize:none"/>
 					<ice:message for="txtNombre" errorClass="error" />
 
 					<ice:outputLabel value="Sintesis del Tema:" styleClass="label" />
 					<ice:inputTextarea id="txtSintesis" cols="60" rows="4"
 						required="true" requiredMessage="#{msg['campo.vacio']}"
-						value="#{propuestaTemaControlador.temaTitulacion.temTitDescripcion}" />
+						value="#{propuestaTemaControlador.temaTitulacion.temTitDescripcion}" style="overflow:auto;resize:none" />
 					<ice:message for="txtSintesis" errorClass="error" />
 
 				</ice:panelGrid>

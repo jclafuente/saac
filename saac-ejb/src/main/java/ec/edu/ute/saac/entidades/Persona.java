@@ -118,14 +118,17 @@ public class Persona implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private List<Usuario> usuarioList;
     @JoinColumn(name = "catalogo_nacionalidad", referencedColumnName = "cat_codigo", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Catalogo catalogoNacionalidad;
     @JoinColumn(name = "catalogo_estado_civil", referencedColumnName = "cat_codigo", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Catalogo catalogoEstadoCivil;
     @JoinColumn(name = "catalogo_genero", referencedColumnName = "cat_codigo", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Catalogo catalogoGenero;
+    @JoinColumn(name = "usuario", referencedColumnName = "usu_codigo", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuario usuario;
 
     
     public Persona() {
@@ -356,6 +359,14 @@ public class Persona implements Serializable {
 
 	public void setUsuarioList(List<Usuario> usuarioList) {
 		this.usuarioList = usuarioList;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

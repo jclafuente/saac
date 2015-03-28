@@ -53,6 +53,9 @@ public class UsuarioRolFacade extends AbstractFacade<UsuarioRol> {
 		Collection<UsuarioRol> result = null;
 		Criteria criteria = ((Session) getEntityManager().getDelegate())
 				.createCriteria(UsuarioRol.class);
+		criteria.createAlias("usuario", "usuA");
+		criteria.createAlias("usuA.", "usuA");
+		
 		criteria.createAlias("rol", "rolA");
 		criteria.createAlias("usuario", "usuA");
 		criteria.add(Restrictions.eq("rolA.rolCodigo",Integer.parseInt("0000000019")));

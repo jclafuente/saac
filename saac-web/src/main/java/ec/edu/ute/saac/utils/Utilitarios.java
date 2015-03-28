@@ -21,7 +21,7 @@ import org.apache.commons.mail.HtmlEmail;
 
 /**
  *
- * @author christian
+ * @author 
  */
 public class Utilitarios {
 
