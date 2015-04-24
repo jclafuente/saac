@@ -25,7 +25,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @NamedQueries({
     @NamedQuery(name = "CursoTitulacion.findAll", query = "SELECT c FROM CursoTitulacion c"),
     @NamedQuery(name = "CursoTitulacion.findByCurTitCodigo", query = "SELECT c FROM CursoTitulacion c WHERE c.curTitCodigo = :curTitCodigo")})
-@OnDelete(action=OnDeleteAction.CASCADE)
 public class CursoTitulacion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

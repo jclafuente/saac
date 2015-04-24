@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<ice:panelCollapsible expanded="false" immediate="true">
+		<f:facet name="header">
+			<h:panelGrid columns="1" styleClass="panelCollapsible">
+				<h:outputText value="1. DATOS PRELIMINARES"
+					styleClass="panelHeaderStyle" />
+			</h:panelGrid>
+		</f:facet>
+		<center>
+			<ice:panelGrid columns="2" columnClasses="col20,col80">
+
+				<ice:outputLabel value="Carrera:" styleClass="labelScreen" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.areaInvestigacion.lineaInvestigacion.carrera.carNombre}"
+					styleClass="labelScreen" />
+
+				<ice:outputLabel value="Linea Investigación:"
+					styleClass="labelScreen" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.areaInvestigacion.lineaInvestigacion.linInvNombre}"
+					styleClass="labelScreen" />
+
+				<ice:outputLabel styleClass="labelScreen"
+					value="Area Investigación:" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.areaInvestigacion.areInvNombre}"
+					styleClass="labelScreen" />
+
+				<ice:outputLabel styleClass="labelScreen"
+					value="Docente Reponsable:" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.perCodigo.perNombre} #{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.perCodigo.perApellido}"
+					styleClass="labelScreen" />
+
+				<ice:outputLabel styleClass="labelScreen" value="Tema:" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.temTitNombre}" />
+
+				<ice:outputLabel styleClass="labelScreen" value="Sintesis del Tema:" />
+				<ice:outputText
+					value="#{desarrollarTemaPlanTitulacionControlador.proceso.temasTitulacion.temTitDescripcion}" />
+					
+				<ice:outputLabel styleClass="labelScreen" value="Trabajos a fines realizados:" />
+				<ice:outputText
+					value="no se si va aqui esta nota" />
+
+			</ice:panelGrid>
+		</center>
+	</ice:panelCollapsible>
+</ui:composition>
+</html>

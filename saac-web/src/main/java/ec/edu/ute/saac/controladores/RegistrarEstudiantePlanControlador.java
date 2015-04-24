@@ -48,6 +48,8 @@ public class RegistrarEstudiantePlanControlador {
 	private Integer nacionalidadSelected;
 	private Integer estadoCivilSelected;
 	private Integer generoSelected;
+	private Integer usuarioSelected;
+	private Object usuarioPassword;
 
 	private Collection<Facultad> listadoFacultad;
 	private Collection<Carrera> listadoCarrera;
@@ -56,7 +58,7 @@ public class RegistrarEstudiantePlanControlador {
 	private Collection<Catalogo>listadoCatalogoNacionalidad;
 	private Collection<Catalogo>listadoCatalogoEstadoCivil;
 	private Collection<Catalogo>listadoCatalogoGenero;
-	private Collection<Persona>listadoPersonaUsuarioRol;
+	private Collection<Usuario>listadoUsuario;
 	
 	@Inject
 	private IAdministracionServicio administracionServicio;
@@ -79,7 +81,8 @@ public class RegistrarEstudiantePlanControlador {
 		listadoCatalogoNacionalidad=new ArrayList<Catalogo>();
 		listadoCatalogoEstadoCivil=new ArrayList<Catalogo>();
 		listadoCatalogoGenero=new ArrayList<Catalogo>();
-		listadoPersonaUsuarioRol=new ArrayList<Persona>();
+		listadoUsuario=new ArrayList<Usuario>();
+		
 	}
 
 	@PostConstruct
@@ -106,9 +109,11 @@ public class RegistrarEstudiantePlanControlador {
 				setListadoCatalogoGenero(administracionServicio.obtenerCatalogoGenero());
 			}
 			
-			if (CollectionUtils.isEmpty(listadoPersonaUsuarioRol)) {
-				setListadoPersonaUsuarioRol(administracionServicio.obtenerPeronaUsuarioRol());
+			if (CollectionUtils.isEmpty(listadoUsuario)) {
+				setListadoUsuario(administracionServicio.obtenerUsuarios());
 			}
+			
+			
 
 		} catch (Exception e) {
 			String error = (String) e.getMessage();
@@ -120,6 +125,23 @@ public class RegistrarEstudiantePlanControlador {
 		}
 
 	}
+	
+
+	public void cbChangeNombreUsuario(ValueChangeEvent valueChangeEvent) {
+
+		Integer usuCodigo = NumberUtils.createInteger(String
+				.valueOf(valueChangeEvent.getNewValue()));
+		try {
+			persona.getUsuario().setUsuPassword(administracionServicio.obtenerPassUsuario(usuCodigo).toString() ) ;
+			/*setListadoCarrera(administracionServicio
+					.obtenerCarreraFacultad(facCodigo));*/
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	public void cbChangeFacultad(ValueChangeEvent valueChangeEvent) {
 
@@ -172,6 +194,7 @@ public class RegistrarEstudiantePlanControlador {
 		setNacionalidadSelected(persona.getCatalogoNacionalidad().getCatCodigo());
 		setEstadoCivilSelected(persona.getCatalogoEstadoCivil().getCatCodigo());
 		setGeneroSelected(persona.getCatalogoGenero().getCatCodigo());
+		setUsuarioSelected(persona.getUsuario().getUsuCodigo()); 
 		setPersona(persona);
 		// setPersonaCarrera(personaCarrera);
 		setPanelDatos(Boolean.TRUE);
@@ -301,13 +324,12 @@ public class RegistrarEstudiantePlanControlador {
 		this.listadoCatalogoGenero = listadoCatalogoGenero;
 	}
 
-	public Collection<Persona> getListadoPersonaUsuarioRol() {
-		return listadoPersonaUsuarioRol;
+	public Collection<Usuario> getListadoUsuario() {
+		return listadoUsuario;
 	}
 
-	public void setListadoPersonaUsuarioRol(
-			Collection<Persona> listadoPersonaUsuarioRol) {
-		this.listadoPersonaUsuarioRol = listadoPersonaUsuarioRol;
+	public void setListadoUsuario(Collection<Usuario> listadoUsuario) {
+		this.listadoUsuario = listadoUsuario;
 	}
 
 	public Rol getRol() {
@@ -317,6 +339,24 @@ public class RegistrarEstudiantePlanControlador {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
+
+	public Integer getUsuarioSelected() {
+		return usuarioSelected;
+	}
+
+	public void setUsuarioSelected(Integer usuarioSelected) {
+		this.usuarioSelected = usuarioSelected;
+	}
+
+	public Object getUsuarioPassword() {
+		return usuarioPassword;
+	}
+
+	public void setUsuarioPassword(Object usuarioPassword) {
+		this.usuarioPassword = usuarioPassword;
+	}
+
+	
 
 
 

@@ -16,9 +16,11 @@ import org.apache.commons.logging.LogFactory;
 
 import ec.edu.ute.saac.entidades.CursoTitulacion;
 import ec.edu.ute.saac.entidades.CursoTitulacionEstudiante;
+import ec.edu.ute.saac.entidades.Periodos;
 import ec.edu.ute.saac.entidades.Persona;
 import ec.edu.ute.saac.entidades.Proceso;
 import ec.edu.ute.saac.entidades.SeleccionTema;
+import ec.edu.ute.saac.entidades.TemasTitulacion;
 import ec.edu.ute.saac.servicios.administracion.IAdministracionServicio;
 import ec.edu.ute.saac.utils.Utilitarios;
 
@@ -31,108 +33,58 @@ public class SeleccionEstudianteControlador {
 	private MessageSender sender;
 	private Utilitarios utilitarios;
 	private boolean panelDatos;
-	private Persona persona;
-	private Proceso proceso;
-	private CursoTitulacionEstudiante cursoTitulacionEstudiante;
-	private Integer estudianteSelected;
-	
-	private Integer cursoTitulacionSelected;
+	private TemasTitulacion temaTitulacion;
+	private Periodos periodo;
+
+	private Integer docenteSelected;
+	private Integer periodoSelected;
 	private Integer temaTitulacionSelected;
 
-	private Collection<Proceso> listadoProcesoCursoTitulacion;
-	private Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudiante;
-	private Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudianteTema;
-	private Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudianteEstudiante;
+	private Collection<Persona> listadoPersonaDocente;// lista de docente
+	private Collection<TemasTitulacion> listadoTemaTitulacionDocente;// lista de temas titulaciion
+	private Collection<Proceso> listadoProcesoPeriodo;// lista de docente
+	private Collection<Proceso> listadoProcesoEstudiante;// lista de estudiantes de proceso
 
 	@Inject
 	private IAdministracionServicio administracionServicio;
+	
+	public void retornarPagina() {
+		setPanelDatos(Boolean.FALSE);
+	}
+	
+	public void limpiarCombos(){
+		
+		docenteSelected=Integer.valueOf(0);
+	}
 
 	public void inicializacionEntidades() {
 		sender = (MessageSender) Utilitarios.getManagedBean("messageSender");
 		utilitarios = new Utilitarios();
-		persona = new Persona();
-		proceso=new Proceso();
-		cursoTitulacionEstudiante = new CursoTitulacionEstudiante();
+		temaTitulacion = new TemasTitulacion();
+		periodo = new Periodos();
 
-		listadoCursoTitulacionEstudiante = new ArrayList<CursoTitulacionEstudiante>();
-		listadoCursoTitulacionEstudianteTema = new ArrayList<CursoTitulacionEstudiante>();
-		listadoProcesoCursoTitulacion=new ArrayList<Proceso>();
-
+		listadoPersonaDocente = new ArrayList<Persona>();// lista del combo solo docentes
+		listadoTemaTitulacionDocente = new ArrayList<TemasTitulacion>(); // lista de temas propuestos por docente
+		listadoProcesoPeriodo = new ArrayList<Proceso>();// lista de periodos de proceso
+		listadoProcesoEstudiante = new ArrayList<Proceso>();
 	}
 
 	@PostConstruct
 	public void inicializacion() {
 		inicializacionEntidades();
 		setPanelDatos(Boolean.FALSE);
-
+		limpiarCombos();
 		try {
 
-			if (CollectionUtils.isEmpty(listadoCursoTitulacionEstudiante)) {
-				setListadoCursoTitulacionEstudiante(administracionServicio
-						.obtenerCursoTitulacionEstudiante());
-			}
-			
-
-			if (CollectionUtils.isEmpty(listadoProcesoCursoTitulacion)) {
-				setListadoProcesoCursoTitulacion(administracionServicio
-						.obtenerProcesoEstudiante());
+			if (CollectionUtils.isEmpty(listadoPersonaDocente)) {
+				setListadoPersonaDocente(administracionServicio
+						.obtenerPersonaUsuario());
 			}
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public void cbChangeCursoTitulacion(ValueChangeEvent valueChangeEvent) {
-
-		Integer temCodigo = NumberUtils.createInteger(String
-				.valueOf(valueChangeEvent.getNewValue()));
-
-		try {
-
-			setListadoCursoTitulacionEstudianteTema(administracionServicio
-					.obtenerCursoTitulacionEstudianteTema(temCodigo));
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public void btnCargarListaCursoTitulacionEstudiante() {
-		try {
-
-			setListadoCursoTitulacionEstudianteEstudiante(administracionServicio
-					.obtenerCursoTitulacionEstudianteEstudiante(
-							cursoTitulacionSelected, temaTitulacionSelected));
-
-			// seleccionTema.setPerCodigo(new Persona());
-			// seleccionTema.getPerCodigo().setPerCodigo(persona.getPerCodigo());
-			// setListadoSeleccionTema(administracionServicio.obtenerSeleccionTemaAprobado(persona));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void seleccionarSeleccionTema(SeleccionTema seleccionTema) {
-		try {
-
-			/*
-			 * setPersonaEstudianteSelected(seleccionTema.getPerCodigo().
-			 * getPerCodigo()); setSeleccionTema(seleccionTema);
-			 */
-
-			/*
-			 * if (CollectionUtils.isEmpty(listadoEstudianteSeleccionTema))
-			 * setListadoEstudianteSeleccionTema(administracionServicio
-			 * .obtenerEstudianteSeleccionTema(personaEstudianteSelected));
-			 */
-
-			setPanelDatos(Boolean.TRUE);
+			if (CollectionUtils.isEmpty(listadoProcesoPeriodo)) {
+				setListadoProcesoPeriodo(administracionServicio
+						.obtenerProcesoPeriodo());
+			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -141,11 +93,12 @@ public class SeleccionEstudianteControlador {
 
 	}
 
-	public void seleccionarPersonaEstudiante(Persona persona) {
+	public void btnCargarListaTemaTitulacionDocente() {
 
 		try {
+			setListadoTemaTitulacionDocente(administracionServicio
+					.obtenerTemaTitulacionDocente(docenteSelected));
 
-			setPanelDatos(Boolean.FALSE);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,42 +106,56 @@ public class SeleccionEstudianteControlador {
 
 	}
 
-	public void seleccionarCursoTitulacionEstudiante(
-			CursoTitulacionEstudiante cursoTitulacionEstudiante) {
+	public void btnCargarListaProcesoEstudiante() {
+
+		try {
+
+			setListadoProcesoEstudiante(administracionServicio
+					.obtenerProcesoPeriodoEstudiante(periodoSelected));
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void seleccionarTemaTitulacion(TemasTitulacion temasTitulacion) {
 
 		
-		// setTemaTitulacion(temaTitulacion);
+		if(temasTitulacion.getTemTitEstado().equals("APROBADO"))
+		{
+			try 
+			{
+				setTemaTitulacionSelected(temasTitulacion.getTemTitCodigo());
+				setPanelDatos(Boolean.TRUE);	
+
+			} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}else
+			
+		{
+			sender.sendInfoPopup("SU TEMA DE TITULACION NO HA SIDO APROBADO");	
+		}
+
+	}
+	
+	public void seleccionarProcesoEstudiante(Proceso proceso) {
+
 		try {
-			
-			//setCursoTitulacionEstudiante(cursoTitulacionEstudiante);
-			//proceso.setCursoTitulacionEstudiante(new CursoTitulacionEstudiante());
-			//proceso.getCursoTitulacionEstudiante().setCurTitEstCodigo(Integer.parseInt("01"));
-			/*proceso.setCursoTitulacion(new CursoTitulacion());
-			proceso.getCursoTitulacion().setCurTitCodigo(Integer.parseInt("01"));*/
-			setEstudianteSelected(cursoTitulacionEstudiante.getCurTitEstCodigo());
-			
-			//cursoTitulacionEstudiante.setSeleccionTema(new SeleccionTema());
-			//cursoTitulacionEstudiante.getSeleccionTema().setSelTemCodigo();
-			proceso.setCursoTitulacionEstudiante(new CursoTitulacionEstudiante());
-			proceso.getCursoTitulacionEstudiante().setCurTitEstCodigo(estudianteSelected);
-			
-			//proceso.setSeleccionTema(new SeleccionTema());
-			//proceso.getSeleccionTema().setSelTemCodigo(Integer.parseInt("0000000003"));
-			
-			administracionServicio.crearProceso(proceso);
-			
-			
+		
+			proceso.setTemasTitulacion(new TemasTitulacion());
+			proceso.getTemasTitulacion().setTemTitCodigo(getTemaTitulacionSelected());
+			administracionServicio.actualizarProcesoEstudiante(proceso);
+			inicializacion();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		/*
-		 * setListadoCursoTitulacionEstudiante(administracionServicio
-		 * .obtenerCursoTitulacionEstudiante());
-		 */
-
-		// setPanelDatos(true);
 	}
 
 	public boolean isPanelDatos() {
@@ -199,39 +166,72 @@ public class SeleccionEstudianteControlador {
 		this.panelDatos = panelDatos;
 	}
 
-	public CursoTitulacionEstudiante getCursoTitulacionEstudiante() {
-		return cursoTitulacionEstudiante;
+	public Collection<Persona> getListadoPersonaDocente() {
+		return listadoPersonaDocente;
 	}
 
-	public void setCursoTitulacionEstudiante(
-			CursoTitulacionEstudiante cursoTitulacionEstudiante) {
-		this.cursoTitulacionEstudiante = cursoTitulacionEstudiante;
+	public void setListadoPersonaDocente(
+			Collection<Persona> listadoPersonaDocente) {
+		this.listadoPersonaDocente = listadoPersonaDocente;
 	}
 
-	public Collection<CursoTitulacionEstudiante> getListadoCursoTitulacionEstudiante() {
-		return listadoCursoTitulacionEstudiante;
+	public TemasTitulacion getTemaTitulacion() {
+		return temaTitulacion;
 	}
 
-	public void setListadoCursoTitulacionEstudiante(
-			Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudiante) {
-		this.listadoCursoTitulacionEstudiante = listadoCursoTitulacionEstudiante;
+	public void setTemaTitulacion(TemasTitulacion temaTitulacion) {
+		this.temaTitulacion = temaTitulacion;
 	}
 
-	public Integer getCursoTitulacionSelected() {
-		return cursoTitulacionSelected;
+	public Collection<TemasTitulacion> getListadoTemaTitulacionDocente() {
+		return listadoTemaTitulacionDocente;
 	}
 
-	public void setCursoTitulacionSelected(Integer cursoTitulacionSelected) {
-		this.cursoTitulacionSelected = cursoTitulacionSelected;
+	public void setListadoTemaTitulacionDocente(
+			Collection<TemasTitulacion> listadoTemaTitulacionDocente) {
+		this.listadoTemaTitulacionDocente = listadoTemaTitulacionDocente;
 	}
 
-	public Collection<CursoTitulacionEstudiante> getListadoCursoTitulacionEstudianteTema() {
-		return listadoCursoTitulacionEstudianteTema;
+	public Integer getDocenteSelected() {
+		return docenteSelected;
 	}
 
-	public void setListadoCursoTitulacionEstudianteTema(
-			Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudianteTema) {
-		this.listadoCursoTitulacionEstudianteTema = listadoCursoTitulacionEstudianteTema;
+	public void setDocenteSelected(Integer docenteSelected) {
+		this.docenteSelected = docenteSelected;
+	}
+
+	public Integer getPeriodoSelected() {
+		return periodoSelected;
+	}
+
+	public void setPeriodoSelected(Integer periodoSelected) {
+		this.periodoSelected = periodoSelected;
+	}
+
+	public Periodos getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodos periodo) {
+		this.periodo = periodo;
+	}
+
+	public Collection<Proceso> getListadoProcesoPeriodo() {
+		return listadoProcesoPeriodo;
+	}
+
+	public void setListadoProcesoPeriodo(
+			Collection<Proceso> listadoProcesoPeriodo) {
+		this.listadoProcesoPeriodo = listadoProcesoPeriodo;
+	}
+
+	public Collection<Proceso> getListadoProcesoEstudiante() {
+		return listadoProcesoEstudiante;
+	}
+
+	public void setListadoProcesoEstudiante(
+			Collection<Proceso> listadoProcesoEstudiante) {
+		this.listadoProcesoEstudiante = listadoProcesoEstudiante;
 	}
 
 	public Integer getTemaTitulacionSelected() {
@@ -242,30 +242,5 @@ public class SeleccionEstudianteControlador {
 		this.temaTitulacionSelected = temaTitulacionSelected;
 	}
 
-	public Collection<CursoTitulacionEstudiante> getListadoCursoTitulacionEstudianteEstudiante() {
-		return listadoCursoTitulacionEstudianteEstudiante;
-	}
-
-	public void setListadoCursoTitulacionEstudianteEstudiante(
-			Collection<CursoTitulacionEstudiante> listadoCursoTitulacionEstudianteEstudiante) {
-		this.listadoCursoTitulacionEstudianteEstudiante = listadoCursoTitulacionEstudianteEstudiante;
-	}
-
-	public Collection<Proceso> getListadoProcesoCursoTitulacion() {
-		return listadoProcesoCursoTitulacion;
-	}
-
-	public void setListadoProcesoCursoTitulacion(
-			Collection<Proceso> listadoProcesoCursoTitulacion) {
-		this.listadoProcesoCursoTitulacion = listadoProcesoCursoTitulacion;
-	}
-
-	public Integer getEstudianteSelected() {
-		return estudianteSelected;
-	}
-
-	public void setEstudianteSelected(Integer estudianteSelected) {
-		this.estudianteSelected = estudianteSelected;
-	}
-
+	
 }

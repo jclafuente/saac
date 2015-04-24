@@ -1,63 +1,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ice="http://www.icesoft.com/icefaces/component"
-      xmlns:ace="http://www.icefaces.org/icefaces/components"
-      xmlns:icecore="http://www.icefaces.org/icefaces/core"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <ui:composition>
-        <ice:form id="temaNuevoForm" >
-            <ice:panelGroup styleClass="borderGray"  >
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<ice:form id="temaNuevoForm">
+		<ice:panelGroup styleClass="borderGray">
+			<ice:panelGroup styleClass="titulosCenter">
+				<ice:outputText value="DESARROLLO DEL PLAN DE TITULACION" />
+			</ice:panelGroup>
 
-                <ice:panelGroup styleClass="titulosCenter">
-                    <ice:outputText value="DESARROLLO DEL PLAN DE TITULACION"   />
-                </ice:panelGroup>
+			<!--  <ui:include src="esquemaPlan/1_Titulo.xhtml" /> -->
+			<ui:include src="esquemaPlan/1_DatosPreliminares.xhtml" />
+			<!-- <ui:include src="esquemaPlan/2_Justificacion.xhtml" /> -->
+			<ui:include src="esquemaPlan/2_Introduccion.xhtml" />
+			<ui:include src="esquemaPlan/3_Hipotesis.xhtml" />
+			<ui:include src="esquemaPlan/4_Objetivos.xhtml" />
+			<ui:include src="esquemaPlan/5_Alcance.xhtml" />
+			<ui:include src="esquemaPlan/6_TrabajosAfines.xhtml" />
+			<ui:include src="esquemaPlan/7_Metodologia.xhtml" />
+			<ui:include src="esquemaPlan/8_Cronograma.xhtml" />
+			<ui:include src="esquemaPlan/9_Presupuesto.xhtml" />
+			<ui:include src="esquemaPlan/10_Bibliografia.xhtml" />
+			<ui:include src="esquemaPlan/11_TemarioTentativo.xhtml" />
+			<center>
+				<!--                     <ice:commandButton value="Generar" action="#{docenteControlador.crearListadoDinamico()}" title="Generar el Plan de Titulacion" 
+                                       panelConfirmation="generarPlanTitulacion" /> -->
 
-                <ui:include src="esquemaPlan/1_Titulo.xhtml" />
-                <ui:include src="esquemaPlan/2_Justificacion.xhtml" />
-                <ui:include src="esquemaPlan/3_Hipotesis.xhtml" />
-                <ui:include src="esquemaPlan/4_Objetivos.xhtml" />
-                <ui:include src="esquemaPlan/5_Alcance.xhtml" />
-                <ui:include src="esquemaPlan/6_TrabajosAfines.xhtml" />
-                <ui:include src="esquemaPlan/7_Metodologia.xhtml" />
-                <ui:include src="esquemaPlan/8_Cronograma.xhtml" />
-                <ui:include src="esquemaPlan/9_Presupuesto.xhtml" />
-                <ui:include src="esquemaPlan/10_Bibliografia.xhtml" />
-                <ui:include src="esquemaPlan/11_TemarioTentativo.xhtml" />
-                <center>
-                    <ice:commandButton value="Generar" action="#{docenteControlador.crearListadoDinamico()}" title="Generar el Plan de Titulacion" 
-                                       panelConfirmation="generarPlanTitulacion" />
+			</center>
 
-                </center>
+			<ui:include src="esquemaPlan/documentos.xhtml" />
 
-                <ui:include src="esquemaPlan/documentos.xhtml" />
+			<center>
+					
+					<ice:commandButton value="Guardar" title="Guardar el registro"
+					panelConfirmation="confirmacionSeleccion"
+					rendered="#{desarrollarTemaPlanTitulacionControlador.proceso!=null}"
+					action="#{desarrollarTemaPlanTitulacionControlador.btnCrearPlanTitulacion()}"
+					partialSubmit="true" />
+					
+				<ice:panelConfirmation id="confirmacionSeleccion"
+					title="Confirmación"
+					message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+					type="normal" rendered="true" />
+				<ice:panelConfirmation id="generarPlanTitulacion"
+					title="Confirmación"
+					message="Acontinuación va generar el Documento de Plan de Titulación."
+					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+					type="normal" rendered="true" />
 
-                <center>
+			</center>
+		</ice:panelGroup>
+	</ice:form>
 
-                    <ice:commandButton value="Guardar" title="Actualizar el registro"
-                                       panelConfirmation="confirmacionSeleccion" />
-                    <ice:panelConfirmation id="confirmacionSeleccion"
-                                           title="Confirmación"
-                                           message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-                                           acceptLabel="Aceptar"
-                                           cancelLabel="Cancelar"
-                                           autoCentre="true"
-                                           type="normal"
-                                           rendered="true"/>  
-                    <ice:panelConfirmation id="generarPlanTitulacion"
-                                           title="Confirmación"
-                                           message="Acontinuación va generar el Documento de Plan de Titulación."
-                                           acceptLabel="Aceptar"
-                                           cancelLabel="Cancelar"
-                                           autoCentre="true"
-                                           type="normal"
-                                           rendered="true"/>  
+	<ui:include src="esquemaPlan/popupRevisados.xhtml" />
 
-                </center>
-            </ice:panelGroup>
-        </ice:form>
-
-        <ui:include src="esquemaPlan/popupRevisados.xhtml" />
-
-    </ui:composition>
+</ui:composition>
 </html>
