@@ -6,32 +6,54 @@
 <ui:composition>
 	<ice:form id="seleccionEstudianteNuevoForm">
 		<ice:panelGroup styleClass="borderGray">
+			<center>
+				<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
+					<ice:outputLabel value="Periodo:" styleClass="label" />
+					<ice:selectOneMenu id="selPeriodo" style="width: 210px;"
+						required="true" requiredMessage="#{msg['campo.vacio']}"
+						title="Periodo"
+						value="#{seleccionEstudianteControlador.periodoSelected}">
+						<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
+						<f:selectItems
+							value="#{seleccionEstudianteControlador.listadoProcesoPeriodo}"
+							var="items"
+							itemLabel="#{items.periodo.prdFechaInicio} #{items.periodo.prdFechaFinal}"
+							itemValue="#{items.periodo.prdCodigo}">
+						</f:selectItems>
+					</ice:selectOneMenu>
+				</ice:panelGrid>
 
-			<ice:panelGroup styleClass="borderGray">
-				<center>
-					<ice:dataTable rows="10" id="dataList"
-						value="#{seleccionEstudianteControlador.listadoEstudianteSeleccionTema}"
+				<ice:commandButton value="Cargar Lista" title="Carga lista"
+					action="#{seleccionEstudianteControlador.btnCargarListaProcesoEstudiante()}"
+					partialSubmit="true" />
+
+				<ice:dataTable rows="10" id="dataList"
+						value="#{seleccionEstudianteControlador.listadoProcesoEstudiante}"
 						var="estudiante" style="width: 100%;">
-
 						<ice:column>
 							<f:facet name="header">
 								<ice:outputLabel value="Documento de Identidad"></ice:outputLabel>
 							</f:facet>
 							<center>
-								<ice:outputLabel value="#{estudiante.perCodigo.perDocumentoIdentidad}" />
-
+								<ice:outputLabel value="#{estudiante.persona.perDocumentoIdentidad}" />
 							</center>
 						</ice:column>
 						<ice:column>
-
 							<f:facet name="header">
-								<ice:outputLabel value="Estudiante"></ice:outputLabel>
+								<ice:outputLabel value="Nombre"></ice:outputLabel>
 							</f:facet>
 							<center>
-								<ice:outputLabel value="#{estudiante.perCodigo.perNombre}" />
+								<ice:outputLabel value="#{estudiante.persona.perNombre} #{estudiante.persona.perApellido}"  />
 							</center>
 						</ice:column>
-
+							<ice:column>
+							<f:facet name="header">
+								<ice:outputLabel value="Curso de Titulacion"></ice:outputLabel>
+							</f:facet>
+							<center>
+								<ice:outputLabel value="#{estudiante.cursoTitulacion.curTitNombre}"  />
+							</center>
+						</ice:column>
 						<ice:column style="width: 10%;">
 							<f:facet name="header">
 								<ice:outputLabel value="Seleccionar"></ice:outputLabel>
@@ -39,8 +61,8 @@
 							<center>
 								<ice:commandButton value="Seleccionar" style="font-size: 10px;"
 									title="Seleccionar" panelConfirmation="confirmacionSeleccion"
-									actionListener="#{seleccionEstudianteControlador.seleccionarPersonaEstudiante(estudiante)}"
-									immediate="true">
+									actionListener="#{seleccionEstudianteControlador.seleccionarProcesoEstudiante(estudiante)}"
+									immediate="true" partialSubmit="true">
 								</ice:commandButton>
 							</center>
 							<ice:panelConfirmation id="confirmacionSeleccion"
@@ -89,8 +111,7 @@
 						</f:facet>
 					</ice:dataTable>
 
-				</center>
-			</ice:panelGroup>
+			</center>
 
 		</ice:panelGroup>
 	</ice:form>

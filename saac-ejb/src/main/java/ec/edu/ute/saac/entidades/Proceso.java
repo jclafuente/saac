@@ -61,6 +61,13 @@ public class Proceso implements Serializable {
     @JoinColumn(name = "curso_titulacion_estudiante", referencedColumnName = "cur_tit_est_codigo", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CursoTitulacionEstudiante cursoTitulacionEstudiante;
+    @JoinColumn(name = "periodos", referencedColumnName = "prd_codigo", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Periodos periodo;
+    @JoinColumn(name = "contenido_problema", referencedColumnName = "cnt_codigo", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Contenido contenido_problema;
+    
     
     public Proceso() {
     }
@@ -179,6 +186,22 @@ public class Proceso implements Serializable {
 	public void setCursoTitulacionEstudiante(
 			CursoTitulacionEstudiante cursoTitulacionEstudiante) {
 		this.cursoTitulacionEstudiante = cursoTitulacionEstudiante;
+	}
+	
+	public Periodos getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(Periodos periodo) {
+		this.periodo = periodo;
+	}
+	
+	public Contenido getContenido_problema() {
+		return contenido_problema;
+	}
+
+	public void setContenido_problema(Contenido contenido_problema) {
+		this.contenido_problema = contenido_problema;
 	}
 
 	@Override

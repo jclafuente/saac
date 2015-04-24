@@ -5,6 +5,7 @@ import java.util.Collection;
 import ec.edu.ute.saac.entidades.AreaInvestigacion;
 import ec.edu.ute.saac.entidades.Carrera;
 import ec.edu.ute.saac.entidades.Catalogo;
+import ec.edu.ute.saac.entidades.Contenido;
 import ec.edu.ute.saac.entidades.CursoTitulacion;
 import ec.edu.ute.saac.entidades.CursoTitulacionEstudiante;
 import ec.edu.ute.saac.entidades.Facultad;
@@ -28,6 +29,7 @@ public interface IAdministracionServicio {
 	public Collection<Rol> findAllRol();
 	public Collection<Facultad> obtenerFacultad();
 	public Collection<CursoTitulacion> obtenerCursoTitulacion() throws Exception;
+	public Collection<CursoTitulacion> obtenerCursoTitulacionCodigo(Integer codCursoTit) throws Exception;
 	public void crearFacultad(Facultad facultad) throws Exception;
 	public void actualizarFacultad(Facultad facultad) throws Exception;
 	public void actualizarCarrera (Carrera carrera) throws Exception;
@@ -72,6 +74,7 @@ public interface IAdministracionServicio {
 	
 	public Collection<Periodos> obtenerPeriodo() throws Exception;
 	public Collection<Usuario> obtenerUsuario() throws Exception;
+	public Collection<Usuario> obtenerUsuarios() throws Exception;
 	public Collection<Usuario> obtenerUsuarioEstudiante() throws Exception;
 	
 	public Collection<Catalogo> obtenerCatalogoNac() throws Exception;
@@ -94,10 +97,24 @@ public interface IAdministracionServicio {
 	public Collection<CursoTitulacionEstudiante> obtenerCursoTitulacionEstudianteTema(Integer curCodigo) throws Exception;
 	public Collection<CursoTitulacionEstudiante> obtenerCursoTitulacionEstudianteEstudiante(Integer curCodigo, Integer temCodigo) throws Exception;
 	
-	public Collection<Proceso> obtenerProcesoEstudiante()throws Exception;
+	public Collection<Proceso> obtenerProcesoEstudiante(Integer curCodigo)throws Exception;
+	public Collection<Proceso> obtenerProcesoCursoTitulacion(Integer curCodigo)throws Exception;
 	public void crearProceso(Proceso proceso) throws Exception;
 	public void actualizarPersonaCarreraEstudiante(PersonaCarrera personaCarrera) throws Exception;
 	
 	public Collection<Persona> obtenerPeronaUsuarioRol()throws Exception;
+	public Object obtenerPassUsuario(Integer usuCodigo) throws Exception; 
 	
+	public void eliminarProcesoEstudiante(Proceso proceso) throws Exception;
+	public void actualizarProcesoEstudiante(Proceso proceso) throws Exception;
+	
+	public Collection<TemasTitulacion> obtenerTemaTitulacionDocente(Integer perCodigo) throws Exception;
+	public Collection<Proceso> obtenerProcesoPeriodo() throws Exception;
+	public Collection<Proceso> obtenerProcesoPeriodoEstudiante(Integer prdCodigo) throws Exception;
+	public Collection<Proceso> obtenerProcesoEstudianteLoggin() throws Exception;
+	public Collection<Proceso> obtenerProcesoTemaTitulacionEstudiante(Integer perCodigo) throws Exception;
+	public Collection<Proceso> obtenerProblema(Integer prcCodigo) throws Exception;
+	public String obtenerJustificacion(Integer prcCodigo) throws Exception;
+	  
+
 }

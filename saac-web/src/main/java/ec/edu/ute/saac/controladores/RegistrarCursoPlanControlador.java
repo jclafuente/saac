@@ -86,10 +86,10 @@ public class RegistrarCursoPlanControlador {
 				setListadoPeriodo(administracionServicio.obtenerPeriodo());
 			}
 
-			if (CollectionUtils.isEmpty(listadoCursoTitulacion)) {
+			/*if (CollectionUtils.isEmpty(listadoCursoTitulacion)) {
 				setListadoCursoTitulacion(administracionServicio
 						.obtenerCursoTitulacion());
-			}
+			}*/
 
 			if (CollectionUtils.isEmpty(listadoPersonaDocente)) {
 				setListadoPersonaDocente(administracionServicio
@@ -138,11 +138,9 @@ public class RegistrarCursoPlanControlador {
 		try {
 
 			cursoTitulacion.setPersona(new Persona());
-			cursoTitulacion.getPersona().setPerCodigo(
-					getPersonaDocenteSelected());
+			cursoTitulacion.getPersona().setPerCodigo(getPersonaDocenteSelected());
 			cursoTitulacion.setPeriodos(new Periodos());
-			cursoTitulacion.getPeriodos().setPrdCodigo(
-					getPeriodoTitulacionSelected());
+			cursoTitulacion.getPeriodos().setPrdCodigo(getPeriodoTitulacionSelected());
 			cursoTitulacion.setCurTitEstado("REGISTRADO");
 			// cursoTitulacion.setCurTitNombre("borrar");
 			administracionServicio.crearCursoTitulacion(cursoTitulacion);

@@ -12,7 +12,6 @@
 			<center>
 				<ice:panelGrid columns="1" columnClasses="col45,col55"
 					styleClass="borderGray">
-
 					<ice:panelGroup style="text-align: center;">
 						<ice:panelGroup styleClass="titulosCenter">
 							<ice:outputLabel value="Curso" />
@@ -210,12 +209,6 @@
 					panelConfirmation="confirmacionSeleccion"
 					rendered="#{registrarCursoPlanControlador.cursoTitulacion.curTitCodigo!= null}"
 					partialSubmit="true" />
-
-				<ice:panelConfirmation id="confirmacionSeleccion"
-					title="Confirmación"
-					message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-					acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
-					type="normal" rendered="true" />
 			</center>
 
 

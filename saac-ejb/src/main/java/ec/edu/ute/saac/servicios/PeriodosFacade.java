@@ -4,10 +4,19 @@
  */
 package ec.edu.ute.saac.servicios;
 
+import java.util.Collection;
+
 import ec.edu.ute.saac.entidades.Periodos;
+import ec.edu.ute.saac.entidades.Persona;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *

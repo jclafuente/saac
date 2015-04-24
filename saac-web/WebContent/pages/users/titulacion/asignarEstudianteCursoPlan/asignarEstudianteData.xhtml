@@ -10,129 +10,66 @@
 		<icecore:singleSubmit />
 		<ice:panelGroup styleClass="borderGray">
 			<center>
-				<ice:panelGrid columns="1" columnClasses="col45,col55"
-					styleClass="borderGray">
-
-					<ice:panelGroup styleClass="titulosCenter">
-						<ice:outputLabel value="Curso Titulacion:" styleClass="label" />
-					</ice:panelGroup>
-
-					<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
-						<ice:outputLabel value="Nombre:" styleClass="label" />
-						<ice:selectOneMenu id="selCurso"
-							value="#{asignarEstudianteCursoPlanControlador.cursoSelected}"
-							style="width: 210px;" partialSubmit="true"
-							requiredMessage="#{msg['campo.vacio']}" title="Carrera">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
-							<f:selectItems
-								value="#{asignarEstudianteCursoPlanControlador.listadoCursoTitulacion}"
-								var="items" itemLabel="#{items.curTitNombre}"
-								itemValue="#{items.curTitCodigo}" />
-						</ice:selectOneMenu>
-					</ice:panelGrid>
-
-					<ice:panelGroup styleClass="titulosCenter">
-						<ice:outputLabel value="Estudiantes con tema titulacion:"
-							styleClass="label" />
-					</ice:panelGroup>
-
-					<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
-						<ice:outputLabel value="Nombre:" styleClass="label" />
-						<ice:selectOneMenu id="selEstudiante"
-							value="#{asignarEstudianteCursoPlanControlador.estudianteSelected}"
-							style="width: 210px;" partialSubmit="true"
-							requiredMessage="#{msg['campo.vacio']}" title="Carrera">
-							<f:selectItem itemLabel="--Seleccione--" itemValue="0"></f:selectItem>
-							<f:selectItems
-								value="#{asignarEstudianteCursoPlanControlador.listadoEstudianteSeleccionTema}"
-								var="items"
-								itemLabel="#{items.perCodigo.perNombre} #{items.perCodigo.perApellido}"
-								itemValue="#{items.perCodigo.perCodigo}" />
-						</ice:selectOneMenu>
-					</ice:panelGrid>
-
-					<center>
-						<ice:commandButton value="Asignar" title="Asignar"
-							panelConfirmation="confirmacionSeleccion" partialSubmit="true"
-							action="#{asignarEstudianteCursoPlanControlador.btnAsignarEstudianteCursoTitulacion()}"
-							rendered="#{asignarEstudianteCursoPlanControlador.cursoTitulacionEstudiante.curTitEstCodigo==null}" />
-
-						<ice:commandButton value="Actualizar" title="Actualizar"
-							panelConfirmation="confirmacionSeleccion" partialSubmit="true"
-							action="#{asignarEstudianteCursoPlanControlador.btnActualizarCursoTitulacionEstudiante()}"
-							rendered="#{asignarEstudianteCursoPlanControlador.cursoTitulacionEstudiante.curTitEstCodigo!=null}" />
-
-					</center>
+				<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
+					<ice:outputLabel value="Curso Titulacion:" styleClass="label" />
+					<ice:selectOneMenu id="selCursoTit" style="width: 210px;"
+						required="true" requiredMessage="#{msg['campo.vacio']}"
+						value="#{asignarEstudianteCursoPlanControlador.cursoSelected}"
+						valueChangeListener="#{asignarEstudianteCursoPlanControlador.cbChangeCursoTitulacion}"
+						title="Curso Titulacion">
+						<f:selectItem itemLabel="Select" itemValue="0">
+						</f:selectItem>
+						<f:selectItems
+							value="#{asignarEstudianteCursoPlanControlador.listadoCursoTitulacion}"
+							var="items" itemLabel="#{items.curTitNombre}"
+							itemValue="#{items.curTitCodigo}" />
+					</ice:selectOneMenu>
+					<ice:message for="selCursoTit" errorClass="error" />
 				</ice:panelGrid>
-			</center>
-			<center>
 
-
-				<ice:panelGrid columns="1" styleClass="borderGray"
-					style="min-width: 500px;">
-					<ice:panelGroup>
-						<ice:panelGroup styleClass="titulosCenter">
-							<ice:outputLabel value="Listado de estudiantes en curso" />
-						</ice:panelGroup>
-						<ice:dataTable rows="10" id="dataList" var="curso"
-							value="#{asignarEstudianteCursoPlanControlador.listadoCursoTitulacionEstudiante}">
+				<ice:panelGrid columns="2" columnClasses="col30,col40,col30">
+					<ice:panelGrid styleClass="borderGray"
+						style="text-align: left; min-width: 500px;">
+						<center>
+							<ice:outputLabel value="Lista de Estudiantes" styleClass="label" />
+						</center>
+						<ice:dataTable rows="10" id="dataList" var="estudiante"
+							style="width: 100%;"
+							value="#{asignarEstudianteCursoPlanControlador.listadoPersonaEstudiante}">
 							<ice:column>
 								<center>
 									<f:facet name="header">
-										<ice:outputLabel value="Nombre del curso"></ice:outputLabel>
-									</f:facet>
-									<ice:outputLabel value="#{curso.cursoTitulacion.curTitNombre}" />
-								</center>
-							</ice:column>
-							<ice:column>
-								<center>
-									<f:facet name="header">
-										<ice:outputLabel value="Estudiante"></ice:outputLabel>
+										<ice:outputLabel value="Nombre"></ice:outputLabel>
 									</f:facet>
 									<ice:outputLabel
-										value="#{curso.seleccionTema.perCodigo.perNombre}" />
+										value="#{estudiante.perNombre} #{estudiante.perApellido} " />
 								</center>
 							</ice:column>
 							<ice:column>
 								<center>
 									<f:facet name="header">
-										<ice:outputLabel value="Docente Responsable"></ice:outputLabel>
+										<ice:outputLabel value="Documento de Identidad"></ice:outputLabel>
 									</f:facet>
-									<ice:outputLabel value="#{curso.cursoTitulacion.persona.perNombre}" />
+									<ice:outputLabel value="#{estudiante.perDocumentoIdentidad}" />
 								</center>
 							</ice:column>
-							<ice:column>
-								<center>
-									<f:facet name="header">
-										<ice:outputLabel value="Estado"></ice:outputLabel>
-									</f:facet>
-									<ice:outputLabel value="#{curso.cursoTitulacion.curTitEstado}" />
-								</center>
-							</ice:column>
-
 							<ice:column style="width: 10%;">
 								<f:facet name="header">
 									<ice:outputLabel value="Seleccionar"></ice:outputLabel>
 								</f:facet>
-								<ice:commandButton value="Eliminar" style="font-size: 10px;"
-									title="Seleccionar" panelConfirmation="confirmacionSeleccion"
-									immediate="true"
-									action="#{asignarEstudianteCursoPlanControlador.btnEliminarCursoTitulacionEstudiante(curso)}"
-									partialSubmit="true">
+
+								<ice:commandButton value="Seleccionar" style="font-size: 10px;"
+									title="Seleccionar"
+									actionListener="#{asignarEstudianteCursoPlanControlador.seleccionarPersonaEstudiante(estudiante)}"
+									immediate="true" partialSubmit="true">
+									<f:attribute name="select" value="#{estudiante}"></f:attribute>
 								</ice:commandButton>
+
 								<ice:panelConfirmation id="confirmacion" title="Confirmación"
 									message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
 									acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
 									type="normal" rendered="true" />
 							</ice:column>
-							<!--                                <ice:column style="width: 10%;">
-                                    <f:facet name="header">
-                                        <ice:outputLabel value="Editar"></ice:outputLabel>
-                                    </f:facet>
-                                    <ice:commandButton value="Editar" style="font-size: 10px;" title="Seleccionar"
-                                                       immediate="true">
-                                    </ice:commandButton>
-                                </ice:column>-->
 
 							<f:facet name="footer">
 								<center>
@@ -172,30 +109,116 @@
 								</center>
 							</f:facet>
 						</ice:dataTable>
-					</ice:panelGroup>
-				</ice:panelGrid>
-			</center>
-			<ice:panelConfirmation id="confirmacionSeleccion"
-				title="Confirmación"
-				message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
-				acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
-				type="normal" rendered="true" />
+					</ice:panelGrid>
 
-			<center>
+					<ice:panelGrid styleClass="borderGray"
+						style="text-align: left; min-width: 500px;">
+						<center>
+							<ice:outputLabel value="Lista de Estudiantes asignados"
+								styleClass="label" />
+							<ice:dataTable rows="10" id="dataList1" var="curso"
+								style="width: 100%;"
+								value="#{asignarEstudianteCursoPlanControlador.listadoProcesoEstudiante}">
+								<ice:column>
+									<center>
+										<f:facet name="header">
+											<ice:outputLabel value="Nombre"></ice:outputLabel>
+										</f:facet>
+										<ice:outputLabel
+											value="#{curso.persona.perNombre} #{curso.persona.perApellido}" />
+									</center>
+								</ice:column>
+								<ice:column>
+									<center>
+										<f:facet name="header">
+											<ice:outputLabel value="Documento de Identidad"></ice:outputLabel>
+										</f:facet>
+										<ice:outputLabel
+											value="#{curso.persona.perDocumentoIdentidad}" />
+									</center>
+								</ice:column>
+								<ice:column style="width: 10%;">
+									<f:facet name="header">
+										<ice:outputLabel value="Seleccionar"></ice:outputLabel>
+									</f:facet>
+									<ice:commandButton value="Eliminar" style="font-size: 10px;"
+										title="Seleccionar" panelConfirmation="confirmacionSeleccion"
+										immediate="true" partialSubmit="true"
+										actionListener="#{asignarEstudianteCursoPlanControlador.eliminarProcesoEstudiante(curso)}">
+									</ice:commandButton>
+									<ice:panelConfirmation id="confirmacion" title="Confirmación"
+										message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+										acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+										type="normal" rendered="true" />
+								</ice:column>
+
+								<f:facet name="footer">
+									<center>
+										<ice:dataPaginator id="paginador" for="dataList1"
+											paginator="true" fastStep="10" paginatorMaxPages="10">
+											<f:facet name="first">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-first.gif"
+													style="border:none;" title="Pagina Inicial" />
+											</f:facet>
+											<f:facet name="last">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-last.gif"
+													style="border:none;" title="Pagina Final" />
+											</f:facet>
+											<f:facet name="previous">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-previous.gif"
+													style="border:none;" title="Pagina Previa" />
+											</f:facet>
+											<f:facet name="next">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-next.gif"
+													style="border:none;" title="Pagina Siguiente" />
+											</f:facet>
+											<f:facet name="fastforward">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-ff.gif"
+													style="border:none;" title="Avance Rapido" />
+											</f:facet>
+											<f:facet name="fastrewind">
+												<ice:graphicImage
+													url="/resources/css/rime/css-images/arrow-fr.gif"
+													style="border:none;" title="Retorno Rapido" />
+											</f:facet>
+										</ice:dataPaginator>
+									</center>
+								</f:facet>
+							</ice:dataTable>
+						</center>
+					</ice:panelGrid>
+
+				</ice:panelGrid>
+
+
 				<ice:commandButton value="Guardar" title="Guardar el registro"
-					panelConfirmation="confirmacionSeleccion"
-					rendered="#{asignarEstudianteCursoPlanControlador.cursoTitulacionEstudiante.curTitEstCodigo== null}"
 					action="#{asignarEstudianteCursoPlanControlador.inicializacion()}"
+					panelConfirmation="confirmacionSeleccion"
+					rendered="#{asignarEstudianteCursoPlanControlador.proceso.prcCodigo==null}"
 					partialSubmit="true" />
 
 				<ice:commandButton value="Actualizar" title="Actualizar el registro"
-					action="#{asignarEstudianteCursoPlanControlador.inicializacion()}"
+					action="#{asignarEstudianteCursoPlanControlador.btnActualizarProcesoEstudiante()}"
 					panelConfirmation="confirmacionSeleccion"
-					rendered="#{asignarEstudianteCursoPlanControlador.cursoTitulacionEstudiante.curTitEstCodigo!= null}"
+					rendered="#{asignarEstudianteCursoPlanControlador.proceso.prcCodigo!=null}"
 					partialSubmit="true" />
+
 			</center>
 
 		</ice:panelGroup>
+
+
+		<center></center>
+		<ice:panelConfirmation id="confirmacionSeleccion" title="Confirmación"
+			message="Click 'Aceptar' si desea aprobar la acción realizada. Caso contrario click 'Cancelar' y revocar la acción realizada."
+			acceptLabel="Aceptar" cancelLabel="Cancelar" autoCentre="true"
+			type="normal" rendered="true" />
+
 	</ice:form>
 </ui:composition>
 </html>

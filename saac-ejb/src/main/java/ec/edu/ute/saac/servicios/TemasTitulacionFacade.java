@@ -38,7 +38,7 @@ public class TemasTitulacionFacade extends AbstractFacade<TemasTitulacion> {
 	public TemasTitulacionFacade() {
 		super(TemasTitulacion.class);
 	}
- 
+
 	public Collection<TemasTitulacion> obtenerTemaTitulacion(Integer carCodigo,
 			Integer linInvCodigo, Integer areaInvCodigo) throws Exception {
 
@@ -110,21 +110,39 @@ public class TemasTitulacionFacade extends AbstractFacade<TemasTitulacion> {
 
 	public void asignarEstadoTemaTitulacion(TemasTitulacion temaTitulacion,
 			String estado) {
-
 		temaTitulacion.setTemTitEstado(estado);
 		edit(temaTitulacion);
 
 	}
-	
-	 public Collection<TemasTitulacion> obtenerSeleccionTemaAreaInvestigacion(Integer areInvCodigo){
-	    	
-	    	Collection<TemasTitulacion> result = null;
-			Criteria criteria = ((Session)getEntityManager().getDelegate()).createCriteria(TemasTitulacion.class);
-			criteria.createAlias("areaInvestigacion", "areA");
-			criteria.add(Restrictions.eq("areA.areInvCodigo", areInvCodigo));
-			criteria.setFetchMode("areA", FetchMode.JOIN);
-			result = criteria.list();
-			return result;
-	    }
 
+	public Collection<TemasTitulacion> obtenerSeleccionTemaAreaInvestigacion(
+			Integer areInvCodigo) {
+		Collection<TemasTitulacion> result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(TemasTitulacion.class);
+		criteria.createAlias("areaInvestigacion", "areA");
+		criteria.add(Restrictions.eq("areA.areInvCodigo", areInvCodigo));
+		criteria.setFetchMode("areA", FetchMode.JOIN);
+		result = criteria.list();
+		return result;
+	}
+	
+	public Collection<TemasTitulacion> obtenerTemaTitulacionDocente(
+			Integer perCodigo) {
+		Collection<TemasTitulacion> result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(TemasTitulacion.class);
+		criteria.createAlias("perCodigo", "perA");
+		criteria.add(Restrictions.eq("perA.perCodigo", perCodigo));
+		criteria.setFetchMode("perA", FetchMode.JOIN);
+		criteria.createAlias("areaInvestigacion", "areaA");
+		criteria.createAlias("areaA.lineaInvestigacion", "linA");
+		criteria.createAlias("linA.carrera", "carA");
+		criteria.setFetchMode("carA", FetchMode.JOIN);
+		
+		result = criteria.list();
+		return result;
+	}
+
+	
 }

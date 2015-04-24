@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import ec.edu.ute.saac.entidades.AreaInvestigacion;
 import ec.edu.ute.saac.entidades.Carrera;
 import ec.edu.ute.saac.entidades.Catalogo;
+import ec.edu.ute.saac.entidades.Contenido;
 import ec.edu.ute.saac.entidades.CursoTitulacion;
 import ec.edu.ute.saac.entidades.CursoTitulacionEstudiante;
 import ec.edu.ute.saac.entidades.Facultad;
@@ -23,6 +24,7 @@ import ec.edu.ute.saac.entidades.UsuarioRol;
 import ec.edu.ute.saac.servicios.AreaInvestigacionFacade;
 import ec.edu.ute.saac.servicios.CarreraFacade;
 import ec.edu.ute.saac.servicios.CatalogoFacade;
+import ec.edu.ute.saac.servicios.ContenidoFacade;
 import ec.edu.ute.saac.servicios.CursoTitulacionEstudianteFacade;
 import ec.edu.ute.saac.servicios.CursoTitulacionFacade;
 import ec.edu.ute.saac.servicios.FacultadFacade;
@@ -71,6 +73,8 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 	private CursoTitulacionEstudianteFacade cursoTitulacionEstudianteFacade;
 	@EJB
 	private PersonaCarreraFacade personaCarreraFacade;
+	@EJB
+	private ContenidoFacade contenidoFacade;
 	
 	@Override
 	public Collection<Facultad> findAll() {
@@ -403,12 +407,6 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 	}
 
 	@Override
-	public Collection<Proceso> obtenerProcesoEstudiante() throws Exception {
-		// TODO Auto-generated method stub
-		return procesoFacade.obtenerProcesoEstudiante();
-	}
-
-	@Override
 	public void crearProceso(Proceso proceso) throws Exception {
 		// TODO Auto-generated method stub
 		procesoFacade.create(proceso);
@@ -489,8 +487,102 @@ public class AdministracionServicioImpl implements IAdministracionServicio {
 		return personaFacade.obtenerPersonaUsuarioRol();
 	}
 
+	@Override
+	public Collection<Usuario> obtenerUsuarios() throws Exception {
+		// TODO Auto-generated method stub
+		return usuarioFacade.findAll();
+	}
+
+	@Override
+	public Object obtenerPassUsuario(Integer usuCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return usuarioFacade.obtenerPassUsuario(usuCodigo);
+	}
+
+	@Override
+	public Collection<CursoTitulacion> obtenerCursoTitulacionCodigo(
+			Integer codCursoTit) throws Exception {
+		// TODO Auto-generated method stub
+		return cursoTitulacionFacade.obtenerCursoTitulacionCodigo(codCursoTit);
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoCursoTitulacion(Integer curCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoCursoTitulacion(curCodigo);
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoEstudiante(Integer curCodigo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoEstudiante(curCodigo);
+	}
+
+	@Override
+	public void eliminarProcesoEstudiante(Proceso proceso) throws Exception {
+		// TODO Auto-generated method stub
+		procesoFacade.remove(proceso);
+	}  
+
+	@Override
+	public void actualizarProcesoEstudiante(Proceso proceso) throws Exception {
+		// TODO Auto-generated method stub
+		procesoFacade.edit(proceso);
+	}
+
+	@Override
+	public Collection<TemasTitulacion> obtenerTemaTitulacionDocente(
+			Integer perCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return temaTitulacionFacade.obtenerTemaTitulacionDocente(perCodigo);
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoPeriodo() throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoPeriodo();
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoPeriodoEstudiante(Integer prdCodigo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoPeriodoEstudiante(prdCodigo);
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoEstudianteLoggin()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoEstudianteLoggin();
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProcesoTemaTitulacionEstudiante(
+			Integer perCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProcesoTemaTitulacionEstudiante(perCodigo);
+	}
+
+	
+	@Override
+	public String obtenerJustificacion(Integer prcCodigo) throws Exception {
+		// TODO Auto-generated method stub
+		return contenidoFacade.obtenerJustificacion(prcCodigo);
+	}
+
+	@Override
+	public Collection<Proceso> obtenerProblema(Integer prcCodigo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return procesoFacade.obtenerProblema(prcCodigo);
+	}
+
 	
 
+
+	
 
 	
 

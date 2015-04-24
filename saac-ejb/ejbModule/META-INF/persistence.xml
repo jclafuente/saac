@@ -12,9 +12,10 @@
 		<class>ec.edu.ute.saac.entidades.Catalogo</class>
 		<class>ec.edu.ute.saac.entidades.ComisionInvestigacion</class>
 		<class>ec.edu.ute.saac.entidades.Comite</class>
-		<class>ec.edu.ute.saac.entidades.Experiencia</class>
+		<class>ec.edu.ute.saac.entidades.Contenido</class>
 		<class>ec.edu.ute.saac.entidades.CursoTitulacion</class>
 		<class>ec.edu.ute.saac.entidades.CursoTitulacionEstudiante</class>
+		<class>ec.edu.ute.saac.entidades.Experiencia</class>
 		<class>ec.edu.ute.saac.entidades.Facultad</class>
 		<class>ec.edu.ute.saac.entidades.GrupoCatalogo</class>
 		<class>ec.edu.ute.saac.entidades.LineaInvestigacion</class>
@@ -36,6 +37,7 @@
 		<class>ec.edu.ute.saac.entidades.TipoProceso</class>
 		<class>ec.edu.ute.saac.entidades.Usuario</class>
 		<class>ec.edu.ute.saac.entidades.UsuarioRol</class>
+		<class>ec.edu.ute.saac.entidades.Componente</class>
 		<properties>
 <!-- 			<property name="javax.persistence.jdbc.user" value="root"/> -->
 <!-- 			<property name="javax.persistence.jdbc.password" value="admin"/> -->

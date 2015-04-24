@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition>
+        <ice:panelCollapsible expanded="false" immediate="true" >
+            <f:facet name="header">
+                <h:panelGrid columns="1" styleClass="panelCollapsible">
+                    <h:outputText value="2. INTRODUCCION" styleClass="panelHeaderStyle"/>
+                </h:panelGrid>
+            </f:facet>
+            <center>
+                <ice:panelGrid columns="2" columnClasses="col20,col80"  >
+
+                    <ice:outputLabel styleClass="labelScreen" value="Problema:" />
+                    <ice:inputTextarea value="#{desarrollarTemaPlanTitulacionControlador.prueba}" cols="100" rows="3" />
+                    
+                    
+                    <ice:outputLabel styleClass="labelScreen" value="Justificación:" />
+                    <ice:inputTextarea value="#{desarrollarTemaPlanTitulacionControlador.justificacion}" cols="100" rows="3" />
+
+                </ice:panelGrid>
+            </center>
+        </ice:panelCollapsible>
+    </ui:composition>
+</html>

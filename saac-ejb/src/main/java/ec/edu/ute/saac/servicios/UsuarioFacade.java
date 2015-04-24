@@ -75,5 +75,19 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
 		result = criteria.list();
 		return result;
 	}
+	
+	public Object obtenerPassUsuario(Integer usuCodigo) throws Exception {
 
+		Object result = null;
+		Criteria criteria = ((Session) getEntityManager().getDelegate())
+				.createCriteria(Usuario.class);
+		criteria.createAlias("usuPassword", "usuA");
+		criteria.setFetchMode("usuA", FetchMode.JOIN);
+		criteria.add(Restrictions.eq("usuCodigo", usuCodigo));
+		
+		result = criteria.uniqueResult() ; 
+		return result;
+	}
+	
+	
 }

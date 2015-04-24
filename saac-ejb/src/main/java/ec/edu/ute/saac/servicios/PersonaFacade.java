@@ -61,7 +61,7 @@ public class PersonaFacade extends AbstractFacade<Persona> {
 		Collection<Persona> result = null;
 		Criteria criteria = ((Session) getEntityManager().getDelegate())
 				.createCriteria(Persona.class);
-		criteria.createAlias("usuarioList", "usuA");
+		criteria.createAlias("usuario", "usuA");
 		criteria.createAlias("usuA.usuarioRolList", "usrA");
 		criteria.createAlias("usrA.rol", "rolA");
 		criteria.setFetchMode("rolA", FetchMode.JOIN);
@@ -76,10 +76,11 @@ public class PersonaFacade extends AbstractFacade<Persona> {
 		Collection<Persona> result = null;
 		Criteria criteria = ((Session) getEntityManager().getDelegate())
 				.createCriteria(Persona.class);
-		criteria.createAlias("usuarioList", "usuA");
+		criteria.createAlias("usuario", "usuA");
 		criteria.createAlias("usuA.usuarioRolList", "usrA");
-		criteria.setFetchMode("usrA", FetchMode.JOIN);
-		criteria.add(Restrictions.eq("usrA.rol", Integer.parseInt("0000000019")));//cod estudiante
+		criteria.createAlias("usrA.rol", "rolA");
+		criteria.setFetchMode("rolA", FetchMode.JOIN);
+		criteria.add(Restrictions.eq("rolA.rolCodigo", Integer.parseInt("0000000019")));//cod estudiante
 		
 		
 		result = criteria.list();
